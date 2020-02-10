@@ -1,8 +1,11 @@
 {
+  "name": "smartgcc",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/starlocke/smartgcc.git",
+  "author": "Victor Yap <victor.yap@alumni.concordia.ca>",
+  "license": "MIT",
   "devDependencies": {
     "electron": "^8.0.0"
-  },
-  "installConfig": {
-    "pnp": true
   }
 }

@@ -1,27 +1,156 @@
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
-    <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
-    <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
-    <script
-      src="https://code.jquery.com/jquery-3.1.1.min.js"
-      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-      crossorigin="anonymous"></script>
-    <script src="semantic/semantic.min.js"></script>    
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-    We are using node <script>document.write(process.versions.node)</script>,
-    Chrome <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World!</title>
+  <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+  <!-- Insert this line above script imports  -->
+  <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
+  <!-- normal script imports etc  -->
+  <!-- UIkit CSS 3.3.1-->
+  <link rel="stylesheet" href="css/uikit.min.css" />
+  <!-- UIkit JS 3.3.1 -->
+  <script src="js/uikit.min.js"></script>
+  <script src="js/uikit-icons.min.js"></script>
+  <!-- Insert this line after script imports -->
+  <script>if (window.module) module = window.module;</script>
+</head>
+
+<body>
+
+  <ul uk-tab>
+    <li class="uk-active"><a href="#">Left</a></li>
+    <li><a href="#">Item</a></li>
+    <li><a href="#">Item</a></li>
+    <li class="uk-disabled"><a>Disabled</a></li>
+  </ul>
+  <div class="uk-switcher">
+    <div class="uk-section uk-section-default">
+      <div class="uk-container">
+
+        <h3>Section Default</h3>
+
+        <h1>Hello World!</h1>
+        We are using node
+        <script>document.write(process.versions.node)</script>,
+        Chrome
+        <script>document.write(process.versions.chrome)</script>,
+        and Electron
+        <script>document.write(process.versions.electron)</script>.
+
+
+        <div class="uk-grid-match uk-child-width-1-3@m" uk-grid>
+          <div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+          </div>
+          <div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+          </div>
+          <div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="uk-section uk-section-muted">
+      <div class="uk-container">
+
+        <h3>Section Muted</h3>
+
+        <div class="uk-grid-match uk-child-width-1-3@m" uk-grid>
+          <div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+          </div>
+          <div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+          </div>
+          <div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="uk-section uk-section-primary uk-light">
+      <div class="uk-container">
+
+        <h3>Section Primary</h3>
+
+        <div class="uk-grid-match uk-child-width-1-3@m" uk-grid>
+          <div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+          </div>
+          <div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+          </div>
+          <div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="uk-section uk-section-secondary uk-light">
+      <div class="uk-container">
+
+        <h3>Section Secondary</h3>
+
+        <div class="uk-grid-match uk-child-width-1-3@m" uk-grid>
+          <div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+          </div>
+          <div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+          </div>
+          <div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="uk-section-default">
+      <div class="uk-section uk-light uk-background-cover" style="background-image: url(images/dark.jpg)">
+        <div class="uk-container">
+
+          <h3>Section with Images</h3>
+
+          <div class="uk-grid-match uk-child-width-1-3@m" uk-grid>
+            <div>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+            </div>
+            <div>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+            </div>
+            <div>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui bottom attached active tab segment" data-tab="first">
 
     <div class="ui three buttons">
       <button class="ui active button">One</button>
       <button class="ui button">Two</button>
       <button class="ui button">Three</button>
     </div>
-    
-  </body>
+  </div>
+  <div class="ui bottom attached tab segment" data-tab="second">
+    Second Content
+  </div>
+  <div class="ui bottom attached tab segment" data-tab="third">
+    Third Content
+  </div>
+</body>
+
 </html>

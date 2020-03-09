@@ -1,0 +1,220 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>SmartGCC!</title>
+  <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+  <!-- Insert this line above script imports  -->
+  <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
+  <!-- normal script imports etc  -->
+  <!-- UIkit CSS 3.3.1-->
+  <link rel="stylesheet" href="css/uikit.min.css" />
+  <!-- UIkit JS 3.3.1 -->
+  <script src="js/uikit.min.js"></script>
+  <script src="js/uikit-icons.min.js"></script>
+  <script src="node_modules/@fortawesome/fontawesome-free/js/all.min.js"></script>
+  <!-- Insert this line after script imports -->
+  <script>if (window.module) module = window.module;</script>
+  <style>
+    input[type=text], textarea, select {
+        min-width: 50%;
+    }
+  </style>
+</head>
+
+<body style="background: #e5e0ee">
+    <div class="uk-padding-small" style="background: #cce; border-bottom: 3px double #333; border-top: 3px double #333">
+        <ul class="uk-iconnav">
+            <li><a href="#" class=".uk-margin" uk-tooltip="Open"><i class="far fa-folder-open fa-2x"></i></a></li>
+            <li><a href="#" class=".uk-margin" uk-tooltip="Save"><i class="far fa-save fa-2x"></i></a></li>
+            <li><a href="#" class=".uk-margin" uk-tooltip="Close"><i class="far fa-window-close fa-2x"></i></a></li>
+            <li><span style="border-right: 1px dashed #999; display: inline-block; height: 100%; margin: 0 0.25em"></span></li>
+            <li><a href="#" class=".uk-margin" id="gcc-build" uk-tooltip="Build" uk-icon="ratio: 1.5; icon: cog"></a></li>
+            <li><a href="#" class=".uk-margin" uk-tooltip="Execute" uk-icon="ratio: 1.5; icon: play-circle"></a></li>
+            <li><span style="border-right: 1px dashed #999; display: inline-block; height: 100%; margin: 0 0.25em"></span></li>
+            <li><a href="#" class=".uk-margin" uk-tooltip="Back" uk-icon="ratio: 1.5; icon: arrow-left"></a></li>
+            <li><a href="#" class=".uk-margin" uk-tooltip="Forward" uk-icon="ratio: 1.5; icon: arrow-right"></a></li>
+            <li><span style="border-right: 1px dashed #999; display: inline-block; height: 100%; margin: 0 0.25em"></span></li>
+            <li><a href="#" class=".uk-margin" uk-tooltip="Undo" uk-icon="ratio: 1.5; icon: reply"></a></li>
+            <li><a href="#" class=".uk-margin" uk-tooltip="Redo" uk-icon="ratio: 1.5; icon: forward"></a></li>
+            <li><span style="border-right: 1px dashed #999; display: inline-block; height: 100%; margin: 0 0.25em"></span></li>
+            <li><a href="#" class=".uk-margin" uk-tooltip="Profile" uk-icon="ratio: 1.5; icon: user"></a></li>
+            <li><a href="#" class=".uk-margin" uk-tooltip="Help" uk-icon="ratio: 1.5; icon: question"></a></li>
+        </ul>
+    </div>
+    <div uk-grid>
+        <div class="uk-width-auto@m">
+            <ul class="uk-tab-left" uk-tab="connect: #component-tab-left; animation: uk-animation-fade">
+                <li><a href="#">Compiler options</a></li>
+                <li><a href="#">Linking options</a></li>
+                <li><a href="#">Execute options</a></li>
+                <li><a href="#">Code generation options</a></li>
+                <li><a href="#">Code optimization options</a></li>
+                <li><a href="#">Developer options</a></li>
+            </ul>
+        </div>
+        <div class="uk-width-expand@m" >
+            <form>
+                <div id="component-tab-left" class="uk-switcher">
+                    <div>
+                        <h1>Compiler Options</h1>
+                        Root Folder: <br/>
+                        <input type="text" value="C:\Users\Victor\Downloads\Blackjack-master" name="root-folder"/><br />
+                        <br/>
+                        Source files: <br/>
+                        <input type="text" value="*.cpp" name="source-files"/><br />
+                        <br/>
+                        Warnings: <br/>
+                        <label><input type="radio" class="uk-radio"  value="" name="warnings" checked/> None</label>
+                        <label><input type="radio" class="uk-radio"  value="-Wsome" name="warnings"/> Some</label>
+                        <label><input type="radio" class="uk-radio"  value="-Wall" name="warnings"/> All</label>
+                    </div>
+                    <div>
+                        <h1>Linking options</h1>
+                        Linker Enabled: <br/>
+                        <label><input type="radio" class="uk-radio"  value="" name="linker-enabled" checked/> Yes</label>
+                        <label><input type="radio" class="uk-radio"  value="-c" name="linker-enabled"/> No</label>
+                    </div>
+                    <div>
+                        <h1>Execute Options</h1>
+                        <label>Inputs File: <input type="text" name="execute-inputs-file" /></label>
+                    </div>
+                    <div>
+                        <h1>Code generation convention options</h1>
+
+                        -fstack-reuse=<i>reuse-level</i><br/>
+                        <label><input type="radio" class="uk-radio" name="fstack-reuse" value="" checked/> all</label>
+                        <label><input type="radio" class="uk-radio" name="fstack-reuse" value="-fstack-reuse=named_vars"/> named_vars</label>
+                        <label><input type="radio" class="uk-radio" name="fstack-reuse" value="-fstack-reuse=none"/> named_vars</label>
+                        <br />
+                        <br />
+                        -fsync-libcalls:<br/>
+                        <label><input type="radio" class="uk-radio" name="sync-libcalls" value="" checked/> Enabled</label>
+                        <label><input type="radio" class="uk-radio" name="sync-libcalls" value="-fno-sync-libcalls"/> Disabled</label>
+
+                    </div>
+                    <div>
+                        <h1>Code optimization options</h1>
+                        Optimization Preset:<br/>
+                        <label><input type="radio" class="uk-radio"  value="-O0" name="optimization-preset" checked/>0</label>
+                        <label><input type="radio" class="uk-radio"  value="-O1" name="optimization-preset"/>1</label>
+                        <label><input type="radio" class="uk-radio"  value="-O2" name="optimization-preset"/>2</label>
+                        <label><input type="radio" class="uk-radio"  value="-O3" name="optimization-preset"/>3</label>
+                        <label><input type="radio" class="uk-radio"  value="-Os" name="optimization-preset"/>Size</label>
+                        <label><input type="radio" class="uk-radio"  value="-Ofast" name="optimization-preset"/>Fast</label>
+                        <label><input type="radio" class="uk-radio"  value="-Og" name="optimization-preset"/>Debug</label>
+                    </div>
+                    <div>
+                        <h1>Developer options</h1>
+
+                        Dump and exit:<br/>
+                        <label><input type="radio" class="uk-radio" name="dump-exit" value="" checked/> <i>Disabled</i></label>
+                        <label><input type="radio" class="uk-radio" name="dump-exit" value="-dumpmachine"/> -dumpmachine</label>
+                        <label><input type="radio" class="uk-radio" name="dump-exit" value="-dumpversion"/> -dumpversion</label>
+                        <label><input type="radio" class="uk-radio" name="dump-exit" value="-dumpfullversion"/> -dumpfullversion</label>
+                        <label><input type="radio" class="uk-radio" name="dump-exit" value="-dumpspecs"/> -dumpspecs</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="uk-light uk-background-secondary uk-padding-small" style="position: absolute; bottom: 0; height: 25%; width: 100%; box-sizing: border-box; overflow: scroll;">
+        GCC OUTPUT:<br/>
+        <div id="gcc-output">
+            <i>output goes here...</i>
+        </div>
+    </div>
+
+    <script type="text/javascript"> 
+        // include the ipc module to communicate with main process.
+        const ipcRenderer = require('electron').ipcRenderer; 
+
+        const gcc_build = document.getElementById('gcc-build');
+
+        gcc_build.addEventListener('click', function () {
+            var child_process = require('child_process');
+
+            console.log("Node Version: ", process.version);
+
+            let source_files = document.querySelector('input[name="source-files"]').value;
+
+            let args = [source_files, "-lstdc++", "--verbose"];
+
+            let simple_radio_opts = ['linker-enabled', 'fstack-reuse', 'sync-libcalls'];
+
+            for(i = 0; i < simple_radio_opts.length; ++i){
+                let opt_name = simple_radio_opts[i];
+                let opt_line = document.querySelector('input[name="'+opt_name+'"]:checked').value;
+                if(opt_line.length) args.push(opt_line)
+            }
+
+            console.log(args)
+
+            run_script("C:\\msys64\\mingw64\\bin\\gcc.exe", args, function(output, exit_code) {
+                console.log("Process Finished.");
+                console.log('closing code: ' + exit_code);
+                console.log('Full output of script: ',output);
+            });
+
+            console.log ("Continuing to do node things while the process runs at the same time...");
+
+            // This function will output the lines from the script 
+            // AS is runs, AND will return the full combined output
+            // as well as exit code when it's done (using the callback).
+            function run_script(command, args, callback) {
+                console.log("Starting Process.");
+
+                let options = {
+                    'cwd': document.querySelector('input[name="root-folder"]').value
+                }
+
+                var child = child_process.spawn(command, args, options);
+
+                var scriptOutput = "";
+                let gcc_output = document.getElementById('gcc-output');
+                gcc_output.innerHTML = "";
+
+                child.stdout.setEncoding('utf8');
+                child.stdout.on('data', function(data) {
+                    data_str = data.toString();
+                    console.log('stdout: ' + data_str);
+
+                    let div = document.createElement('div');
+                    div.className = "uk-alert-primary"
+                    div.innerHTML = data_str.replace(/(?:\r\n|\r|\n)/g, '<br>');
+                    let fragment = document.createDocumentFragment();
+                    fragment.appendChild(div);
+                    let gcc_output = document.getElementById('gcc-output');
+                    gcc_output.append(fragment);
+
+                    scriptOutput+=data_str;
+                });
+
+                child.stderr.setEncoding('utf8');
+                child.stderr.on('data', function(data) {
+                    data_str = data.toString();
+                    console.log('stderr: ' + data_str);
+
+                    let div = document.createElement('div');
+                    div.className = "uk-alert-warning"
+                    div.innerHTML = data_str.replace(/(?:\r\n|\r|\n)/g, '<br>');
+                    let fragment = document.createDocumentFragment();
+                    fragment.appendChild(div);
+                    let gcc_output = document.getElementById('gcc-output');
+                    gcc_output.append(fragment);
+
+                    scriptOutput+=data_str;
+                });
+
+                child.on('close', function(code) {
+                    callback(scriptOutput,code);
+                });
+            }
+
+        });
+    </script>
+
+</body>
+
+</html>

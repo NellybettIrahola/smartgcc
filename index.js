@@ -1,4 +1,11 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
+
+const path = require('path')
+
+require('electron-reload')(__dirname, {
+});
+
+var child = require('child_process').execFile;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -16,9 +23,29 @@ function createWindow () {
 
   // and load the index.html of the app.
   win.loadFile('index.html')
+  //ipcMain.on will receive the “btnclick” info from renderprocess 
+  ipcMain.on("btnclick",function (event, arg) {
+    console.log("btn-click?!" + arg)
+    win.loadFile('tabs.html')
+  });
+
+  ipcMain.on("gcc-build",function (event, arg) {
+    console.log("gcc-build?!" + arg)
+    var executablePath = "C:\\msys64\\mingw64\\bin\\gcc.exe";
+    var parameters = ["-dumpversion"];
+    child(executablePath, parameters, function(err, data) {
+        if(err){
+          console.error(err);
+          return;
+        }
+        data_str = data.toString()
+        console.log(data_str);
+        event.sender.send("gcc-build-finished", data_str); 
+    });  
+  });
 
   // Open the DevTools.
-  win.webContents.openDevTools()
+  // win.webContents.openDevTools()
 
   // Emitted when the window is closed.
   win.on('closed', () => {
@@ -53,3 +80,5 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+require('./applicationMenu.js')

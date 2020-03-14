@@ -1,30 +1,49 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <title>SmartGCC!</title>
-  <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
-  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
-  <!-- Insert this line above script imports  -->
-  <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
-  <!-- normal script imports etc  -->
-  <!-- UIkit CSS 3.3.1-->
-  <link rel="stylesheet" href="css/uikit.min.css" />
-  <!-- UIkit JS 3.3.1 -->
-  <script src="js/uikit.min.js"></script>
-  <script src="js/uikit-icons.min.js"></script>
-  <script src="node_modules/@fortawesome/fontawesome-free/js/all.min.js"></script>
-  <!-- Insert this line after script imports -->
-  <script>if (window.module) module = window.module;</script>
-  <style>
-    input[type=text], textarea, select {
-        min-width: 50%;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>SmartGCC!</title>
+<!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+<meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+<!-- Insert this line above script imports  -->
+<script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
+<!-- normal script imports etc  -->
+<!-- UIkit CSS 3.3.1-->
+<link rel="stylesheet" href="css/uikit.min.css" />
+<!-- UIkit JS 3.3.1 -->
+<script src="js/uikit.min.js"></script>
+<script src="js/uikit-icons.min.js"></script>
+<script src="node_modules/@fortawesome/fontawesome-free/js/all.min.js"></script>
+<!-- Insert this line after script imports -->
+<script>if (window.module) module = window.module;</script>
+<style>
+input[type=text], textarea, select {
+    min-width: 50%;
+}
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: start;
+    align-items: auto;
+    align-content: start;
+    height: 100%;
+}
+.item-top, .item-bottom {
+    width: 100%;
+}
+.item-top {
+    height: 70%;
+}
+.item-bottom {
+    height: 30%;
+    min-height: 200px;
+}
+</style>
 </head>
 
 <body style="background: #e5e0ee">
-    <div class="uk-padding-small" style="background: #cce; border-bottom: 3px double #333; border-top: 3px double #333">
+    <div class="uk-padding-small" style="background: #cce; border-bottom: 2px solid #333; border-top: 2px solid #333">
         <ul class="uk-iconnav">
             <li><a href="#" class=".uk-margin" uk-tooltip="Open"><i class="far fa-folder-open fa-2x"></i></a></li>
             <li><a href="#" class=".uk-margin" uk-tooltip="Save"><i class="far fa-save fa-2x"></i></a></li>
@@ -43,86 +62,94 @@
             <li><a href="#" class=".uk-margin" uk-tooltip="Help" uk-icon="ratio: 1.5; icon: question"></a></li>
         </ul>
     </div>
-    <div uk-grid>
-        <div class="uk-width-auto@m">
-            <ul class="uk-tab-left" uk-tab="connect: #component-tab-left; animation: uk-animation-fade">
-                <li><a href="#">Compiler options</a></li>
-                <li><a href="#">Linking options</a></li>
-                <li><a href="#">Execute options</a></li>
-                <li><a href="#">Code generation options</a></li>
-                <li><a href="#">Code optimization options</a></li>
-                <li><a href="#">Developer options</a></li>
-            </ul>
+    <div class="container">
+        <div uk-grid class="item-top">
+            <div class="uk-width-auto@m" style="background: #ccc;">
+                <ul class="uk-tab-left" uk-tab="">
+                    <li><a href="#" onclick='document.querySelector("input[name=root-folder]").value = "C:\Users\Victor\Downloads\Blackjack-master"'>Blackjack</a></li>
+                    <li><a href="#" onclick='document.querySelector("input[name=root-folder]").value = "C:\Users\Victor\Downloads\ChessGameCPP-master"'>Chess</a></li>
+                </ul>
+            </div>
+            <div class="uk-width-auto@m" style="background: #eaeaea;">
+                <ul class="uk-tab-left" uk-tab="connect: #component-tab-left; animation: uk-animation-fade">
+                    <li><a href="#">Compiler options</a></li>
+                    <li><a href="#">Linking options</a></li>
+                    <li><a href="#">Execute options</a></li>
+                    <li><a href="#">Code generation options</a></li>
+                    <li><a href="#">Code optimization options</a></li>
+                    <li><a href="#">Developer options</a></li>
+                </ul>
+            </div>
+            <div class="uk-width-expand@m" >
+                <form>
+                    <div id="component-tab-left" class="uk-switcher">
+                        <div>
+                            <h1>Compiler Options</h1>
+                            Root Folder: <br/>
+                            <input type="text" value="C:\Users\Victor\Downloads\Blackjack-master" name="root-folder"/><br />
+                            <br/>
+                            Source files: <br/>
+                            <input type="text" value="*.cpp" name="source-files"/><br />
+                            <br/>
+                            Warnings: <br/>
+                            <label><input type="radio" class="uk-radio"  value="" name="warnings" checked/> None</label>
+                            <label><input type="radio" class="uk-radio"  value="-Wsome" name="warnings"/> Some</label>
+                            <label><input type="radio" class="uk-radio"  value="-Wall" name="warnings"/> All</label>
+                        </div>
+                        <div>
+                            <h1>Linking options</h1>
+                            Linker Enabled: <br/>
+                            <label><input type="radio" class="uk-radio"  value="" name="linker-enabled" checked/> Yes</label>
+                            <label><input type="radio" class="uk-radio"  value="-c" name="linker-enabled"/> No</label>
+                        </div>
+                        <div>
+                            <h1>Execute Options</h1>
+                            <label>Inputs File: <input type="text" name="execute-inputs-file" /></label>
+                        </div>
+                        <div>
+                            <h1>Code generation convention options</h1>
+
+                            -fstack-reuse=<i>reuse-level</i><br/>
+                            <label><input type="radio" class="uk-radio" name="fstack-reuse" value="" checked/> all</label>
+                            <label><input type="radio" class="uk-radio" name="fstack-reuse" value="-fstack-reuse=named_vars"/> named_vars</label>
+                            <label><input type="radio" class="uk-radio" name="fstack-reuse" value="-fstack-reuse=none"/> named_vars</label>
+                            <br />
+                            <br />
+                            -fsync-libcalls:<br/>
+                            <label><input type="radio" class="uk-radio" name="sync-libcalls" value="" checked/> Enabled</label>
+                            <label><input type="radio" class="uk-radio" name="sync-libcalls" value="-fno-sync-libcalls"/> Disabled</label>
+
+                        </div>
+                        <div>
+                            <h1>Code optimization options</h1>
+                            Optimization Preset:<br/>
+                            <label><input type="radio" class="uk-radio"  value="-O0" name="optimization-preset" checked/>0</label>
+                            <label><input type="radio" class="uk-radio"  value="-O1" name="optimization-preset"/>1</label>
+                            <label><input type="radio" class="uk-radio"  value="-O2" name="optimization-preset"/>2</label>
+                            <label><input type="radio" class="uk-radio"  value="-O3" name="optimization-preset"/>3</label>
+                            <label><input type="radio" class="uk-radio"  value="-Os" name="optimization-preset"/>Size</label>
+                            <label><input type="radio" class="uk-radio"  value="-Ofast" name="optimization-preset"/>Fast</label>
+                            <label><input type="radio" class="uk-radio"  value="-Og" name="optimization-preset"/>Debug</label>
+                        </div>
+                        <div>
+                            <h1>Developer options</h1>
+
+                            Dump and exit:<br/>
+                            <label><input type="radio" class="uk-radio" name="dump-exit" value="" checked/> <i>Disabled</i></label>
+                            <label><input type="radio" class="uk-radio" name="dump-exit" value="-dumpmachine"/> -dumpmachine</label>
+                            <label><input type="radio" class="uk-radio" name="dump-exit" value="-dumpversion"/> -dumpversion</label>
+                            <label><input type="radio" class="uk-radio" name="dump-exit" value="-dumpfullversion"/> -dumpfullversion</label>
+                            <label><input type="radio" class="uk-radio" name="dump-exit" value="-dumpspecs"/> -dumpspecs</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="uk-width-expand@m" >
-            <form>
-                <div id="component-tab-left" class="uk-switcher">
-                    <div>
-                        <h1>Compiler Options</h1>
-                        Root Folder: <br/>
-                        <input type="text" value="C:\Users\Victor\Downloads\Blackjack-master" name="root-folder"/><br />
-                        <br/>
-                        Source files: <br/>
-                        <input type="text" value="*.cpp" name="source-files"/><br />
-                        <br/>
-                        Warnings: <br/>
-                        <label><input type="radio" class="uk-radio"  value="" name="warnings" checked/> None</label>
-                        <label><input type="radio" class="uk-radio"  value="-Wsome" name="warnings"/> Some</label>
-                        <label><input type="radio" class="uk-radio"  value="-Wall" name="warnings"/> All</label>
-                    </div>
-                    <div>
-                        <h1>Linking options</h1>
-                        Linker Enabled: <br/>
-                        <label><input type="radio" class="uk-radio"  value="" name="linker-enabled" checked/> Yes</label>
-                        <label><input type="radio" class="uk-radio"  value="-c" name="linker-enabled"/> No</label>
-                    </div>
-                    <div>
-                        <h1>Execute Options</h1>
-                        <label>Inputs File: <input type="text" name="execute-inputs-file" /></label>
-                    </div>
-                    <div>
-                        <h1>Code generation convention options</h1>
-
-                        -fstack-reuse=<i>reuse-level</i><br/>
-                        <label><input type="radio" class="uk-radio" name="fstack-reuse" value="" checked/> all</label>
-                        <label><input type="radio" class="uk-radio" name="fstack-reuse" value="-fstack-reuse=named_vars"/> named_vars</label>
-                        <label><input type="radio" class="uk-radio" name="fstack-reuse" value="-fstack-reuse=none"/> named_vars</label>
-                        <br />
-                        <br />
-                        -fsync-libcalls:<br/>
-                        <label><input type="radio" class="uk-radio" name="sync-libcalls" value="" checked/> Enabled</label>
-                        <label><input type="radio" class="uk-radio" name="sync-libcalls" value="-fno-sync-libcalls"/> Disabled</label>
-
-                    </div>
-                    <div>
-                        <h1>Code optimization options</h1>
-                        Optimization Preset:<br/>
-                        <label><input type="radio" class="uk-radio"  value="-O0" name="optimization-preset" checked/>0</label>
-                        <label><input type="radio" class="uk-radio"  value="-O1" name="optimization-preset"/>1</label>
-                        <label><input type="radio" class="uk-radio"  value="-O2" name="optimization-preset"/>2</label>
-                        <label><input type="radio" class="uk-radio"  value="-O3" name="optimization-preset"/>3</label>
-                        <label><input type="radio" class="uk-radio"  value="-Os" name="optimization-preset"/>Size</label>
-                        <label><input type="radio" class="uk-radio"  value="-Ofast" name="optimization-preset"/>Fast</label>
-                        <label><input type="radio" class="uk-radio"  value="-Og" name="optimization-preset"/>Debug</label>
-                    </div>
-                    <div>
-                        <h1>Developer options</h1>
-
-                        Dump and exit:<br/>
-                        <label><input type="radio" class="uk-radio" name="dump-exit" value="" checked/> <i>Disabled</i></label>
-                        <label><input type="radio" class="uk-radio" name="dump-exit" value="-dumpmachine"/> -dumpmachine</label>
-                        <label><input type="radio" class="uk-radio" name="dump-exit" value="-dumpversion"/> -dumpversion</label>
-                        <label><input type="radio" class="uk-radio" name="dump-exit" value="-dumpfullversion"/> -dumpfullversion</label>
-                        <label><input type="radio" class="uk-radio" name="dump-exit" value="-dumpspecs"/> -dumpspecs</label>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    <div class="uk-light uk-background-secondary uk-padding-small" style="position: absolute; bottom: 0; height: 25%; width: 100%; box-sizing: border-box; overflow: scroll;">
-        GCC OUTPUT:<br/>
-        <div id="gcc-output">
-            <i>output goes here...</i>
+        <div class="item-bottom uk-light uk-background-secondary uk-padding-small" style="height: 25%; width: 100%; box-sizing: border-box; overflow: scroll;">
+            GCC OUTPUT:<br/>
+            <div id="gcc-output">
+                <i>output goes here...</i>
+            </div>
         </div>
     </div>
 

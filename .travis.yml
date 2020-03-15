@@ -38,6 +38,8 @@ deploy:
   provider: releases
   skip_cleanup: true
   draft: true
+  file_glob: true
+  file: directory/*
 
 branches:
   except:

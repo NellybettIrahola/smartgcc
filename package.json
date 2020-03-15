@@ -22,7 +22,6 @@
   },
   "scripts": {
     "pack": "electron-builder --dir",
-    "dist": "electron-builder",
-    "release": "build"
+    "dist": "electron-builder"
   }
 }

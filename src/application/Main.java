@@ -1,11 +1,4 @@
 package application;
-	
-import javafx.application.Application;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import javafx.fxml.FXMLLoader;
-
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -24,12 +17,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("/application/views/MainPanel"), 1280, 720);
+        scene = new Scene(loadFXML("/application/views/ChooseUser"), 1280, 720);
         stage.setScene(scene);
         stage.show();
     }
 
-    static void setRoot(String fxml) throws IOException {
+    public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 

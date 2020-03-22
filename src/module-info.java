@@ -1,5 +1,5 @@
 module smartgcc {
-    requires javafx.controls;
+    requires transitive javafx.controls;
     requires javafx.fxml;
 
     opens application to javafx.fxml;

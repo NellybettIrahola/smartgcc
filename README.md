@@ -1,5 +1,15 @@
 # smartgcc
+
 SmartGCC. A "Human Computer Interface Design" project. SOEN 6751. Winter 2020.
+
+# JavaFX Edition
+
+Requires (with suggested sources):
+
+1. Java 11
+    - https://adoptopenjdk.net/?variant=openjdk11&jvmVariant=openj9
+2. JavaFX 14
+    - https://openjfx.io/
 
 # Licenses
 

@@ -74,7 +74,7 @@
                               <Insets bottom="12.0" />
                            </VBox.margin>
                            <image>
-                              <Image url="@../resources/007-web-programming-2.png" />
+                              <Image url="@../resources/flaticon/png/007-web-programming-2.png" />
                            </image>
                         </ImageView>
                         <Label text="Compiler Options" />
@@ -97,7 +97,7 @@
                               <Insets bottom="12.0" />
                            </VBox.margin>
                            <image>
-                              <Image url="@../resources/012-code-2.png" />
+                              <Image url="@../resources/flaticon/png/012-code-2.png" />
                            </image>
                         </ImageView>
                         <Label text="Compiler Options" />
@@ -120,7 +120,7 @@
                               <Insets bottom="12.0" />
                            </VBox.margin>
                            <image>
-                              <Image url="@../resources/004-data-1.png" />
+                              <Image url="@../resources/flaticon/png/004-data-1.png" />
                            </image>
                         </ImageView>
                         <Label text="Compiler Options" />

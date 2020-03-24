@@ -24,13 +24,13 @@ public class CommandExecute {
 		return "gcc "+flags;
 	}
 	
-	public void compilingProject(Project project, String flags) throws IOException, InterruptedException {
+	public void buildProject(Project project, String flags) throws IOException, InterruptedException {
 		//System.out.println("gcc "+flags+project.sourceFiles+project.objectFiles+project.libraries+"-o "+project.projectLocation+project.name);	
 		
-		compileExecution("gcc "+flags+project.sourceFiles+project.objectFiles+project.libraries+"-o "+project.projectLocation+project.name);
+		buildExecution("gcc "+flags+project.sourceFiles+project.objectFiles+project.libraries+"-o "+project.projectLocation+project.name);
 	}
 	
-	public void compileExecution(String command) throws IOException, InterruptedException {
+	public void buildExecution(String command) throws IOException, InterruptedException {
 		this.builder=new ProcessBuilder();
 		String result="";
 		System.out.println(command);

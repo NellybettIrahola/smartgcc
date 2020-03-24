@@ -14,16 +14,21 @@ import java.io.IOException;
 public class Main extends Application {
 
     private static Scene scene;
-
+    private static Stage primary;
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("/application/views/ChooseUser"), 1280, 720);
+        this.primary=stage;
+    	scene = new Scene(loadFXML("/application/views/ChooseUser"), 1280, 720);
         stage.setScene(scene);
         stage.show();
     }
 
     public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
+    }
+    
+    public static Stage getStage() {
+    	return primary;
     }
 
     private static Parent loadFXML(String fxml) throws IOException {

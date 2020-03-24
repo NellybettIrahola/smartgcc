@@ -20,18 +20,29 @@ public class CommandExecute {
 		this.flags=this.flags+" "+otherFlag;
 	}
 	
-	public void compileExecution() throws IOException, InterruptedException {
+	public String individualFlags(String flags) {
+		return "gcc "+flags;
+	}
+	
+	public void compilingProject(Project project, String flags) throws IOException, InterruptedException {
+		//System.out.println("gcc "+flags+project.sourceFiles+project.objectFiles+project.libraries+"-o "+project.projectLocation+project.name);	
+		
+		compileExecution("gcc "+flags+project.sourceFiles+project.objectFiles+project.libraries+"-o "+project.projectLocation+project.name);
+	}
+	
+	public void compileExecution(String command) throws IOException, InterruptedException {
 		this.builder=new ProcessBuilder();
 		String result="";
-	
+		System.out.println(command);
+		builder.directory(new File(System.getProperty("user.home")));
 		
 		if(this.isWindows) {
-			builder.command("cmd.exe","-c","gcc --version");
+			builder.command("cmd.exe","-c",command);
 		}else {
-			builder.command("bash","-c","gcc --version");
+			builder.command("bash","-c",command);
 		}
 		
-		builder.directory(new File(System.getProperty("user.home")));
+		
 		Process process = builder.start();
 
 		StringBuilder stringBuilder = new StringBuilder();

@@ -73,8 +73,8 @@
     </MenuBar>
       <HBox prefHeight="42.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="42.0" text="A" />
-            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="42.0" text="B" />
+            <Button fx:id="runOption" mnemonicParsing="false" prefHeight="42.0" prefWidth="42.0" text="A" />
+            <Button fx:id="compileOption" mnemonicParsing="false" onAction="#compileProject" prefHeight="42.0" prefWidth="42.0" text="B" />
             <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="42.0" text="C" />
             <Separator orientation="VERTICAL" prefHeight="200.0" />
             <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="42.0" text="D" />
@@ -88,9 +88,9 @@
       </HBox>
       <SplitPane dividerPositions="0.667" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" VBox.vgrow="ALWAYS">
         <items>
-            <TabPane tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="projectsPane" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab text="Project 1">
+                <Tab text="Project1">
                      <content>
                         <TabPane prefHeight="200.0" prefWidth="200.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE">
                           <tabs>

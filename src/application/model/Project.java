@@ -18,14 +18,59 @@ public class Project {
 		this.objectFiles=objectFiles;
 		this.projectLocation=projectLocation;
 	}
-	
-	
 		
-		public String getName() {
-			return name;
-		}
+	public String getName() {
+		return name;
+	}
 
-		public void setName(String name) {
-			this.name = name;
-		}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getSourceFiles() {
+		return sourceFiles;
+	}
+
+
+
+	public void setSourceFiles(String sourceFiles) {
+		this.sourceFiles = sourceFiles;
+	}
+
+
+
+	public String getObjectFiles() {
+		return objectFiles;
+	}
+
+
+
+	public void setObjectFiles(String objectFiles) {
+		this.objectFiles = objectFiles;
+	}
+
+
+
+	public String getLibraries() {
+		return libraries;
+	}
+
+
+
+	public void setLibraries(String libraries) {
+		this.libraries = libraries;
+	}
+
+
+
+	public String getProjectLocation() {
+		return projectLocation;
+	}
+
+
+
+	public void setProjectLocation(String projectLocation) {
+		this.projectLocation = projectLocation;
+	}
+
 }

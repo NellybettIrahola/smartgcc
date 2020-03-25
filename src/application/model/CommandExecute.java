@@ -25,9 +25,8 @@ public class CommandExecute {
 	}
 	
 	public void buildProject(Project project, String flags) throws IOException, InterruptedException {
-		//System.out.println("gcc "+flags+project.sourceFiles+project.objectFiles+project.libraries+"-o "+project.projectLocation+project.name);	
-		
-		buildExecution("gcc "+flags+project.sourceFiles+project.objectFiles+project.libraries+"-o "+project.projectLocation+project.name);
+		//System.out.println("gcc "+flags+project.sourceFiles+project.objectFiles+project.libraries+"-o "+project.projectLocation+project.name);		
+		buildExecution("gcc "+flags+project.sourceFiles+project.objectFiles+project.libraries+"-o "+project.projectLocation+File.separator+project.name);
 	}
 	
 	public void buildExecution(String command) throws IOException, InterruptedException {

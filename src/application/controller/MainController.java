@@ -44,6 +44,14 @@ public class MainController {
     @FXML
     private TabPane projectsPane;
     
+    // inject tab content
+    @FXML
+    private Tab optimizationTab;
+    
+    // inject controller
+    @FXML
+    private OptimizationPanelController optimizationPanelController;
+    
     StackPane secondaryLayout;
     
     //Elements to create project
@@ -309,6 +317,7 @@ public class MainController {
 					alertLibrary.setContentText("Please change the project name, there is a project with that name");
 					alertLibrary.showAndWait();
 				}else {
+					System.out.println();
 					Stage stage = (Stage) this.inputProjectName.getScene().getWindow();
 					if(this.createProjectDirectory()==0) {
 						Tab tab = new Tab(this.inputProjectName.getText());

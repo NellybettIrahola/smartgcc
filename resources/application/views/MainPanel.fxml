@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckMenuItem?>
 <?import javafx.scene.control.Menu?>
@@ -16,14 +20,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.TextFlow?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
         <Menu mnemonicParsing="false" text="File">
           <items>
-            <MenuItem mnemonicParsing="false" text="New Project" onAction="#generateNewProjectPanel" />
-            <MenuItem mnemonicParsing="false" text="Open Project" onAction="#openProject" />
+            <MenuItem mnemonicParsing="false" onAction="#generateNewProjectPanel" text="New Project" />
+            <MenuItem mnemonicParsing="false" onAction="#openProject" text="Open Project" />
             <Menu mnemonicParsing="false" text="Open Recent" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Close" />
@@ -83,55 +87,52 @@
             <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="96.0" text="Help" />
          </children>
       </HBox>
-      <SplitPane dividerPositions="0.667" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" VBox.vgrow="ALWAYS">
+      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" VBox.vgrow="ALWAYS">
         <items>
             <TabPane fx:id="projectsPane" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab text="Project1">
-                     <content>
-                        <TabPane prefHeight="200.0" prefWidth="200.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE">
-                          <tabs>
-                            <Tab text="Compiler Options">
-                              <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                              </content>
-                            </Tab>
-                            <Tab text="Linking Options">
-                              <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                              </content>
-                            </Tab>
-                              <Tab text="Execute Options">
-                                <content>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                                </content>
-                              </Tab>
-                              <Tab text="Code Generation Options">
-                                <content>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                                </content>
-                              </Tab>
-                              <Tab text="Code Optimization Options">
-                                <content>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                                </content>
-                              </Tab>
-                              <Tab text="Developer Options">
-                                <content>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                                </content>
-                              </Tab>
-                          </tabs>
-                        </TabPane>
-                     </content>
-                </Tab>
+                <Tab text="Project1" />
               </tabs>
             </TabPane>
-            <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0">
-               <content>
-                  <TextFlow prefHeight="256.0" style="-fx-background-color: #333;" />
-               </content>
-            </ScrollPane>
+            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="ALL_TABS">
+              <tabs>
+                  <Tab text="Results">
+                     <content>
+                        <TextFlow prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #333;" />
+                     </content>
+                  </Tab>
+                <Tab text="Compiler Options">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+                </Tab>
+                <Tab text="Linking Options">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+                </Tab>
+                  <Tab text="Execute Options">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                  </Tab>
+                  <Tab text="Code Generation Options">
+                     <content>
+                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                     </content>
+                  </Tab>
+                  <Tab fx:id="optimizationTab" text="Code Optimization Options">
+                    <content>
+                      <fx:include fx:id="optimization" source="optimizationPanel.fxml" />
+                    </content>
+                  </Tab>
+                  <Tab text="Developer Options">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
         </items>
       </SplitPane>
   </children>

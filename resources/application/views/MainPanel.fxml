@@ -69,8 +69,8 @@
     </MenuBar>
       <HBox prefHeight="42.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="96.0" text="New Project" />
-            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="96.0" text="Open Project" />
+            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="96.0" text="New Project" onAction="#generateNewProjectPanel" />
+            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="96.0" text="Open Project" onAction="#openProject" />
             <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="96.0" text="Save Project" />
             <Separator orientation="VERTICAL" prefHeight="200.0" />
             <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="96.0" text="Undo" />

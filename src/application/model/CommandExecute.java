@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.LinkedList;
 
 public class CommandExecute {
 	boolean isWindows;
@@ -16,6 +17,13 @@ public class CommandExecute {
 			this.isWindows=System.getProperty("os.name").toLowerCase().startsWith("windows");	
 	}
 	
+	public static String generateStringFromList(LinkedList<String> list) {
+		String generated="";
+		for(String str:list) {
+			generated=generated+str+"\n";
+		}
+		return generated;
+	}
 	public void concatenateFlag(String otherFlag) {
 		this.flags=this.flags+" "+otherFlag;
 	}
@@ -24,9 +32,20 @@ public class CommandExecute {
 		return "gcc "+flags;
 	}
 	
+	public static String generateStringFromListSpace(LinkedList<String> list) {
+		String generated="";
+		for(String str:list) {
+			generated=generated+str+" ";
+		}
+		return generated;
+	}
+	
 	public void buildProject(Project project, String flags) throws IOException, InterruptedException {
-		//System.out.println("gcc "+flags+project.sourceFiles+project.objectFiles+project.libraries+"-o "+project.projectLocation+project.name);		
-		buildExecution("gcc "+flags+project.sourceFiles+project.objectFiles+project.libraries+"-o "+project.projectLocation+File.separator+project.name);
+		//System.out.println("gcc "+flags+project.sourceFiles+project.objectFiles+project.libraries+"-o "+project.projectLocation+project.name);
+		String sourceFiles=CommandExecute.generateStringFromListSpace(project.sourceFiles);
+		String objectFiles=CommandExecute.generateStringFromListSpace(project.objectFiles);
+		String libraries=CommandExecute.generateStringFromListSpace(project.libraries);
+		buildExecution("gcc "+flags+sourceFiles+objectFiles+libraries+"-o "+project.projectLocation+File.separator+project.name);
 	}
 	
 	public void buildExecution(String command) throws IOException, InterruptedException {

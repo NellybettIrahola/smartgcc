@@ -1,22 +1,32 @@
 package application.model;
 
+import java.util.LinkedList;
+
 public class Project {
 	
 	//Have to contain a space at the end
-	String sourceFiles;
-	String objectFiles;
-	String libraries;
+	LinkedList<String> sourceFiles;
+	LinkedList<String> objectFiles;
+	LinkedList<String> libraries;
 	
 	//no space at the end
 	String name;
 	String projectLocation;
 	
-	public Project(String name, String sourceFiles, String objectFiles, String libraries,String projectLocation) {
+	public Project(String name, String projectLocation) {
 		this.name=name;
+		this.projectLocation=projectLocation;
+		sourceFiles=new LinkedList<String>();
+		objectFiles=new LinkedList<String>();
+		libraries=new LinkedList<String>();
+	}
+	
+	public void updateProject(LinkedList<String> sourceFiles, LinkedList<String> objectFiles, LinkedList<String> libraries) {
+		
 		this.sourceFiles=sourceFiles;
 		this.libraries=libraries;
 		this.objectFiles=objectFiles;
-		this.projectLocation=projectLocation;
+		
 	}
 		
 	public String getName() {
@@ -27,37 +37,37 @@ public class Project {
 		this.name = name;
 	}
 	
-	public String getSourceFiles() {
+	public LinkedList<String> getSourceFiles() {
 		return sourceFiles;
 	}
 
 
 
-	public void setSourceFiles(String sourceFiles) {
+	public void setSourceFiles(LinkedList<String> sourceFiles) {
 		this.sourceFiles = sourceFiles;
 	}
 
 
 
-	public String getObjectFiles() {
+	public LinkedList<String> getObjectFiles() {
 		return objectFiles;
 	}
 
 
 
-	public void setObjectFiles(String objectFiles) {
+	public void setObjectFiles(LinkedList<String> objectFiles) {
 		this.objectFiles = objectFiles;
 	}
 
 
 
-	public String getLibraries() {
+	public LinkedList<String> getLibraries() {
 		return libraries;
 	}
 
 
 
-	public void setLibraries(String libraries) {
+	public void setLibraries(LinkedList<String> libraries) {
 		this.libraries = libraries;
 	}
 

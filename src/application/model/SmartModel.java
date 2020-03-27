@@ -12,9 +12,21 @@ public class SmartModel {
 		this.setListProjects(new LinkedList<Project>());
 	}
 	
-	public int createProject(String name,String sourceFiles, String objectFiles, String libraries, String projectDirectory) {
-		Project pr=new Project(name,sourceFiles, objectFiles,libraries,projectDirectory);
+	public int createProject(String name,LinkedList<String> sourceFiles, LinkedList<String> objectFiles, LinkedList<String> libraries, String projectDirectory) {
+		Project pr=new Project(name,projectDirectory);
+		pr.updateProject(sourceFiles, objectFiles,libraries);
 		return this.addProject(pr);
+	}
+	
+	public Project updateProject(String name, LinkedList<String> source,LinkedList<String> object,LinkedList<String> libraries) {
+		Project pr=null;
+		for(int i=0;i<this.getListProjects().size();i++) {
+			if(this.getListProjects().get(i).name.equals(name)) {
+				pr=this.getListProjects().get(i);
+				pr.updateProject(source, object, libraries);
+			}
+		}
+		return pr;
 	}
 	
 	public int addProject(Project pr) {

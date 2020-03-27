@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox fx:id="optimizationTab" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="278.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+
+<Pane fx:id="optimizationPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="244.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.OptimizationPanelController">
    <children>
-      <Label prefHeight="24.0" prefWidth="148.0" text="Optimization options" />
+      <RadioButton fx:id="radioButtonOg" layoutX="14.0" layoutY="184.0" mnemonicParsing="false" text="-Og" />
+      <RadioButton fx:id="radioButtonOfast" layoutX="14.0" layoutY="212.0" mnemonicParsing="false" text="-Ofast" />
+      <RadioButton fx:id="radioButtonOs" layoutX="14.0" layoutY="156.0" mnemonicParsing="false" text="-Os" />
+      <RadioButton fx:id="radioButtonO3" layoutX="14.0" layoutY="128.0" mnemonicParsing="false" text="-O3" />
+      <RadioButton fx:id="radioButtonO2" layoutX="14.0" layoutY="100.0" mnemonicParsing="false" text="-O2" />
+      <RadioButton fx:id="radioButtonO1" layoutX="14.0" layoutY="72.0" mnemonicParsing="false" text="-O1" />
+      <RadioButton fx:id="radioButtonO0" layoutX="14.0" layoutY="44.0" mnemonicParsing="false" text="-O0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </RadioButton>
+      <Label layoutX="22.0" layoutY="14.0" text="Optimization Level" />
    </children>
-</HBox>
+</Pane>

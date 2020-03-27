@@ -317,11 +317,10 @@ public class MainController {
 					alertLibrary.setContentText("Please change the project name, there is a project with that name");
 					alertLibrary.showAndWait();
 				}else {
-					System.out.println();
+					//System.out.println();
 					Stage stage = (Stage) this.inputProjectName.getScene().getWindow();
 					if(this.createProjectDirectory()==0) {
-						Tab tab = new Tab(this.inputProjectName.getText());
-						this.projectsPane.getTabs().add(tab);
+						this.createProjectOnView(this.smartModel.getProject(this.inputProjectName.getText()));
 						stage.close();
 					}
 				}
@@ -330,6 +329,11 @@ public class MainController {
 		//System.out.println(this.smartModel.getListProjects().getFirst().getName());
 		//System.out.println(this.smartModel.getListProjects().getFirst().getSourceFiles());
 		//System.out.println(this.smartModel.getListProjects().getFirst().getProjectLocation());
+	}
+	
+	public void createProjectOnView(Project project) {
+		Tab tab = new Tab(project.getName());
+		this.projectsPane.getTabs().add(tab);
 	}
 	
 	public int createProjectDirectory() {

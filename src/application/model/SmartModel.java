@@ -1,5 +1,6 @@
 package application.model;
 
+import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -60,7 +61,16 @@ public class SmartModel {
 		return listProjects;
 	}
 
-	void setListProjects(LinkedList<Project> listProjects) {
+	public void setListProjects(LinkedList<Project> listProjects) {
 		this.listProjects = listProjects;
+	}
+	
+	public Project getProjectByPath(String path) {
+		for(Project pr:this.listProjects) {
+			if(path.equals(pr.getProjectLocation())) {
+				return pr;
+			}
+		}
+		return null;
 	}
 }

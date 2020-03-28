@@ -46,6 +46,7 @@ public class ChooseUserController {
     	Main.getScene().setRoot(loader.load());
     	MainController controller = (MainController)loader.getController();
     	main.initialize();
+    	main.loadListOfProject();
     	main.createPanels(type);
 
     	

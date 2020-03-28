@@ -1,8 +1,14 @@
 package application.model;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 
-public class Project {
+public class Project implements Serializable{
+	
+	/**
+	 *  
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	//Have to contain a space at the end
 	LinkedList<String> sourceFiles;

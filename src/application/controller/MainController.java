@@ -1,6 +1,11 @@
 package application.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.LinkedList;
 
 import application.Main;
@@ -58,20 +63,24 @@ public class MainController {
     @FXML
     private Tab optimizationTab;
     
-    // inject controller
+    @FXML
+    Tab textResult;
+    
     @FXML
     private OptimizationPanelController optimizationPanelController;
     
     StackPane secondaryLayout;
     
-    //Elements to create project
+    
     TextField inputProjectDirectory;
     RulesTextField inputProjectName;
     TextArea textAreaFiles;
     TextArea textAreaLibraries;
-    
+	private TextArea textAreaResult;
+	
+	
 	public MainController() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@FXML
@@ -80,7 +89,9 @@ public class MainController {
 		this.smartModel=new SmartModel();
 		this.commandExecute=new CommandExecute();
 		this.projects=new LinkedList<TabProjectPane>();
-
+		this.textAreaResult=new TextArea();
+		this.textResult.setContent(textAreaResult);
+		
 	}
 	
 	@FXML
@@ -90,14 +101,21 @@ public class MainController {
 	
 	@FXML
 	private void buildProject(){
-		
-		SingleSelectionModel<Tab> selectionModel = projectsPane.getSelectionModel();
-		Project prCompile=smartModel.getProject(selectionModel.getSelectedItem().getText());
-		//System.out.println(prCompile.getName());
-		try {
-			this.commandExecute.buildProject(prCompile,"");
-		} catch (Exception e) {
-			System.out.println("the selected tab doesn't exist in the projects list");
+		if(projectsPane.getTabs().size()>0) {
+			SingleSelectionModel<Tab> selectionModel = projectsPane.getSelectionModel();
+			Project prCompile=smartModel.getProject(selectionModel.getSelectedItem().getText());
+			//System.out.println(prCompile.getName());
+			try {
+				String[] result=this.commandExecute.buildProject(prCompile,"");
+				this.textAreaResult.setText(this.textAreaResult.getText()+"\n"+"The executed command was:\n"+result[0]+"\n"+"The result was:\n"+result[1]);
+			} catch (Exception e) {
+				System.out.println("Error in execution");
+			}
+		}else {
+			Alert alertLibrary = new Alert(AlertType.ERROR);
+			alertLibrary.setTitle("Error Dialog");
+			alertLibrary.setContentText("Please create a project.");
+			alertLibrary.showAndWait();
 		}
 	}
 	
@@ -105,8 +123,6 @@ public class MainController {
 	private void generateNewProjectPanel() {
 		
 		 this.secondaryLayout= new StackPane();
-		 
-		 // Include elements of New Project Panel
 		 
 		 //Project Directory
 		 Label labelProjectDirectory = new Label("Project Directory:");
@@ -391,7 +407,51 @@ public class MainController {
 		
 	}
 	
-
+	@FXML
+	public void saveListOfProjects() {
+		FileOutputStream fileOutputStream;
+		try {
+			fileOutputStream = new FileOutputStream(new File("saveProject/listOfProjects.txt").getAbsolutePath());
+			 ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+			    objectOutputStream.writeObject(this.smartModel.getListProjects());
+			    objectOutputStream.flush();
+			    objectOutputStream.close();
+		} catch (Exception e) {
+			System.out.println("Problems saving project");
+		}
+	   
+	}
+	
+	public void loadListOfProject() {
+		FileInputStream fileInputStream;
+		LinkedList<Project> listProject=null;
+		try {
+			fileInputStream = new FileInputStream(new File("saveProject/listOfProjects.txt").getAbsolutePath());
+			ObjectInputStream objectInputStream= new ObjectInputStream(fileInputStream);
+		    listProject = (LinkedList<Project>) objectInputStream.readObject();
+		    
+		    objectInputStream.close(); 
+		} catch (Exception e) {
+			System.out.println("No file found");
+		}finally {
+			if(listProject==null)
+		    	this.smartModel.setListProjects(new LinkedList<Project>());
+		    else {
+		    	this.smartModel.setListProjects(listProject);
+		    	for(Project pr:listProject) {
+			    	this.createProjectOnView(pr);
+			    }
+		    }
+		    	
+		    
+		}
+	    
+	}
+	
+	/**
+	 * Creates the edit Project Panel
+	 * @param pr
+	 */
 	private void generateEditProjectPanel(Project pr) {
 		
 		 this.secondaryLayout= new StackPane();
@@ -572,6 +632,11 @@ public class MainController {
 		return sourceFiles;
 	}
 	
+	/**
+	 * Produces a list of object files
+	 * @param files
+	 * @return
+	 */
 	public LinkedList<String> getObjectFiles(String files) {
 		String filesArray[]=files.split("\n");
 		LinkedList<String> objectFiles=new LinkedList<String>();
@@ -595,17 +660,53 @@ public class MainController {
 		return objectFiles;
 	}
 	
+	/**
+	 * Needs to be implemented
+	 * @return
+	 */
 	public LinkedList<String> createLibraryVariables() {
 		return new LinkedList<String>();
 	}
 	
 	@FXML
-	private void openProject() {
+	private int openProject() {
 		DirectoryChooser directoryChooser = new DirectoryChooser();
 		File selectedDirectory = directoryChooser.showDialog(Main.getStage());
+		int i=0;
+		for(Tab tab:this.projectsPane.getTabs()) {
+			if(tab.getText().equals(selectedDirectory.getName())){
+				i=1;
+			}
+		}
+
+		Project pr=this.smartModel.getProjectByPath(selectedDirectory.getAbsolutePath());
+		System.out.println("Selected path");
 		System.out.println(selectedDirectory.getAbsolutePath());
+		if(pr==null) {
+			Alert alertLibrary = new Alert(AlertType.ERROR);
+			alertLibrary.setTitle("Error Dialog");
+			alertLibrary.setContentText("The project was not saved. It can not be open.");
+			alertLibrary.showAndWait();
+			return -1;
+		}
+		if(i==1) {
+			Alert alertLibrary = new Alert(AlertType.ERROR);
+			alertLibrary.setTitle("Error Dialog");
+			alertLibrary.setContentText("The project is already open.");
+			alertLibrary.showAndWait();
+			return -1;
+		}
+		if(pr!=null) {
+			this.createProjectOnView(pr);
+		}
+		return 0;
 	}
 	
+	/**
+	 * It is connected with the ChooserUserController
+	 * @param type
+	 * @throws Exception
+	 */
 	public void createPanels(int type) throws Exception {
 		System.out.println(type);
 		Tab compiling=new Tab("Compiling Options");

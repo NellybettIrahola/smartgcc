@@ -40,16 +40,17 @@ public class CommandExecute {
 		return generated;
 	}
 	
-	public void buildProject(Project project, String flags) throws IOException, InterruptedException {
+	public String[] buildProject(Project project, String flags) throws IOException, InterruptedException {
 		//System.out.println("gcc "+flags+project.sourceFiles+project.objectFiles+project.libraries+"-o "+project.projectLocation+project.name);
 		String sourceFiles=CommandExecute.generateStringFromListSpace(project.sourceFiles);
 		String objectFiles=CommandExecute.generateStringFromListSpace(project.objectFiles);
 		String libraries=CommandExecute.generateStringFromListSpace(project.libraries);
-		buildExecution("gcc "+flags+sourceFiles+objectFiles+libraries+"-o "+project.projectLocation+File.separator+project.name);
+		return buildExecution("gcc "+flags+sourceFiles+objectFiles+libraries+"-o "+project.projectLocation+File.separator+project.name);
 	}
 	
-	public void buildExecution(String command) throws IOException, InterruptedException {
+	public String[] buildExecution(String command) throws IOException, InterruptedException {
 		this.builder=new ProcessBuilder();
+		String[] resultReturn=new String[2];
 		String result="";
 		System.out.println(command);
 		builder.directory(new File(System.getProperty("user.home")));
@@ -77,7 +78,9 @@ public class CommandExecute {
 		
 		int exitCode = process.waitFor();
 		assert exitCode == 0;
-		
+		resultReturn[0]=command;
+		resultReturn[1]=result;
+		return resultReturn;
 	}
 	
 }

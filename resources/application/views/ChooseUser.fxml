@@ -83,7 +83,7 @@
                         <Label />
                         <Label />
                         <Label />
-                        <Button mnemonicParsing="false" onAction="#switchToMainPanel" text="Novice">
+                        <Button mnemonicParsing="false" onAction="#switchToMainPanelNovice" text="Novice">
                            <VBox.margin>
                               <Insets top="12.0" />
                            </VBox.margin>
@@ -106,7 +106,7 @@
                         <Label text="Code Generation Options" />
                         <Label text="Code Optimization Options" />
                         <Label />
-                        <Button mnemonicParsing="false" onAction="#switchToMainPanel" text="Adept">
+                        <Button fx:id="typical" mnemonicParsing="false" onAction="#switchToMainPanelTypical" text="Typical">
                            <VBox.margin>
                               <Insets top="12.0" />
                            </VBox.margin>
@@ -129,7 +129,7 @@
                         <Label text="Code Generation Options" />
                         <Label text="Code Optimization Options" />
                         <Label text="Developer Options" />
-                        <Button mnemonicParsing="false" onAction="#switchToMainPanel" text="Expert">
+                        <Button mnemonicParsing="false" onAction="#switchToMainPanelExpert" text="Expert">
                            <VBox.margin>
                               <Insets top="12.0" />
                            </VBox.margin>

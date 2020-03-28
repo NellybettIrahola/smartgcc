@@ -12,9 +12,9 @@ import application.views.TabProjectPane;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -22,15 +22,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SingleSelectionModel;
-import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -46,6 +45,11 @@ public class MainController {
      
     @FXML
     private Button compileOption;
+    
+    @FXML
+    private TabPane panelCompilingOptions;
+    
+    int type;
     
     @FXML
     private TabPane projectsPane;
@@ -76,8 +80,9 @@ public class MainController {
 		this.smartModel=new SmartModel();
 		this.commandExecute=new CommandExecute();
 		this.projects=new LinkedList<TabProjectPane>();
+
 	}
-    
+	
 	@FXML
 	private void close(){
 		System.exit(0);
@@ -599,6 +604,29 @@ public class MainController {
 		DirectoryChooser directoryChooser = new DirectoryChooser();
 		File selectedDirectory = directoryChooser.showDialog(Main.getStage());
 		System.out.println(selectedDirectory.getAbsolutePath());
+	}
+	
+	public void createPanels(int type) throws Exception {
+		System.out.println(type);
+		Tab compiling=new Tab("Compiling Options");
+		Pane compilingPane=(Pane)FXMLLoader.load(this.getClass().getResource("/application/views/OptimizationPanel.fxml")); 
+		compiling.setContent(compilingPane);
+		Tab linking=new Tab("Linking Options");
+		Tab executing=new Tab("Executing Options");
+		panelCompilingOptions.getTabs().addAll(compiling,linking,executing);
+		System.out.println("paso");
+		if(type==2 || type==1) {
+			Tab codeGeneration=new Tab("Code Generation Options");
+			Tab codeOptimization=new Tab("Linking Options");
+			Tab codeDebug=new Tab("Debugging Options");
+			this.panelCompilingOptions.getTabs().addAll(codeGeneration,codeOptimization,codeDebug);
+		}
+		
+		if(type ==2) {
+			Tab codeDeveloper=new Tab("Developer Options");
+			this.panelCompilingOptions.getTabs().addAll(codeDeveloper);
+		}
+		
 	}
 	
 }

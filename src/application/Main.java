@@ -27,6 +27,11 @@ public class Main extends Application {
         scene.setRoot(loadFXML(fxml));
     }
     
+    public static Scene getScene() {
+		return scene;
+    	
+    }
+    
     public static Stage getStage() {
     	return primary;
     }

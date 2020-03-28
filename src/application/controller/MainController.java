@@ -69,6 +69,12 @@ public class MainController {
     @FXML
     private OptimizationPanelController optimizationPanelController;
     
+    @FXML
+    private Tab debugTab;
+    
+    @FXML
+    private OptimizationPanelController debugPanelController;
+    
     StackPane secondaryLayout;
     
     
@@ -721,6 +727,8 @@ public class MainController {
 			Pane optimizationPane=(Pane)FXMLLoader.load(this.getClass().getResource("/application/views/OptimizationPanel.fxml")); 
 			codeOptimization.setContent(optimizationPane);
 			Tab codeDebug=new Tab("Debugging Options");
+			Pane debugPane=(Pane)FXMLLoader.load(this.getClass().getResource("/application/views/DebugPanel.fxml")); 
+			codeDebug.setContent(debugPane);
 			this.panelCompilingOptions.getTabs().addAll(codeGeneration,codeOptimization,codeDebug);
 		}
 		

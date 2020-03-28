@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane fx:id="DebugPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="244.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.DebugPanelController">
+   <children>
+      <ComboBox layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Format" />
+      <ComboBox layoutX="164.0" layoutY="14.0" prefWidth="150.0" promptText="Level" />
+      <Button layoutX="314.0" layoutY="14.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="135.0" text="Debug" />
+   </children>
+</Pane>

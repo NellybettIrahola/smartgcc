@@ -609,15 +609,16 @@ public class MainController {
 	public void createPanels(int type) throws Exception {
 		System.out.println(type);
 		Tab compiling=new Tab("Compiling Options");
-		Pane compilingPane=(Pane)FXMLLoader.load(this.getClass().getResource("/application/views/OptimizationPanel.fxml")); 
-		compiling.setContent(compilingPane);
+		
 		Tab linking=new Tab("Linking Options");
 		Tab executing=new Tab("Executing Options");
 		panelCompilingOptions.getTabs().addAll(compiling,linking,executing);
 		System.out.println("paso");
 		if(type==2 || type==1) {
 			Tab codeGeneration=new Tab("Code Generation Options");
-			Tab codeOptimization=new Tab("Linking Options");
+			Tab codeOptimization=new Tab("Optimization Options");
+			Pane optimizationPane=(Pane)FXMLLoader.load(this.getClass().getResource("/application/views/OptimizationPanel.fxml")); 
+			codeOptimization.setContent(optimizationPane);
 			Tab codeDebug=new Tab("Debugging Options");
 			this.panelCompilingOptions.getTabs().addAll(codeGeneration,codeOptimization,codeDebug);
 		}

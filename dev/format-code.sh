@@ -1,4 +1,7 @@
 #!/bin/bash
+# Modified from: https://github.com/a1exsh/google-java-format-git-pre-commit-hook/blob/master/pre-commit
+# The script is licensed under Apache License, Version 2.0.
+
 set -e
 
 RELEASE=1.7

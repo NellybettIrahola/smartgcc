@@ -3,27 +3,17 @@ package application.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 
 public class DebugPanelController {
-	@FXML
-	private Pane debugPanel;
-	
-	@FXML
-	private ComboBox format;
+  @FXML private Pane debugPanel;
 
-	@FXML
-	private ComboBox level;
+  @FXML private ComboBox format;
 
-	@FXML
-	private Button debugger;
+  @FXML private ComboBox level;
 
-	
-	@FXML
-	private void initialize() {
-	    
-	}
+  @FXML private Button debugger;
 
+  @FXML
+  private void initialize() {}
 }

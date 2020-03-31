@@ -2,10 +2,10 @@ package application.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Arrays;
 import java.util.LinkedList;
 
 import application.Main;
@@ -39,6 +39,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
 
 public class MainController {
 	
@@ -96,6 +97,7 @@ public class MainController {
 		this.commandExecute=new CommandExecute();
 		this.projects=new LinkedList<TabProjectPane>();
 		this.textAreaResult=new TextArea();
+		this.textAreaResult.setEditable(false);
 		this.textResult.setContent(textAreaResult);
 		
 	}
@@ -255,13 +257,14 @@ public class MainController {
 	
 	
 	public HBox createFileOptions(String textFile) {
+		 LinkedList<String> extensions = new LinkedList<String>(Arrays.asList("c","h","C","cpp","CPP","c++","cp","cxx"));
 		 Label labelFiles = new Label("Dependency Files");
 		 Button addFile = new Button("+");
 		 Button deleteFile =new Button("-");
-		 
+	
 		 textAreaFiles = new TextArea();
 		 textAreaFiles.setText(textFile);
-		 textAreaFiles.setDisable(true);
+		 textAreaFiles.setEditable(false);
 		 if(textAreaFiles.getText().contentEquals(""))
 			 deleteFile.setDisable(true);
 		 
@@ -280,14 +283,14 @@ public class MainController {
 		                    	
 		                    	String extension=selectedFilePath.substring(selectedFilePath.lastIndexOf(".")+1,selectedFilePath.length());
 		                    	
-		                    	if((selectedFilePath.lastIndexOf(".")+1)!=0 && (extension.equals("o") || extension.equals("c") || extension.equals("h"))){
+		                    	if((selectedFilePath.lastIndexOf(".")+1)!=0 && (extensions.contains(extension))){
 		                    		textAreaFiles.setText(textAreaFiles.getText()+selectedFile.getAbsolutePath()+"\n");
 		                    		deleteFile.setDisable(false);
 		                    	}else {
 		                    		Alert alert = new Alert(AlertType.INFORMATION);
 		                    		alert.setTitle("Information Dialog");
 		                    		alert.setHeaderText("Bad File extension");
-		                    		alert.setContentText("Please select only files with this extensions: .h, .c or .o");
+		                    		alert.setContentText("Please select only files with gcc valid extensions.");
 		                    		alert.showAndWait();
 		                    	}
 		                    	
@@ -324,7 +327,7 @@ public class MainController {
 		 Button deleteLibrary =new Button("-");
 		 
 		 textAreaLibraries = new TextArea();
-		 textAreaLibraries.setDisable(true);
+		 textAreaLibraries.setEditable(false);
 		 textAreaLibraries.setText(textLibraries);
 		 if(textAreaLibraries.getText().equals(""))
 			 deleteLibrary.setDisable(true);
@@ -414,10 +417,11 @@ public class MainController {
 	}
 	
 	@FXML
-	public void saveListOfProjects() {
+	public void saveListProject() {
 		FileOutputStream fileOutputStream;
 		try {
-			fileOutputStream = new FileOutputStream(new File("saveProject/listOfProjects.txt").getAbsolutePath());
+			
+			fileOutputStream = new FileOutputStream(new File("saveProject"+File.separator+"listOfProjects.txt").getAbsolutePath());
 			 ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 			    objectOutputStream.writeObject(this.smartModel.getListProjects());
 			    objectOutputStream.flush();
@@ -428,11 +432,30 @@ public class MainController {
 	   
 	}
 	
+	@FXML
+	public void saveProject() {
+		FileOutputStream fileOutputStream;
+		String name=this.projectsPane.getSelectionModel().getSelectedItem().getText();
+		Project pr=this.smartModel.getProject(name);
+		try {
+			String directory=pr.getProjectLocation()+File.separator+pr.getName()+"SmartGcc";
+			System.out.println(directory);
+			fileOutputStream = new FileOutputStream(new File(directory).getAbsolutePath());
+			 ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+			 objectOutputStream.writeObject(pr);
+			 objectOutputStream.flush();
+			 objectOutputStream.close();
+		} catch (Exception e) {
+			System.out.println("Problems saving project");
+		}
+	   
+	}
+	
 	public void loadListOfProject() {
 		FileInputStream fileInputStream;
 		LinkedList<Project> listProject=null;
 		try {
-			fileInputStream = new FileInputStream(new File("saveProject/listOfProjects.txt").getAbsolutePath());
+			fileInputStream = new FileInputStream(new File("saveProject"+File.separator+"listOfProjects.txt").getAbsolutePath());
 			ObjectInputStream objectInputStream= new ObjectInputStream(fileInputStream);
 		    listProject = (LinkedList<Project>) objectInputStream.readObject();
 		    
@@ -576,6 +599,12 @@ public class MainController {
 		scrollPane.setMinSize(300, 300);
         tab.setContent(scrollPane);
         tab.setScroll(scrollPane);
+        tab.setOnCloseRequest(e->{
+        	String name=tab.getText();
+        	System.out.println(name);
+        	this.smartModel.deleteProject(name);
+        	this.projects.remove(tab);
+        });
         this.projects.add(tab);
         this.projectsPane.getTabs().add(tab);
 		this.loadCompilingOptionPanels(project);
@@ -676,34 +705,51 @@ public class MainController {
 	
 	@FXML
 	private int openProject() {
-		DirectoryChooser directoryChooser = new DirectoryChooser();
-		File selectedDirectory = directoryChooser.showDialog(Main.getStage());
+		FileChooser fileChooser = new FileChooser();
+		File selectedFile = fileChooser.showOpenDialog(Main.getStage());
 		int i=0;
-		for(Tab tab:this.projectsPane.getTabs()) {
-			if(tab.getText().equals(selectedDirectory.getName())){
-				i=1;
+		
+		if(selectedFile!=null) {
+			String name=selectedFile.getAbsolutePath().substring(selectedFile.getAbsolutePath().lastIndexOf(File.separator)+1).split("SmartGcc")[0];
+			System.out.println(name);
+			for(Tab tab:this.projectsPane.getTabs()) {
+				if(tab.getText().equals(name)){
+					i=1;
+				}
 			}
-		}
-
-		Project pr=this.smartModel.getProjectByPath(selectedDirectory.getAbsolutePath());
-		System.out.println("Selected path");
-		System.out.println(selectedDirectory.getAbsolutePath());
-		if(pr==null) {
-			Alert alertLibrary = new Alert(AlertType.ERROR);
-			alertLibrary.setTitle("Error Dialog");
-			alertLibrary.setContentText("The project was not saved. It can not be open.");
-			alertLibrary.showAndWait();
-			return -1;
-		}
-		if(i==1) {
-			Alert alertLibrary = new Alert(AlertType.ERROR);
-			alertLibrary.setTitle("Error Dialog");
-			alertLibrary.setContentText("The project is already open.");
-			alertLibrary.showAndWait();
-			return -1;
-		}
-		if(pr!=null) {
-			this.createProjectOnView(pr);
+		
+			if(i==1) {
+				Alert alertLibrary = new Alert(AlertType.ERROR);
+				alertLibrary.setTitle("Error Dialog");
+				alertLibrary.setContentText("The project is already open.");
+				alertLibrary.showAndWait();
+				return -1;
+			}
+		
+			Project pr=null;
+			FileInputStream fileInputStream;
+			try {
+				fileInputStream = new FileInputStream(new File(selectedFile.getAbsolutePath()).getAbsolutePath());
+				System.out.println(selectedFile.getAbsolutePath());
+				ObjectInputStream objectInputStream= new ObjectInputStream(fileInputStream);
+				pr = (Project) objectInputStream.readObject();
+		    
+				if(this.smartModel.addProject(pr)==-1) {
+					Alert alertLibrary = new Alert(AlertType.ERROR);
+					alertLibrary.setTitle("Error Dialog");
+					alertLibrary.setContentText("The project was not saved. It can not be open.");
+					alertLibrary.showAndWait();
+					return -1;
+				}else {
+					this.createProjectOnView(pr);
+				}
+				
+				objectInputStream.close(); 
+			} catch (Exception e) {
+				e.printStackTrace();
+		
+			}
+			
 		}
 		return 0;
 	}

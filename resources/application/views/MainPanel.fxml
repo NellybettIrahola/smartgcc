@@ -24,8 +24,7 @@
             <Menu mnemonicParsing="false" text="Open Recent" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Close" />
-            <MenuItem onAction="#saveListOfProjects" mnemonicParsing="false" text="Save" />
-            <MenuItem mnemonicParsing="false" text="Save As…" />
+            <MenuItem mnemonicParsing="false" onAction="#saveProject" text="Save" />
             <MenuItem mnemonicParsing="false" text="Revert" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Preferences…" />
@@ -89,8 +88,8 @@
             </TabPane>
             <TabPane fx:id="panelCompilingOptions" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                  <Tab fx:id="textResult" text="Results" />
-                
+                  <Tab fx:id="textInput" text="Input" />
+                  <Tab fx:id="textResult" text="Output" />
               </tabs>
             </TabPane>
         </items>

@@ -43,10 +43,12 @@ public class SmartModel {
 	}
 	
 	public void deleteProject(String name) {
+		Project pr=null;
 		for(int i=0;i<this.getListProjects().size();i++) {
 			if(this.getListProjects().get(i).name.equals(name))
-				this.getListProjects().remove(i);
+				pr=this.getListProjects().get(i);
 		}
+		this.getListProjects().remove(pr);
 	}
 	
 	public Project getProject(String name) {

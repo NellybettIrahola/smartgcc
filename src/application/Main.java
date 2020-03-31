@@ -1,12 +1,17 @@
 package application;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
+import application.controller.ChooseUserController;
 
 /**
  * JavaFX App
@@ -15,11 +20,12 @@ public class Main extends Application {
 
     private static Scene scene;
     private static Stage primary;
+    static ChooseUserController cuController;
     @Override
     public void start(Stage stage) throws IOException {
         this.primary=stage;
     	scene = new Scene(loadFXML("/application/views/ChooseUser"), 1280, 720);
-        stage.setScene(scene);
+        stage.setScene(scene);     
         stage.show();
     }
 
@@ -38,6 +44,7 @@ public class Main extends Application {
 
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxml + ".fxml"));
+        cuController=fxmlLoader.getController();
         return fxmlLoader.load();
     }
 

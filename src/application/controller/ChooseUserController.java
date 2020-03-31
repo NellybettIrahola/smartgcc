@@ -14,9 +14,10 @@ import javafx.stage.Stage;
 public class ChooseUserController {
 	
 	 @FXML
-	 Button typical;
-	
-    @FXML
+	Button typical;
+	MainController main;
+    
+	@FXML
     private void switchToMainPanelTypical() throws Exception {
   
 			generatePanels(1);
@@ -41,13 +42,14 @@ public class ChooseUserController {
     public void generatePanels(int type) throws Exception {
     	
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/views/MainPanel.fxml"));
-    	MainController main=new MainController();
+    	
+    	
+    	this.main=new MainController();
     	loader.setController(main);
+    
     	Main.getScene().setRoot(loader.load());
-    	MainController controller = (MainController)loader.getController();
-    	main.initialize();
-    	main.loadListOfProject();
-    	main.createPanels(type);
+    	this.main.initialize();
+    	this.main.createPanels(type);
 
     	
     	

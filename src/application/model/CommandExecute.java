@@ -45,7 +45,7 @@ public class CommandExecute {
 		String sourceFiles=CommandExecute.generateStringFromListSpace(project.sourceFiles);
 		String objectFiles=CommandExecute.generateStringFromListSpace(project.objectFiles);
 		String libraries=CommandExecute.generateStringFromListSpace(project.libraries);
-		return buildExecution("gcc "+flags+sourceFiles+objectFiles+libraries+"-o "+project.projectLocation+File.separator+project.name);
+		return buildExecution("gcc "+flags+sourceFiles+objectFiles+"-lstdc++ "+libraries+"-o "+project.projectLocation+File.separator+project.name);
 	}
 	
 	public String[] buildExecution(String command) throws IOException, InterruptedException {
@@ -67,14 +67,23 @@ public class CommandExecute {
 		StringBuilder stringBuilder = new StringBuilder();
 		String line = null;
 		
-		try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8))) {	
-			while ((line = bufferedReader.readLine()) != null) {
+		try (BufferedReader stdError = new BufferedReader(new InputStreamReader(process.getErrorStream()))){
+			while ((line = stdError.readLine()) != null) {
 				stringBuilder.append(line+"\n");
 			}
 		}
+		
+		//try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8))) {	
+		//	while ((line = bufferedReader.readLine()) != null) {
+		//		stringBuilder.append(line+"\n");
+		//	}
+		//}
+		
 	 
 		result=stringBuilder.toString();
 		System.out.println(result);
+		if(result.contentEquals(""))
+			result="compilation success";
 		
 		int exitCode = process.waitFor();
 		assert exitCode == 0;

@@ -8,6 +8,8 @@ module smartgcc {
       javafx.fxml;
   opens application.controller to
       javafx.fxml;
+  opens application.controller.optiontabs to
+      javafx.fxml;
 
   exports application;
 }

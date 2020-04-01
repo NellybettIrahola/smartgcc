@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -51,6 +51,7 @@
                   <CheckMenuItem mnemonicParsing="false" text="Compiler Options" />
                   <CheckMenuItem mnemonicParsing="false" text="Linking Options" />
                   <CheckMenuItem mnemonicParsing="false" text="Execute Options" />
+                  <CheckMenuItem mnemonicParsing="false" text="Debugging Options" />
                   <CheckMenuItem mnemonicParsing="false" text="Code Generation Options" />
                   <CheckMenuItem mnemonicParsing="false" text="Code Optimization Options" />
                   <CheckMenuItem mnemonicParsing="false" text="Developer Options" />
@@ -90,6 +91,41 @@
               <tabs>
                   <Tab fx:id="textInput" text="Input" />
                   <Tab fx:id="textResult" text="Output" />
+                  <Tab fx:id="compilerOpts" text="Compiler Options">
+                    <content>
+                      <fx:include source="optionTabs/compilerOpts.fxml" />
+                    </content>
+                  </Tab>
+                  <Tab text="Linking Options">
+                    <content>
+                      <fx:include source="optionTabs/linkingOpts.fxml" />
+                    </content>
+                  </Tab>
+                  <Tab text="Debugging Options">
+                    <content>
+                      <fx:include source="optionTabs/debuggingOpts.fxml" />
+                    </content>
+                  </Tab>
+                  <Tab text="Execute Options">
+                    <content>
+                      <fx:include source="optionTabs/executeOpts.fxml" />
+                    </content>
+                  </Tab>
+                  <Tab text="Code Generation Options">
+                    <content>
+                      <fx:include source="optionTabs/codegenOpts.fxml" />
+                    </content>
+                  </Tab>
+                  <Tab text="Code Optimization Options">
+                    <content>
+                      <fx:include source="optionTabs/optimizationOpts.fxml" />
+                    </content>
+                  </Tab>
+                  <Tab text="Developer Options">
+                    <content>
+                      <fx:include source="optionTabs/developerOpts.fxml" />
+                    </content>
+                  </Tab>
               </tabs>
             </TabPane>
         </items>

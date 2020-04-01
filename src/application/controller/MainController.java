@@ -16,7 +16,6 @@ import java.util.LinkedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -31,7 +30,6 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
@@ -77,7 +75,7 @@ public class MainController {
 
   @FXML
   public void initialize() {
-
+    System.out.println("maincontroller initialized");
     this.smartModel = new SmartModel();
     this.commandExecute = new CommandExecute();
     this.projects = new LinkedList<TabProjectPane>();
@@ -791,40 +789,5 @@ public class MainController {
       }
     }
     return 0;
-  }
-
-  /**
-   * It is connected with the ChooserUserController
-   *
-   * @param type
-   * @throws Exception
-   */
-  public void createPanels(int type) throws Exception {
-    System.out.println(type);
-    Tab compiling = new Tab("Compiling Options");
-
-    Tab linking = new Tab("Linking Options");
-    Tab executing = new Tab("Executing Options");
-    panelCompilingOptions.getTabs().addAll(compiling, linking, executing);
-    System.out.println("paso");
-    if (type == 2 || type == 1) {
-      Tab codeGeneration = new Tab("Code Generation Options");
-      Tab codeOptimization = new Tab("Optimization Options");
-      Pane optimizationPane =
-          (Pane)
-              FXMLLoader.load(
-                  this.getClass().getResource("/application/views/OptimizationPanel.fxml"));
-      codeOptimization.setContent(optimizationPane);
-      Tab codeDebug = new Tab("Debugging Options");
-      Pane debugPane =
-          (Pane) FXMLLoader.load(this.getClass().getResource("/application/views/DebugPanel.fxml"));
-      codeDebug.setContent(debugPane);
-      this.panelCompilingOptions.getTabs().addAll(codeGeneration, codeOptimization, codeDebug);
-    }
-
-    if (type == 2) {
-      Tab codeDeveloper = new Tab("Developer Options");
-      this.panelCompilingOptions.getTabs().addAll(codeDeveloper);
-    }
   }
 }

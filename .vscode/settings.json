@@ -1,0 +1,17 @@
+{
+  // "emeraldwalk.runonsave": {
+  //   "commands": [
+  //     {
+  //       "match": "\\.java$",
+  //       "cmd": "java -jar C:\\Users\\Victor\\Apps\\google-java-format-1.7-all-deps.jar --replace ${file}"
+  //     }
+  //   ]
+  // },
+  "editor.tabSize": 2,
+  "maven.terminal.favorites": [
+    {
+      "alias": "javafx",
+      "command": "clean javafx:run"
+    }
+  ]
+}

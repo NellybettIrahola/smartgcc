@@ -1,11 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
-
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.optiontabs.DeveloperOptsController">
    <children>
       <Label text="Developer Options" />
+      <FlowPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Label text="Dump and Exit: " />
+            <RadioButton fx:id="dump" mnemonicParsing="false" selected="true" style="-fx-font-style: italic;" text="disabled">
+               <toggleGroup>
+                  <ToggleGroup fx:id="dump" />
+               </toggleGroup>
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin>
+            </RadioButton>
+            <RadioButton mnemonicParsing="false" text="-dumpmachine" toggleGroup="$dump">
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin></RadioButton>
+            <RadioButton mnemonicParsing="false" text="-dumpversion" toggleGroup="$dump">
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin></RadioButton>
+            <RadioButton mnemonicParsing="false" text="-dumpfullversion" toggleGroup="$dump">
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin></RadioButton>
+            <RadioButton mnemonicParsing="false" text="-dumpspecs" toggleGroup="$dump">
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin></RadioButton>
+         </children>
+      </FlowPane>
+      <FlowPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Label text="Print Series:" />
+            <CheckBox mnemonicParsing="false" text="-print-multi-directory">
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" text="-print-multi-lib">
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" text="-print-multi-os-directory">
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" text="-print-multiarch">
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" text="-print-libgcc-file-name">
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" text="-print-search-dirs">
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" text="-print-sysroot">
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" text="-print-sysroot-headers-suffix">
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin>
+            </CheckBox>
+         </children>
+      </FlowPane>
    </children>
 </VBox>

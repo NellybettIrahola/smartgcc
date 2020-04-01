@@ -16,6 +16,7 @@ import java.util.LinkedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -54,14 +55,14 @@ public class MainController {
 
   // inject tab content
   @FXML private Tab optimizationTab;
+  
+  private OptimizationPanelController optimizationPanelController;
 
   @FXML Tab textResult;
 
-  @FXML private OptimizationPanelController optimizationPanelController;
-
   @FXML private Tab debugTab;
 
-  @FXML private OptimizationPanelController debugPanelController;
+  //@FXML private OptimizationPanelController debugPanelController;
 
   StackPane secondaryLayout;
 
@@ -82,10 +83,24 @@ public class MainController {
     this.textAreaResult = new TextArea();
     this.textAreaResult.setEditable(false);
     this.textResult.setContent(textAreaResult);
+    initializeSubControllers();
+  }
+  
+  private void initializeSubControllers()
+  {
+	  FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/views/optionTabs/optimizationOpts.fxml"));
+	  try {
+		  loader.load();
+		  this.optimizationPanelController=(OptimizationPanelController)loader.getController();
+	  }
+	  catch (Exception e) {
+		  e.printStackTrace();
+	}
   }
 
   @FXML
   private void close() {
+	  optimizationPanelController.getOptimizationFlags();
     System.exit(0);
   }
 
@@ -94,6 +109,7 @@ public class MainController {
     if (projectsPane.getTabs().size() > 0) {
       SingleSelectionModel<Tab> selectionModel = projectsPane.getSelectionModel();
       Project prCompile = smartModel.getProject(selectionModel.getSelectedItem().getText());
+      addFlagsToProject(prCompile);
       // System.out.println(prCompile.getName());
       try {
         String[] result = this.commandExecute.buildProject(prCompile, "");
@@ -671,6 +687,7 @@ public class MainController {
 
     return 0;
   }
+  
 
   public LinkedList<String> getSourceFiles(String files) {
     String filesArray[] = files.split("\n");
@@ -789,5 +806,11 @@ public class MainController {
       }
     }
     return 0;
+  }
+  
+  private void addFlagsToProject(Project project)
+  {
+	  //add optimization options to the project
+	  project.setOptimizationFlags(optimizationPanelController.getOptimizationFlags());
   }
 }

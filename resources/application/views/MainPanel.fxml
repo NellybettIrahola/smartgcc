@@ -116,9 +116,9 @@
                       <fx:include source="optionTabs/codegenOpts.fxml" />
                     </content>
                   </Tab>
-                  <Tab text="Code Optimization Options">
+                  <Tab text="Code Optimization Options" fx:id="optimizationTab">
                     <content>
-                      <fx:include source="optionTabs/optimizationOpts.fxml" />
+                      <fx:include source="optionTabs/optimizationOpts.fxml" fx:id="optimizationOptsPanel" />
                     </content>
                   </Tab>
                   <Tab text="Developer Options">

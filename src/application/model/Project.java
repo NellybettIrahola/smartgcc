@@ -12,6 +12,9 @@ public class Project implements Serializable {
   LinkedList<String> sourceFiles;
   LinkedList<String> objectFiles;
   LinkedList<String> libraries;
+  
+  //flags
+  LinkedList<String> optimizationFlags;
 
   // no space at the end
   String name;
@@ -73,5 +76,12 @@ public class Project implements Serializable {
 
   public void setProjectLocation(String projectLocation) {
     this.projectLocation = projectLocation;
+  }
+  
+  public void setOptimizationFlags(LinkedList<String> optimizationFlags){
+	  this.optimizationFlags=optimizationFlags;
+  }
+  public LinkedList<String> getOptimizationFlags(){
+	  return this.optimizationFlags;
   }
 }

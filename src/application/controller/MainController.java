@@ -101,7 +101,18 @@ public class MainController {
       Project prCompile = smartModel.getProject(selectionModel.getSelectedItem().getText());
       // System.out.println(prCompile.getName());
       try {
-        String[] result = this.commandExecute.buildProject(prCompile, "");
+        Set<Node> m = Main.getScene().getRoot().lookupAll(".simple-opt");
+        List<String> args = new ArrayList<String>();
+        String argsStr = " ";
+        for (Node mm : m) {
+          if (mm instanceof CheckBox && ((CheckBox) mm).isSelected()) {
+            args.add(((CheckBox) mm).getText());
+            argsStr = argsStr + ((CheckBox) mm).getText() + " ";
+            System.out.println(((CheckBox) mm).getText());
+          }
+        }
+
+        String[] result = this.commandExecute.buildProject(prCompile, argsStr);
         this.textAreaResult.setText(
             this.textAreaResult.getText()
                 + "\n"

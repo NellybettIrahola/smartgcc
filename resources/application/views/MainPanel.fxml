@@ -78,6 +78,7 @@
             <Separator orientation="VERTICAL" prefHeight="200.0" />
             <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="96.0" text="Reset Profile" />
             <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="96.0" text="Help" />
+            <Button mnemonicParsing="false" onAction="#onSpecialAction" prefHeight="42.0" prefWidth="96.0" text="SPECIAL" />
          </children>
       </HBox>
       <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" VBox.vgrow="ALWAYS">

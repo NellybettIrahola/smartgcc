@@ -1,11 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
-
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.optiontabs.LinkingOptsController">
    <children>
       <Label text="Linking Options" />
+      <FlowPane>
+         <children>
+            <Label text="Disable Linker" />
+            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-c">
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin>
+            </CheckBox>
+         </children>
+      </FlowPane>
+      <FlowPane rowValignment="TOP">
+         <children>
+            <Label text="Object files (one per line)">
+               <FlowPane.margin>
+                  <Insets right="20.0" />
+               </FlowPane.margin>
+            </Label>
+            <TextArea prefHeight="100.0" prefWidth="200.0" styleClass="linking-objects" />
+         </children>
+      </FlowPane>
+      <FlowPane rowValignment="TOP">
+         <children>
+            <Label text="Libraries (one per line)">
+               <FlowPane.margin>
+                  <Insets right="20.0" />
+               </FlowPane.margin></Label>
+            <TextArea prefHeight="100.0" prefWidth="200.0" styleClass="linking-libraries" text="stdc++&#10;" />
+         </children>
+      </FlowPane>
+      <FlowPane>
+         <children>
+            <Label text="Excluded Libraries" />
+            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-nostartfiles">
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-nodefaultlibs">
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-nolibc">
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin></CheckBox>
+            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-nostdlib">
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin></CheckBox>
+         </children>
+      </FlowPane>
+      <FlowPane>
+         <children>
+            <Label text="Position Independent Executable" />
+            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-pie">
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-no-pie">
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin>
+            </CheckBox>
+         </children>
+      </FlowPane>
+      <FlowPane>
+         <children>
+            <Label text="Static" />
+            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-static">
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-static-libgcc">
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-static-libasan">
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-static-libtsan">
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-static-liblsan">
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-static-libubsan">
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-static-libstdc++">
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </CheckBox>
+         </children>
+      </FlowPane>
    </children>
 </VBox>

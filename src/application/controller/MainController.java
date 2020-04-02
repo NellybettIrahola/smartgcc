@@ -11,17 +11,22 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SingleSelectionModel;
@@ -735,6 +740,19 @@ public class MainController {
    */
   public LinkedList<String> createLibraryVariables() {
     return new LinkedList<String>();
+  }
+
+  @FXML
+  private void onSpecialAction() {
+    Node n = Main.getScene().lookup(".linking-libraries");
+    Set<Node> m = Main.getScene().getRoot().lookupAll(".simple-opt");
+    List<String> args = new ArrayList<String>();
+    for (Node mm : m) {
+      if (mm instanceof CheckBox && ((CheckBox) mm).isSelected()) {
+        args.add(((CheckBox) mm).getText());
+        System.out.println(((CheckBox) mm).getText());
+      }
+    }
   }
 
   @FXML

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.Pane?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.optiontabs.DebuggingOptsController">
+<Pane fx:id="DebugPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="244.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.DebugPanelController">
    <children>
-      <Label text="Debugging Options" />
+      <ComboBox fx:id="format" layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Format" />
+      <ComboBox fx:id="level" layoutX="164.0" layoutY="14.0" prefWidth="150.0" promptText="Level" />
    </children>
-</VBox>
+</Pane>

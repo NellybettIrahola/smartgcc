@@ -15,6 +15,7 @@ public class Project implements Serializable {
   
   //flags
   LinkedList<String> optimizationFlags;
+  LinkedList<String> debugFlags;
 
   // no space at the end
   String name;
@@ -83,5 +84,11 @@ public class Project implements Serializable {
   }
   public LinkedList<String> getOptimizationFlags(){
 	  return this.optimizationFlags;
+  }
+  public void setDebugFlags(LinkedList<String> debugFlags){
+	  this.debugFlags = debugFlags;
+  }
+  public LinkedList<String> getDebugFlags(){
+	  return this.debugFlags;
   }
 }

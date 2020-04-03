@@ -62,7 +62,8 @@ public class MainController {
 
   @FXML private Tab debugTab;
 
-  //@FXML private OptimizationPanelController debugPanelController;
+  //changes
+  private DebugPanelController debugPanelController;
 
   StackPane secondaryLayout;
 
@@ -96,13 +97,26 @@ public class MainController {
 	  catch (Exception e) {
 		  e.printStackTrace();
 	}
+	  
+//changes
+	  FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/application/views/optionTabs/debuggingOpts.fxml"));
+	  try {
+		  loader1.load();
+		  this.debugPanelController=(DebugPanelController)loader1.getController();
+	  }
+	  catch (Exception e) {
+		  e.printStackTrace();
+	}
   }
-
+//changes
+  
   @FXML
   private void close() {
 	  optimizationPanelController.getOptimizationFlags();
+	  debugPanelController.getDebugFlags();
     System.exit(0);
   }
+  
 
   @FXML
   private void buildProject() {
@@ -812,5 +826,8 @@ public class MainController {
   {
 	  //add optimization options to the project
 	  project.setOptimizationFlags(optimizationPanelController.getOptimizationFlags());
+	  
+	  project.setDebugFlags(debugPanelController.getDebugFlags());
+
   }
 }

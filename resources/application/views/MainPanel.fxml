@@ -199,7 +199,7 @@
           <tabs>
             <Tab fx:id="textInput" text="Input" />
             <Tab fx:id="textResult" text="Output" />
-            <Tab text="Compiler Options">
+            <Tab fx:id="compilerOptions" text="Compiler Options">
               <content>
                 <ScrollPane prefHeight="200.0" prefWidth="200.0">
                   <content>
@@ -208,7 +208,7 @@
                 </ScrollPane>
               </content>
             </Tab>
-            <Tab text="Linking Options">
+            <Tab fx:id="linkingOptions" text="Linking Options">
               <content>
                 <ScrollPane prefHeight="200.0" prefWidth="200.0">
                   <content>
@@ -217,7 +217,7 @@
                 </ScrollPane>
               </content>
             </Tab>
-            <Tab text="Debugging Options">
+            <Tab fx:id="debuggingOptions" text="Debugging Options">
               <content>
                 <ScrollPane prefHeight="200.0" prefWidth="200.0">
                   <content>
@@ -226,7 +226,7 @@
                 </ScrollPane>
               </content>
             </Tab>
-            <Tab text="Execute Options">
+            <Tab fx:id="codeExecuteOptions" text="Execute Options">
               <content>
                 <ScrollPane prefHeight="200.0" prefWidth="200.0">
                   <content>
@@ -235,7 +235,7 @@
                 </ScrollPane>
               </content>
             </Tab>
-            <Tab text="Code Generation Options">
+            <Tab fx:id="codeGenerationOptions" text="Code Generation Options">
               <content>
                 <ScrollPane prefHeight="200.0" prefWidth="200.0">
                   <content>
@@ -253,7 +253,7 @@
                 </ScrollPane>
               </content>
             </Tab>
-            <Tab text="Developer Options">
+            <Tab fx:id="developerOptions" text="Developer Options">
               <content>
                 <ScrollPane prefHeight="200.0" prefWidth="200.0">
                   <content>

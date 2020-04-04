@@ -868,12 +868,13 @@ public class MainController {
   public void generatePanels(int i) {
 
     if (i == 0) {
-      this.panelCompilingOptions.getTabs().remove(this.developerOptions);
-      this.panelCompilingOptions.getTabs().remove(this.codeGenerationOptions);
-      this.panelCompilingOptions.getTabs().remove(this.optimizationTab);
       this.developerCheck.setSelected(false);
       this.codeGenerationCheck.setSelected(false);
       this.codeOptimizationCheck.setSelected(false);
+      this.panelCompilingOptions.getTabs().remove(this.developerOptions);
+      this.panelCompilingOptions.getTabs().remove(this.codeGenerationOptions);
+      this.panelCompilingOptions.getTabs().remove(this.optimizationTab);
+
     } else if (i == 1) {
       this.panelCompilingOptions.getTabs().remove(this.developerOptions);
       this.developerCheck.setSelected(false);

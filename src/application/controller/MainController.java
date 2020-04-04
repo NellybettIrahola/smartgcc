@@ -123,6 +123,44 @@ public class MainController {
     System.exit(0);
   }
 
+  private String buildArgStr() {
+    List<String> args = new ArrayList<String>();
+    String argsStr = "";
+    // "Simple-Opt" Collection
+    Set<Node> m = Main.getScene().getRoot().lookupAll(".simple-opt");
+    for (Node mm : m) {
+      // Checkbox
+      boolean isCheckBoxSelected = mm instanceof CheckBox && ((CheckBox) mm).isSelected();
+      if (isCheckBoxSelected) {
+        args.add(((CheckBox) mm).getText());
+        argsStr = argsStr + ((CheckBox) mm).getText() + " ";
+      }
+      // ToggleButton (includes RadioButton)
+      boolean isToggleButtonSelected =
+          mm instanceof ToggleButton && ((ToggleButton) mm).isSelected();
+      if (isToggleButtonSelected) {
+        args.add(((ToggleButton) mm).getText());
+        argsStr = argsStr + ((ToggleButton) mm).getText() + " ";
+      }
+    }
+    return argsStr;
+  }
+
+  private String buildLibs() {
+    List<String> args = new ArrayList<String>();
+    String argsStr = "";
+    // One-Item-Per-Line Collection
+    TextArea libs = (TextArea) Main.getScene().lookup(".linking-libraries");
+    String[] libsSet = libs.getText().split("\n");
+    for (String libStr : libsSet) {
+      if (libStr.strip().length() > 0) {
+        args.add("-l " + libStr);
+        argsStr = argsStr + "-l " + libStr + " ";
+      }
+    }
+    return argsStr;
+  }
+
   @FXML
   private void buildProject() {
     if (projectsPane.getTabs().size() > 0) {
@@ -130,29 +168,10 @@ public class MainController {
       Project prCompile = smartModel.getProject(selectionModel.getSelectedItem().getText());
       addFlagsToProject(prCompile);
       // System.out.println(prCompile.getName());
+      String argStr = buildArgStr();
+      String libs = buildLibs();
       try {
-        Set<Node> m = Main.getScene().getRoot().lookupAll(".simple-opt");
-        List<String> args = new ArrayList<String>();
-        String argsStr = " ";
-        for (Node mm : m) {
-          // Checkbox
-          boolean isCheckBoxSelected = mm instanceof CheckBox && ((CheckBox) mm).isSelected();
-          if (isCheckBoxSelected) {
-            args.add(((CheckBox) mm).getText());
-            argsStr = argsStr + ((CheckBox) mm).getText() + " ";
-            System.out.println(((CheckBox) mm).getText());
-          }
-          // ToggleButton (includes RadioButton)
-          boolean isToggleButtonSelected =
-              mm instanceof ToggleButton && ((ToggleButton) mm).isSelected();
-          if (isToggleButtonSelected) {
-            args.add(((ToggleButton) mm).getText());
-            argsStr = argsStr + ((ToggleButton) mm).getText() + " ";
-            System.out.println(((ToggleButton) mm).getText());
-          }
-        }
-
-        String[] result = this.commandExecute.buildProject(prCompile, argsStr);
+        String[] result = this.commandExecute.buildProject(prCompile, argStr, libs);
         this.textAreaResult.setText(
             this.textAreaResult.getText()
                 + "\n"

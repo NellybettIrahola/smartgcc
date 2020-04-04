@@ -41,19 +41,18 @@ public class CommandExecute {
     return generated;
   }
 
-  public String[] buildProject(Project project, String flags)
+  public String[] buildProject(Project project, String flags, String libraries)
       throws IOException, InterruptedException {
     // System.out.println("gcc "+flags+project.sourceFiles+project.objectFiles+project.libraries+"-o
     // "+project.projectLocation+project.name);
     String sourceFiles = CommandExecute.generateStringFromListSpace(project.sourceFiles);
     String objectFiles = CommandExecute.generateStringFromListSpace(project.objectFiles);
-    String libraries = CommandExecute.generateStringFromListSpace(project.libraries);
+    // String libraries = CommandExecute.generateStringFromListSpace(project.libraries);
     return buildExecution(
         "gcc "
             + flags
             + sourceFiles
             + objectFiles
-            + "-lstdc++ "
             + libraries
             + "-o "
             + project.projectLocation

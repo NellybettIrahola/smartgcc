@@ -22,42 +22,40 @@
       <menus>
         <Menu mnemonicParsing="false" text="File">
           <items>
-            <MenuItem mnemonicParsing="false" onAction="#onNewProjectAction" text="New Project" />
-            <MenuItem mnemonicParsing="false" onAction="#onOpenProjectAction" text="Open Project" />
-            <Menu mnemonicParsing="false" text="Open Recent" />
+            <MenuItem mnemonicParsing="false" accelerator="Shortcut+N" onAction="#onNewProjectAction" text="New Project" />
+            <MenuItem mnemonicParsing="false" accelerator="Shortcut+O" onAction="#onOpenProjectAction" text="Open Project" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Close" />
-            <MenuItem mnemonicParsing="false" onAction="#onSaveProjectAction" text="Save" />
-            <MenuItem mnemonicParsing="false" text="Revert" />
+            <MenuItem mnemonicParsing="false" accelerator="Shortcut+S" onAction="#onSaveProjectAction" text="Save" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Preferences…" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" onAction="#close" text="Quit" />
+            <MenuItem mnemonicParsing="false" accelerator="Shortcut+Q" onAction="#close" text="Quit" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Edit">
           <items>
-            <MenuItem mnemonicParsing="false" text="Undo" />
-            <MenuItem mnemonicParsing="false" text="Redo" />
+            <MenuItem mnemonicParsing="false" accelerator="Shortcut+U" text="Undo" />
+            <MenuItem mnemonicParsing="false" accelerator="Shortcut+R" text="Redo" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Cut" />
             <MenuItem mnemonicParsing="false" text="Copy" />
             <MenuItem mnemonicParsing="false" text="Paste" />
             <MenuItem mnemonicParsing="false" text="Delete" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Select All" />
-            <MenuItem mnemonicParsing="false" text="Unselect All" />
+            <MenuItem mnemonicParsing="false" onAction="#buildProject" accelerator="Shortcut+B" text="Build Project" />
+            <MenuItem mnemonicParsing="false" accelerator="Shortcut+R" text="Run Project" />
           </items>
         </Menu>
             <Menu mnemonicParsing="false" text="All Options">
                <items>
-                  <CheckMenuItem mnemonicParsing="false" text="Compiler Options" />
-                  <CheckMenuItem mnemonicParsing="false" text="Linking Options" />
-                  <CheckMenuItem mnemonicParsing="false" text="Execute Options" />
-                  <CheckMenuItem mnemonicParsing="false" text="Debugging Options" />
-                  <CheckMenuItem mnemonicParsing="false" text="Code Generation Options" />
-                  <CheckMenuItem mnemonicParsing="false" text="Code Optimization Options" />
-                  <CheckMenuItem mnemonicParsing="false" text="Developer Options" />
+                  <CheckMenuItem selected="true" fx:id="compilingCheck" onAction="#handleAllOptions" mnemonicParsing="false" text="Compiler Options" />
+                  <CheckMenuItem selected="true" fx:id="linkingCheck" onAction="#handleAllOptions" mnemonicParsing="false" text="Linking Options" />
+                  <CheckMenuItem selected="true" fx:id="executingCheck" onAction="#handleAllOptions" mnemonicParsing="false" text="Execute Options" />
+                  <CheckMenuItem selected="true" fx:id="debuggingCheck" onAction="#handleAllOptions" mnemonicParsing="false" text="Debugging Options" />
+                  <CheckMenuItem selected="true" fx:id="codeGenerationCheck" onAction="#handleAllOptions" mnemonicParsing="false" text="Code Generation Options" />
+                  <CheckMenuItem selected="true" fx:id="codeOptimizationCheck" onAction="#handleAllOptions" mnemonicParsing="false" text="Code Optimization Options" />
+                  <CheckMenuItem selected="true" fx:id="developerCheck" onAction="#handleAllOptions" mnemonicParsing="false" text="Developer Options" />
                </items>
             </Menu>
         <Menu mnemonicParsing="false" text="Help">

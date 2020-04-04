@@ -91,9 +91,9 @@
               <tabs>
                   <Tab fx:id="textInput" text="Input" />
                   <Tab fx:id="textResult" text="Output" />
-                  <Tab fx:id="compilerOpts" text="Compiler Options">
-                    <content>
-                      <fx:include source="optionTabs/compilerOpts.fxml" />
+                  <Tab text="Compiler Options" fx:id="compilerTab">
+                     <content>
+                      <fx:include source="optionTabs/compilerOpts.fxml" fx:id="compilerOptsPanel" />
                     </content>
                   </Tab>
                   <Tab text="Linking Options">

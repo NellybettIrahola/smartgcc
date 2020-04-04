@@ -1,6 +1,7 @@
 package application.controller;
 
 import application.Main;
+import application.controller.optiontabs.CompilerOptsController;
 import application.model.CommandExecute;
 import application.model.Project;
 import application.model.SmartModel;
@@ -57,6 +58,10 @@ public class MainController {
   @FXML private Tab optimizationTab;
   
   private OptimizationPanelController optimizationPanelController;
+  
+  @FXML private Tab compilerTab;
+  
+  private CompilerOptsController compilerOptsController;
 
   @FXML Tab textResult;
 
@@ -89,10 +94,14 @@ public class MainController {
   
   private void initializeSubControllers()
   {
-	  FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/views/optionTabs/optimizationOpts.fxml"));
+	  FXMLLoader optimizationLoader = new FXMLLoader(getClass().getResource("/application/views/optionTabs/optimizationOpts.fxml"));
+	  FXMLLoader compilerLoader = new FXMLLoader(getClass().getResource("/application/views/optionTabs/compilerOpts.fxml"));
 	  try {
-		  loader.load();
-		  this.optimizationPanelController=(OptimizationPanelController)loader.getController();
+		  optimizationLoader.load();
+		  this.optimizationPanelController=(OptimizationPanelController)optimizationLoader.getController();
+		  
+		  compilerLoader.load();
+		  this.compilerOptsController=compilerLoader.getController();
 	  }
 	  catch (Exception e) {
 		  e.printStackTrace();

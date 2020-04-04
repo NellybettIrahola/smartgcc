@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 bin
 target
 .vscode
@@ -87,3 +88,8 @@ nb-configuration.xml
 ## OS X
 ##############################
 .DS_Store
+=======
+bin
+target
+.vscode
+>>>>>>> origin/javafxAppFixedTabs

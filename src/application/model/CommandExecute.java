@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.LinkedList;
 
 public class CommandExecute {
@@ -62,8 +63,9 @@ public class CommandExecute {
 
   public String[] buildExecution(String command) throws IOException, InterruptedException {
     this.builder = new ProcessBuilder();
-    String[] resultReturn = new String[2];
+    String[] resultReturn = new String[3];
     String result = "";
+    String resultError = "";
     System.out.println(command);
     builder.directory(new File(System.getProperty("user.home")));
 
@@ -76,6 +78,7 @@ public class CommandExecute {
     Process process = builder.start();
 
     StringBuilder stringBuilder = new StringBuilder();
+    StringBuilder resultBuilder = new StringBuilder();
     String line = null;
 
     try (BufferedReader stdError =
@@ -85,21 +88,25 @@ public class CommandExecute {
       }
     }
 
-    // try (BufferedReader bufferedReader = new BufferedReader(new
-    // InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8))) {
-    //	while ((line = bufferedReader.readLine()) != null) {
-    //		stringBuilder.append(line+"\n");
-    //	}
-    // }
+    try (BufferedReader bufferedReader =
+        new BufferedReader(
+            new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8))) {
+      while ((line = bufferedReader.readLine()) != null) {
+        resultBuilder.append(line + "\n");
+      }
+    }
 
-    result = stringBuilder.toString();
+    resultError = stringBuilder.toString();
+    result = resultBuilder.toString();
     System.out.println(result);
-    if (result.contentEquals("")) result = "compilation success";
+    if (resultError.contentEquals("")) resultError = "compilation success\n";
+    if (result.contentEquals("")) result = "No available output\n";
 
     int exitCode = process.waitFor();
     assert exitCode == 0;
     resultReturn[0] = command;
-    resultReturn[1] = result;
+    resultReturn[1] = resultError;
+    resultReturn[2] = result;
     return resultReturn;
   }
 }

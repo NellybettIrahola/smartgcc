@@ -86,15 +86,41 @@
             </CheckBox>
          </children>
       </FlowPane>
-      <FlowPane prefHeight="200.0" prefWidth="200.0">
+      <FlowPane rowValignment="TOP">
          <children>
             <Label text="Misc Series:" />
-            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-Q">
-               <FlowPane.margin>
-                  <Insets left="20.0" />
-               </FlowPane.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-gtoggle" />
+            <VBox>
+               <children>
+                  <HBox>
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-Q">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </CheckBox>
+                        <Label prefWidth="500.0" text="Makes the compiler print out each function name as it is compiled, and printsome statistics about each pass when it finishes." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-gtoggle">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </CheckBox>
+                        <Label prefWidth="500.0" text="Turn off generation of debug info, if leaving out this option generates it, or turnit on at level 2 otherwise. The position of this argument in the command linedoes not matter; it takes effect after all other options are processed, and it doesso only once, no matter how many times it is given. This is mainly intended tobe used with ‘-fcompare-debug" wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
          </children>
       </FlowPane>
       <FlowPane prefHeight="200.0" prefWidth="200.0" rowValignment="TOP">
@@ -105,7 +131,7 @@
                   <HBox VBox.vgrow="ALWAYS">
                      <children>
                         <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-da" />
-                        <Label text="Produce all the dumps listed above.">
+                        <Label prefWidth="500.0" text="Produce all the dumps listed above." wrapText="true">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
@@ -115,7 +141,7 @@
                   <HBox>
                      <children>
                         <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-dA" />
-                        <Label text="Annotate the assembler output with miscellaneous debugging information.">
+                        <Label prefWidth="500.0" text="Annotate the assembler output with miscellaneous debugging information." wrapText="true">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
@@ -125,7 +151,7 @@
                   <HBox>
                      <children>
                         <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-dD" />
-                        <Label text="Dump all macro definitions, at the end of preprocessing, in additionto normal output.">
+                        <Label prefWidth="500.0" text="Dump all macro definitions, at the end of preprocessing, in additionto normal output." wrapText="true">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
@@ -135,7 +161,7 @@
                   <HBox>
                      <children>
                         <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-dH" />
-                        <Label text="Produce a core dump whenever an error occurs.">
+                        <Label prefWidth="500.0" text="Produce a core dump whenever an error occurs." wrapText="true">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
@@ -145,7 +171,7 @@
                   <HBox>
                      <children>
                         <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-dp" />
-                        <Label text="Annotate the assembler output with a comment indicating whichpattern and alternative is used. The length and cost of each instruction are also printed.">
+                        <Label prefWidth="500.0" text="Annotate the assembler output with a comment indicating whichpattern and alternative is used. The length and cost of each instruction are also printed." wrapText="true">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
@@ -155,7 +181,7 @@
                   <HBox>
                      <children>
                         <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-dP" />
-                        <Label text="Dump the RTL in the assembler output as a comment before eachinstruction. Also turns on ‘-dp’ annotation.">
+                        <Label prefWidth="500.0" text="Dump the RTL in the assembler output as a comment before eachinstruction. Also turns on ‘-dp’ annotation." wrapText="true">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
@@ -165,7 +191,7 @@
                   <HBox>
                      <children>
                         <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-dx" />
-                        <Label text="Just generate RTL for a function instead of compiling it. Usuallyused with ‘-fdump-rtl-expand’.">
+                        <Label prefWidth="500.0" text="Just generate RTL for a function instead of compiling it. Usuallyused with ‘-fdump-rtl-expand’." wrapText="true">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>

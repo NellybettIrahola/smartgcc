@@ -133,7 +133,7 @@ public class MainController {
   }
 
   @FXML
-  private void generateNewProjectPanel() {
+  private void onNewProjectAction() {
 
     this.secondaryLayout = new StackPane();
 
@@ -767,7 +767,7 @@ public class MainController {
   }
 
   @FXML
-  private int openProject() {
+  private int onOpenProjectAction() {
     FileChooser fileChooser = new FileChooser();
     File selectedFile = fileChooser.showOpenDialog(Main.getStage());
     int i = 0;

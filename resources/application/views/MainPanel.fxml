@@ -19,12 +19,12 @@
       <menus>
         <Menu mnemonicParsing="false" text="File">
           <items>
-            <MenuItem mnemonicParsing="false" onAction="#generateNewProjectPanel" text="New Project" />
-            <MenuItem mnemonicParsing="false" onAction="#openProject" text="Open Project" />
+            <MenuItem mnemonicParsing="false" onAction="#onNewProjectAction" text="New Project" />
+            <MenuItem mnemonicParsing="false" onAction="#onOpenProjectAction" text="Open Project" />
             <Menu mnemonicParsing="false" text="Open Recent" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Close" />
-            <MenuItem mnemonicParsing="false" onAction="#saveProject" text="Save" />
+            <MenuItem mnemonicParsing="false" onAction="#onSaveProjectAction" text="Save" />
             <MenuItem mnemonicParsing="false" text="Revert" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Preferences…" />
@@ -66,9 +66,9 @@
     </MenuBar>
       <HBox prefHeight="42.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="96.0" text="New Project" />
-            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="96.0" text="Open Project" />
-            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="96.0" text="Save Project" />
+            <Button mnemonicParsing="false" onAction="#onNewProjectAction" prefHeight="42.0" prefWidth="96.0" text="New Project" />
+            <Button mnemonicParsing="false" onAction="#onOpenProjectAction" prefHeight="42.0" prefWidth="96.0" text="Open Project" />
+            <Button mnemonicParsing="false" onAction="#onSaveProjectAction" prefHeight="42.0" prefWidth="96.0" text="Save Project" />
             <Separator orientation="VERTICAL" prefHeight="200.0" />
             <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="96.0" text="Undo" />
             <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="96.0" text="Redo" />

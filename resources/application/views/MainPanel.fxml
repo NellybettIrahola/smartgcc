@@ -1,22 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckMenuItem?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.SeparatorMenuItem?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.Tooltip?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button ?>
+<?import javafx.scene.control.CheckMenuItem ?>
+<?import javafx.scene.control.Menu ?>
+<?import javafx.scene.control.MenuBar ?>
+<?import javafx.scene.control.MenuItem ?>
+<?import javafx.scene.control.ScrollPane ?>
+<?import javafx.scene.control.Separator ?>
+<?import javafx.scene.control.SeparatorMenuItem ?>
+<?import javafx.scene.control.SplitPane ?>
+<?import javafx.scene.control.Tab ?>
+<?import javafx.scene.control.TabPane ?>
+<?import javafx.scene.control.Tooltip ?>
+<?import javafx.scene.image.Image ?>
+<?import javafx.scene.image.ImageView ?>
+<?import javafx.scene.layout.HBox ?>
+<?import javafx.scene.layout.VBox ?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" >
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -58,6 +59,7 @@
                   <CheckMenuItem selected="true" fx:id="developerCheck" onAction="#handleAllOptions" mnemonicParsing="false" text="Developer Options" />
                </items>
             </Menu>
+
         <Menu mnemonicParsing="false" text="Help">
           <items>
             <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
@@ -65,168 +67,204 @@
         </Menu>
       </menus>
     </MenuBar>
-      <HBox prefHeight="42.0" prefWidth="200.0">
-         <children>
-            <Button mnemonicParsing="false" onAction="#onNewProjectAction" prefHeight="45.0" prefWidth="61.0">
-               <graphic>
-                  <ImageView fitHeight="35.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../resources/flaticon/png/newProject.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <tooltip>
-                  <Tooltip text="New Project" />
-               </tooltip></Button>
-            <Button mnemonicParsing="false" onAction="#onOpenProjectAction" prefHeight="49.0" prefWidth="66.0">
-               <graphic>
-                  <ImageView fitHeight="33.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../resources/flaticon/png/openProject.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <tooltip>
-                  <Tooltip text="Open Project" />
-               </tooltip></Button>
-            <Button ellipsisString="Save" mnemonicParsing="false" onAction="#onSaveProjectAction" prefHeight="45.0" prefWidth="66.0">
-               <graphic>
-                  <ImageView fitHeight="73.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../resources/flaticon/png/saveProject.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <tooltip>
-                  <Tooltip text="Save Project" />
-               </tooltip></Button>
-            <Separator orientation="VERTICAL" prefHeight="200.0" />
-            <Button mnemonicParsing="false" prefHeight="67.0" prefWidth="57.0">
-               <graphic>
-                  <ImageView fitHeight="23.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../resources/flaticon/png/undo.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <tooltip>
-                  <Tooltip text="Undo" />
-               </tooltip></Button>
-            <Button mnemonicParsing="false" prefHeight="63.0" prefWidth="67.0">
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../resources/flaticon/png/redo.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <tooltip>
-                  <Tooltip text="Redo" />
-               </tooltip></Button>
-            <Separator orientation="VERTICAL" prefHeight="200.0" />
-            <Button fx:id="compileOption" mnemonicParsing="false" onAction="#buildProject" prefHeight="45.0" prefWidth="62.0">
-               <graphic>
-                  <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../resources/flaticon/png/build.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <tooltip>
-                  <Tooltip text="Build" />
-               </tooltip></Button>
-            <Button fx:id="runOption" mnemonicParsing="false" prefHeight="45.0" prefWidth="56.0">
-               <graphic>
-                  <ImageView fitHeight="29.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../resources/flaticon/png/run.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <tooltip>
-                  <Tooltip text="Run" />
-               </tooltip></Button>
-            <Separator orientation="VERTICAL" prefHeight="200.0" />
-            <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="61.0">
-               <graphic>
-                  <ImageView fitHeight="34.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../resources/flaticon/png/profile.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <tooltip>
-                  <Tooltip text="Change User Type" />
-               </tooltip></Button>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="65.0">
-               <graphic>
-                  <ImageView fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../resources/flaticon/png/help.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <tooltip>
-                  <Tooltip text="Help" />
-               </tooltip></Button>
-            <Button mnemonicParsing="false" onAction="#onSpecialAction" prefHeight="71.0" prefWidth="61.0">
-               <graphic>
-                  <ImageView fitHeight="16.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true" />
-               </graphic>
-               <tooltip>
-                  <Tooltip text="Special" />
-               </tooltip></Button>
-         </children>
-      </HBox>
-      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" VBox.vgrow="ALWAYS">
-        <items>
-            <TabPane fx:id="projectsPane" tabClosingPolicy="ALL_TABS">
-              <tabs>
-           
-              </tabs>
-            </TabPane>
-            <TabPane fx:id="panelCompilingOptions" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
-              <tabs>
-                  <Tab fx:id="textInput" text="Input" />
-                  <Tab fx:id="textResult" text="Output" />
-                  <Tab fx:id="compilerOptions" text="Compiler Options">
-                    <content>
-                      <fx:include fx:id="compilerOpts" source="optionTabs/compilerOpts.fxml" />
-                    </content>
-                  </Tab>
-                  <Tab fx:id="linkingOptions" text="Linking Options">
-                    <content>
-                      <fx:include fx:id="linkingOpts" source="optionTabs/linkingOpts.fxml" />
-                    </content>
-                  </Tab>
-                  <Tab fx:id="debuggingOptions" text="Debugging Options">
-                    <content>
-                      <fx:include fx:id="debuggingOpts" source="optionTabs/debuggingOpts.fxml" />
-                    </content>
-                  </Tab>
-                  <Tab fx:id="executeOptions" text="Execute Options">
-                    <content>
-                      <fx:include fx:id="executeOpts" source="optionTabs/executeOpts.fxml" />
-                    </content>
-                  </Tab>
-                  <Tab fx:id="codeGenerationOptions" text="Code Generation Options">
-                    <content>
-                      <fx:include fx:id="codegenOpts" source="optionTabs/codegenOpts.fxml" />
-                    </content>
-                  </Tab>
-                  <Tab fx:id="optimizationTab" text="Code Optimization Options">
-                    <content>
-                      <fx:include fx:id="optimizationOpts" source="optionTabs/optimizationOpts.fxml" />
-                    </content>
-                  </Tab>
-                  <Tab fx:id="developerOptions" text="Developer Options">
-                    <content>
-                      <fx:include fx:id="developerOpts" source="optionTabs/developerOpts.fxml" />
-                    </content>
-                  </Tab>
-              </tabs>
-            </TabPane>
-        </items>
-      </SplitPane>
+    <HBox prefHeight="42.0" prefWidth="200.0">
+      <children>
+        <Button mnemonicParsing="false" onAction="#onNewProjectAction" prefHeight="45.0" prefWidth="61.0">
+          <graphic>
+            <ImageView fitHeight="35.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../resources/freeicons/png/newProject.png" />
+              </image>
+            </ImageView>
+          </graphic>
+          <tooltip>
+            <Tooltip text="New Project" />
+          </tooltip>
+        </Button>
+        <Button mnemonicParsing="false" onAction="#onOpenProjectAction" prefHeight="49.0" prefWidth="66.0">
+          <graphic>
+            <ImageView fitHeight="33.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../resources/freeicons/png/openProject.png" />
+              </image>
+            </ImageView>
+          </graphic>
+          <tooltip>
+            <Tooltip text="Open Project" />
+          </tooltip>
+        </Button>
+        <Button ellipsisString="Save" mnemonicParsing="false" onAction="#onSaveProjectAction" prefHeight="45.0" prefWidth="66.0">
+          <graphic>
+            <ImageView fitHeight="73.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../resources/freeicons/png/saveProject.png" />
+              </image>
+            </ImageView>
+          </graphic>
+          <tooltip>
+            <Tooltip text="Save Project" />
+          </tooltip>
+        </Button>
+        <Separator orientation="VERTICAL" prefHeight="200.0" />
+        <Button mnemonicParsing="false" prefHeight="67.0" prefWidth="57.0">
+          <graphic>
+            <ImageView fitHeight="23.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../resources/freeicons/png/undo.png" />
+              </image>
+            </ImageView>
+          </graphic>
+          <tooltip>
+            <Tooltip text="Undo" />
+          </tooltip>
+        </Button>
+        <Button mnemonicParsing="false" prefHeight="63.0" prefWidth="67.0">
+          <graphic>
+            <ImageView fitHeight="30.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../resources/freeicons/png/redo.png" />
+              </image>
+            </ImageView>
+          </graphic>
+          <tooltip>
+            <Tooltip text="Redo" />
+          </tooltip>
+        </Button>
+        <Separator orientation="VERTICAL" prefHeight="200.0" />
+        <Button fx:id="compileOption" mnemonicParsing="false" onAction="#buildProject" prefHeight="45.0" prefWidth="62.0">
+          <graphic>
+            <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../resources/freeicons/png/build.png" />
+              </image>
+            </ImageView>
+          </graphic>
+          <tooltip>
+            <Tooltip text="Build" />
+          </tooltip>
+        </Button>
+        <Button fx:id="runOption" mnemonicParsing="false" prefHeight="45.0" prefWidth="56.0">
+          <graphic>
+            <ImageView fitHeight="29.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../resources/freeicons/png/run.png" />
+              </image>
+            </ImageView>
+          </graphic>
+          <tooltip>
+            <Tooltip text="Run" />
+          </tooltip>
+        </Button>
+        <Separator orientation="VERTICAL" prefHeight="200.0" />
+        <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="61.0">
+          <graphic>
+            <ImageView fitHeight="34.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../resources/freeicons/png/profile.png" />
+              </image>
+            </ImageView>
+          </graphic>
+          <tooltip>
+            <Tooltip text="Change User Type" />
+          </tooltip>
+        </Button>
+        <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="65.0">
+          <graphic>
+            <ImageView fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../resources/freeicons/png/help.png" />
+              </image>
+            </ImageView>
+          </graphic>
+          <tooltip>
+            <Tooltip text="Help" />
+          </tooltip>
+        </Button>
+        <Button mnemonicParsing="false" onAction="#onSpecialAction" prefHeight="71.0" prefWidth="61.0">
+          <graphic>
+            <ImageView fitHeight="16.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true" />
+          </graphic>
+          <tooltip>
+            <Tooltip text="Special" />
+          </tooltip>
+        </Button>
+      </children>
+    </HBox>
+    <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" VBox.vgrow="ALWAYS">
+      <items>
+        <TabPane fx:id="projectsPane" tabClosingPolicy="ALL_TABS">
+          <tabs></tabs>
+        </TabPane>
+        <TabPane fx:id="panelCompilingOptions" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+          <tabs>
+            <Tab fx:id="textInput" text="Input" />
+            <Tab fx:id="textResult" text="Output" />
+            <Tab text="Compiler Options">
+              <content>
+                <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                  <content>
+                    <fx:include fx:id="compilerOpts" source="optionTabs/compilerOpts.fxml" />
+                  </content>
+                </ScrollPane>
+              </content>
+            </Tab>
+            <Tab text="Linking Options">
+              <content>
+                <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                  <content>
+                    <fx:include fx:id="linkingOpts" source="optionTabs/linkingOpts.fxml" />
+                  </content>
+                </ScrollPane>
+              </content>
+            </Tab>
+            <Tab text="Debugging Options">
+              <content>
+                <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                  <content>
+                    <fx:include fx:id="debuggingOpts" source="optionTabs/debuggingOpts.fxml" />
+                  </content>
+                </ScrollPane>
+              </content>
+            </Tab>
+            <Tab text="Execute Options">
+              <content>
+                <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                  <content>
+                    <fx:include fx:id="executeOpts" source="optionTabs/executeOpts.fxml" />
+                  </content>
+                </ScrollPane>
+              </content>
+            </Tab>
+            <Tab text="Code Generation Options">
+              <content>
+                <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                  <content>
+                    <fx:include fx:id="codegenOpts" source="optionTabs/codegenOpts.fxml" />
+                  </content>
+                </ScrollPane>
+              </content>
+            </Tab>
+            <Tab fx:id="optimizationTab" text="Code Optimization Options">
+              <content>
+                <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                  <content>
+                    <fx:include fx:id="optimizationOpts" source="optionTabs/optimizationOpts.fxml" />
+                  </content>
+                </ScrollPane>
+              </content>
+            </Tab>
+            <Tab text="Developer Options">
+              <content>
+                <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                  <content>
+                    <fx:include fx:id="developerOpts" source="optionTabs/developerOpts.fxml" />
+                  </content>
+                </ScrollPane>
+              </content>
+            </Tab>
+          </tabs>
+        </TabPane>
+      </items>
+    </SplitPane>
   </children>
 </VBox>

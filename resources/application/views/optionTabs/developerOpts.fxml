@@ -4,14 +4,16 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.optiontabs.DeveloperOptsController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.optiontabs.DeveloperOptsController">
    <children>
       <Label text="Developer Options" />
-      <FlowPane prefHeight="200.0" prefWidth="200.0">
+      <FlowPane>
          <children>
             <Label text="Dump and Exit: " />
             <RadioButton fx:id="dump" mnemonicParsing="false" selected="true" style="-fx-font-style: italic;" text="disabled">
@@ -25,22 +27,26 @@
             <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-dumpmachine" toggleGroup="$dump">
                <FlowPane.margin>
                   <Insets left="20.0" />
-               </FlowPane.margin></RadioButton>
+               </FlowPane.margin>
+            </RadioButton>
             <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-dumpversion" toggleGroup="$dump">
                <FlowPane.margin>
                   <Insets left="20.0" />
-               </FlowPane.margin></RadioButton>
+               </FlowPane.margin>
+            </RadioButton>
             <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-dumpfullversion" toggleGroup="$dump">
                <FlowPane.margin>
                   <Insets left="20.0" />
-               </FlowPane.margin></RadioButton>
+               </FlowPane.margin>
+            </RadioButton>
             <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-dumpspecs" toggleGroup="$dump">
                <FlowPane.margin>
                   <Insets left="20.0" />
-               </FlowPane.margin></RadioButton>
+               </FlowPane.margin>
+            </RadioButton>
          </children>
       </FlowPane>
-      <FlowPane prefHeight="200.0" prefWidth="200.0">
+      <FlowPane>
          <children>
             <Label text="Print Series:" />
             <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-print-multi-directory">
@@ -83,6 +89,815 @@
                   <Insets left="20.0" />
                </FlowPane.margin>
             </CheckBox>
+         </children>
+      </FlowPane>
+      <FlowPane rowValignment="TOP">
+         <children>
+            <Label text="Misc Series:" />
+            <VBox>
+               <children>
+                  <HBox>
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-Q">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </CheckBox>
+                        <Label prefWidth="500.0" text="Makes the compiler print out each function name as it is compiled, and printsome statistics about each pass when it finishes." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-gtoggle">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </CheckBox>
+                        <Label prefWidth="500.0" text="Turn off generation of debug info, if leaving out this option generates it, or turnit on at level 2 otherwise. The position of this argument in the command linedoes not matter; it takes effect after all other options are processed, and it doesso only once, no matter how many times it is given. This is mainly intended tobe used with ‘-fcompare-debug" wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </FlowPane>
+      <FlowPane id="fdump-rtl-pane" prefHeight="200.0" prefWidth="200.0" rowValignment="TOP">
+         <children>
+            <Label text="-fdump-rtl Series" />
+            <VBox>
+               <children>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" style="-fx-min-width: 200;" styleClass="simple-opt" text="-fdump-rtl-alignments" />
+                        <Label prefWidth="400.0" text="Dump after branch alignments have been computed." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-asmcons" />
+                        <Label prefWidth="400.0" text="Dump after fixing rtl statements that have unsatisfied in/out constraints." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-auto_inc_dec" />
+                        <Label prefWidth="400.0" text="Dump after auto-inc-dec discovery. This pass is only run on architectures that have auto inc or auto dec instructions." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-barriers" />
+                        <Label prefWidth="400.0" text="Dump after cleaning up the barrier instructions." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-bbpart" />
+                        <Label prefWidth="400.0" text="Dump after partitioning hot and cold basic blocks." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-bbro" />
+                        <Label prefWidth="400.0" text="Dump after block reordering." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-btl1" />
+                        <Label prefWidth="400.0" text="" wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-btl2" />
+                        <Label prefWidth="400.0" text="‘-fdump-rtl-btl1’ and ‘-fdump-rtl-btl2’ enable dumping after the two branch target load optimization passes." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-bypass" />
+                        <Label prefWidth="400.0" text="Dump after jump bypassing and control flow optimizations." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-combine" />
+                        <Label prefWidth="400.0" text="Dump after the RTL instruction combination pass." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-compgotos" />
+                        <Label prefWidth="400.0" text="Dump after duplicating the computed gotos." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-ce1" />
+                        <Label prefWidth="400.0" text="" wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-ce2" />
+                        <Label prefWidth="400.0" text="" wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-ce3" />
+                        <Label prefWidth="400.0" text="‘-fdump-rtl-ce1’, ‘-fdump-rtl-ce2’, and ‘-fdump-rtl-ce3’ enable dumping after the three if conversion passes." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-cprop_hardreg" />
+                        <Label prefWidth="400.0" text="Dump after hard register copy propagation.230 Using the GNU Compiler Collection (GCC)" wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-csa" />
+                        <Label prefWidth="400.0" text="Dump after combining stack adjustments." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-cse1" />
+                        <Label prefWidth="400.0" text="" wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-cse2" />
+                        <Label prefWidth="400.0" text="‘-fdump-rtl-cse1’ and ‘-fdump-rtl-cse2’ enable dumping after the two common subexpression elimination passes." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-dce" />
+                        <Label prefWidth="400.0" text="Dump after the standalone dead code elimination passes." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-dbr" />
+                        <Label prefWidth="400.0" text="Dump after delayed branch scheduling." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-dce1" />
+                        <Label prefWidth="400.0" text="" wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-dce2" />
+                        <Label prefWidth="400.0" text="‘-fdump-rtl-dce1’ and ‘-fdump-rtl-dce2’ enable dumping after the two dead store elimination passes." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-eh" />
+                        <Label prefWidth="400.0" text="Dump after finalization of EH handling code." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-eh_ranges" />
+                        <Label prefWidth="400.0" text="Dump after conversion of EH handling range regions." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-expand" />
+                        <Label prefWidth="400.0" text="Dump after RTL generation." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-fwprop1" />
+                        <Label prefWidth="400.0" text="" wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-fwprop2" />
+                        <Label prefWidth="400.0" text="‘-fdump-rtl-fwprop1’ and ‘-fdump-rtl-fwprop2’ enable dumping after the two forward propagation passes." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-gcse1" />
+                        <Label prefWidth="400.0" text="" wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-gcse2" />
+                        <Label prefWidth="400.0" text="‘-fdump-rtl-gcse1’ and ‘-fdump-rtl-gcse2’ enable dumping after global common subexpression elimination." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-init-regs" />
+                        <Label prefWidth="400.0" text="Dump after the initialization of the registers." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-initvals" />
+                        <Label prefWidth="400.0" text="Dump after the computation of the initial value sets." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-into_cfglayout" />
+                        <Label prefWidth="400.0" text="Dump after converting to cfglayout mode." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-ira" />
+                        <Label prefWidth="400.0" text="Dump after iterated register allocation." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-jump" />
+                        <Label prefWidth="400.0" text="Dump after the second jump optimization." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-loop2" />
+                        <Label prefWidth="400.0" text="‘-fdump-rtl-loop2’ enables dumping after the rtl loop optimization passes.Chapter 3: GCC Command Options 231" wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-mach" />
+                        <Label prefWidth="400.0" text="Dump after performing the machine dependent reorganization pass, if that pass exists." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-mode_sw" />
+                        <Label prefWidth="400.0" text="Dump after removing redundant mode switches." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-rnreg" />
+                        <Label prefWidth="400.0" text="Dump after register renumbering." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-outof_cfglayout" />
+                        <Label prefWidth="400.0" text="Dump after converting from cfglayout mode." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-peephole2" />
+                        <Label prefWidth="400.0" text="Dump after the peephole pass." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-postreload" />
+                        <Label prefWidth="400.0" text="Dump after post-reload optimizations." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-pro_and_epilogue" />
+                        <Label prefWidth="400.0" text="Dump after generating the function prologues and epilogues." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-sched1" />
+                        <Label prefWidth="400.0" text="" wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-sched2" />
+                        <Label prefWidth="400.0" text="‘-fdump-rtl-sched1’ and ‘-fdump-rtl-sched2’ enable dumping after the basic block scheduling passes." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-ree" />
+                        <Label prefWidth="400.0" text="Dump after sign/zero extension elimination." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-seqabstr" />
+                        <Label prefWidth="400.0" text="Dump after common sequence discovery." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-shorten" />
+                        <Label prefWidth="400.0" text="Dump after shortening branches." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-sibling" />
+                        <Label prefWidth="400.0" text="Dump after sibling call optimizations." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-split1" />
+                        <Label prefWidth="400.0" text="" wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-split2" />
+                        <Label prefWidth="400.0" text="" wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-split3" />
+                        <Label prefWidth="400.0" text="" wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-split4" />
+                        <Label prefWidth="400.0" text="" wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-split5" />
+                        <Label prefWidth="400.0" text="These options enable dumping after five rounds of instruction splitting." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-sms" />
+                        <Label prefWidth="400.0" text="Dump after modulo scheduling. This pass is only run on some architectures." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-stack" />
+                        <Label prefWidth="400.0" text="Dump after conversion from GCC’s “flat register file” registers to the x87’s stack-like registers. This pass is only run on x86 variants.232 Using the GNU Compiler Collection (GCC)" wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-subreg1" />
+                        <Label prefWidth="400.0" text="" wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-subreg2" />
+                        <Label prefWidth="400.0" text="‘-fdump-rtl-subreg1’ and ‘-fdump-rtl-subreg2’ enable dumping after the two subreg expansion passes." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-unshare" />
+                        <Label prefWidth="400.0" text="Dump after all rtl has been unshared." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-vartrack" />
+                        <Label prefWidth="400.0" text="Dump after variable tracking." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-vregs" />
+                        <Label prefWidth="400.0" text="Dump after converting virtual registers to hard registers." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-web" />
+                        <Label prefWidth="400.0" text="Dump after live range splitting." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-regclass" />
+                        <Label prefWidth="400.0" text="" wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-subregs_of_mode_init" />
+                        <Label prefWidth="400.0" text="" wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-subregs_of_mode_finish" />
+                        <Label prefWidth="400.0" text="" wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-dfinit" />
+                        <Label prefWidth="400.0" text="" wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdump-rtl-dfinish" />
+                        <Label prefWidth="400.0" text="These dumps are defined but always produce empty files." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin>
+            </VBox>
+         </children>
+      </FlowPane>
+      <FlowPane prefHeight="200.0" prefWidth="200.0" rowValignment="TOP">
+         <children>
+            <Label text="-d Series" />
+            <VBox>
+               <children>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-da" />
+                        <Label prefWidth="500.0" text="Produce all the dumps listed above." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-dA" />
+                        <Label prefWidth="500.0" text="Annotate the assembler output with miscellaneous debugging information." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-dD" />
+                        <Label prefWidth="500.0" text="Dump all macro definitions, at the end of preprocessing, in additionto normal output." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-dH" />
+                        <Label prefWidth="500.0" text="Produce a core dump whenever an error occurs." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-dp" />
+                        <Label prefWidth="500.0" text="Annotate the assembler output with a comment indicating whichpattern and alternative is used. The length and cost of each instruction are also printed." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-dP" />
+                        <Label prefWidth="500.0" text="Dump the RTL in the assembler output as a comment before eachinstruction. Also turns on ‘-dp’ annotation." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-dx" />
+                        <Label prefWidth="500.0" text="Just generate RTL for a function instead of compiling it. Usuallyused with ‘-fdump-rtl-expand’." wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin>
+            </VBox>
          </children>
       </FlowPane>
    </children>

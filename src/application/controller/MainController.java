@@ -35,6 +35,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -134,10 +135,20 @@ public class MainController {
         List<String> args = new ArrayList<String>();
         String argsStr = " ";
         for (Node mm : m) {
-          if (mm instanceof CheckBox && ((CheckBox) mm).isSelected()) {
+          // Checkbox
+          boolean isCheckBoxSelected = mm instanceof CheckBox && ((CheckBox) mm).isSelected();
+          if (isCheckBoxSelected) {
             args.add(((CheckBox) mm).getText());
             argsStr = argsStr + ((CheckBox) mm).getText() + " ";
             System.out.println(((CheckBox) mm).getText());
+          }
+          // ToggleButton (includes RadioButton)
+          boolean isToggleButtonSelected =
+              mm instanceof ToggleButton && ((ToggleButton) mm).isSelected();
+          if (isToggleButtonSelected) {
+            args.add(((ToggleButton) mm).getText());
+            argsStr = argsStr + ((ToggleButton) mm).getText() + " ";
+            System.out.println(((ToggleButton) mm).getText());
           }
         }
 
@@ -485,7 +496,7 @@ public class MainController {
   }
 
   @FXML
-  public void saveProject() {
+  public void onSaveProjectAction() {
     FileOutputStream fileOutputStream;
     String name = this.projectsPane.getSelectionModel().getSelectedItem().getText();
     Project pr = this.smartModel.getProject(name);

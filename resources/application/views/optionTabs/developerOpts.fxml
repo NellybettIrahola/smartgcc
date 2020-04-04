@@ -22,19 +22,19 @@
                   <Insets left="20.0" />
                </FlowPane.margin>
             </RadioButton>
-            <RadioButton mnemonicParsing="false" text="-dumpmachine" toggleGroup="$dump">
+            <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-dumpmachine" toggleGroup="$dump">
                <FlowPane.margin>
                   <Insets left="20.0" />
                </FlowPane.margin></RadioButton>
-            <RadioButton mnemonicParsing="false" text="-dumpversion" toggleGroup="$dump">
+            <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-dumpversion" toggleGroup="$dump">
                <FlowPane.margin>
                   <Insets left="20.0" />
                </FlowPane.margin></RadioButton>
-            <RadioButton mnemonicParsing="false" text="-dumpfullversion" toggleGroup="$dump">
+            <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-dumpfullversion" toggleGroup="$dump">
                <FlowPane.margin>
                   <Insets left="20.0" />
                </FlowPane.margin></RadioButton>
-            <RadioButton mnemonicParsing="false" text="-dumpspecs" toggleGroup="$dump">
+            <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-dumpspecs" toggleGroup="$dump">
                <FlowPane.margin>
                   <Insets left="20.0" />
                </FlowPane.margin></RadioButton>
@@ -43,42 +43,42 @@
       <FlowPane prefHeight="200.0" prefWidth="200.0">
          <children>
             <Label text="Print Series:" />
-            <CheckBox mnemonicParsing="false" text="-print-multi-directory">
+            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-print-multi-directory">
                <FlowPane.margin>
                   <Insets left="20.0" />
                </FlowPane.margin>
             </CheckBox>
-            <CheckBox mnemonicParsing="false" text="-print-multi-lib">
+            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-print-multi-lib">
                <FlowPane.margin>
                   <Insets left="20.0" />
                </FlowPane.margin>
             </CheckBox>
-            <CheckBox mnemonicParsing="false" text="-print-multi-os-directory">
+            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-print-multi-os-directory">
                <FlowPane.margin>
                   <Insets left="20.0" />
                </FlowPane.margin>
             </CheckBox>
-            <CheckBox mnemonicParsing="false" text="-print-multiarch">
+            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-print-multiarch">
                <FlowPane.margin>
                   <Insets left="20.0" />
                </FlowPane.margin>
             </CheckBox>
-            <CheckBox mnemonicParsing="false" text="-print-libgcc-file-name">
+            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-print-libgcc-file-name">
                <FlowPane.margin>
                   <Insets left="20.0" />
                </FlowPane.margin>
             </CheckBox>
-            <CheckBox mnemonicParsing="false" text="-print-search-dirs">
+            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-print-search-dirs">
                <FlowPane.margin>
                   <Insets left="20.0" />
                </FlowPane.margin>
             </CheckBox>
-            <CheckBox mnemonicParsing="false" text="-print-sysroot">
+            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-print-sysroot">
                <FlowPane.margin>
                   <Insets left="20.0" />
                </FlowPane.margin>
             </CheckBox>
-            <CheckBox mnemonicParsing="false" text="-print-sysroot-headers-suffix">
+            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-print-sysroot-headers-suffix">
                <FlowPane.margin>
                   <Insets left="20.0" />
                </FlowPane.margin>

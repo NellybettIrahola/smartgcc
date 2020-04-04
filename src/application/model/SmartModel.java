@@ -22,16 +22,12 @@ public class SmartModel {
     return this.addProject(pr);
   }
 
-  public Project updateProject(
-      String name,
-      LinkedList<String> source,
-      LinkedList<String> object,
-      LinkedList<String> libraries) {
+  public Project updateProject(String name, LinkedList<String> source, LinkedList<String> object) {
     Project pr = null;
     for (int i = 0; i < this.getListProjects().size(); i++) {
       if (this.getListProjects().get(i).name.equals(name)) {
         pr = this.getListProjects().get(i);
-        pr.updateProject(source, object, libraries);
+        pr.updateProject(source, object, null);
       }
     }
     return pr;

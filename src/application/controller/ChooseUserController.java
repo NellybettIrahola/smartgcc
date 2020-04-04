@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 public class ChooseUserController {
 
   @FXML Button typical;
-  MainController main;
+  @FXML MainController main;
 
   @FXML
   private void switchToMainPanelTypical() throws Exception {

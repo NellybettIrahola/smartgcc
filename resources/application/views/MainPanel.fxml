@@ -92,39 +92,39 @@
               <tabs>
                   <Tab fx:id="textInput" text="Input" />
                   <Tab fx:id="textResult" text="Output" />
-                  <Tab fx:id="compilerOpts" text="Compiler Options">
+                  <Tab text="Compiler Options">
                     <content>
-                      <fx:include source="optionTabs/compilerOpts.fxml" />
+                      <fx:include fx:id="compilerOpts" source="optionTabs/compilerOpts.fxml" />
                     </content>
                   </Tab>
                   <Tab text="Linking Options">
                     <content>
-                      <fx:include source="optionTabs/linkingOpts.fxml" />
+                      <fx:include fx:id="linkingOpts" source="optionTabs/linkingOpts.fxml" />
                     </content>
                   </Tab>
                   <Tab text="Debugging Options">
                     <content>
-                      <fx:include source="optionTabs/debuggingOpts.fxml" />
+                      <fx:include fx:id="debuggingOpts" source="optionTabs/debuggingOpts.fxml" />
                     </content>
                   </Tab>
                   <Tab text="Execute Options">
                     <content>
-                      <fx:include source="optionTabs/executeOpts.fxml" />
+                      <fx:include fx:id="executeOpts" source="optionTabs/executeOpts.fxml" />
                     </content>
                   </Tab>
                   <Tab text="Code Generation Options">
                     <content>
-                      <fx:include source="optionTabs/codegenOpts.fxml" />
+                      <fx:include fx:id="codegenOpts" source="optionTabs/codegenOpts.fxml" />
                     </content>
                   </Tab>
                   <Tab text="Code Optimization Options" fx:id="optimizationTab">
                     <content>
-                      <fx:include source="optionTabs/optimizationOpts.fxml" fx:id="optimizationOptsPanel" />
+                      <fx:include fx:id="optimizationOpts" source="optionTabs/optimizationOpts.fxml" />
                     </content>
                   </Tab>
                   <Tab text="Developer Options">
                     <content>
-                      <fx:include source="optionTabs/developerOpts.fxml" />
+                      <fx:include fx:id="developerOpts" source="optionTabs/developerOpts.fxml" />
                     </content>
                   </Tab>
               </tabs>

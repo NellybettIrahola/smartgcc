@@ -1,6 +1,13 @@
 package application.controller;
 
 import application.Main;
+import application.controller.optiontabs.CodegenOptsController;
+import application.controller.optiontabs.CompilerOptsController;
+import application.controller.optiontabs.DebuggingOptsController;
+import application.controller.optiontabs.DeveloperOptsController;
+import application.controller.optiontabs.ExecuteOptsController;
+import application.controller.optiontabs.LinkingOptsController;
+import application.controller.optiontabs.OptimizationOptsController;
 import application.model.CommandExecute;
 import application.model.Project;
 import application.model.SmartModel;
@@ -19,10 +26,10 @@ import java.util.Set;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -50,26 +57,13 @@ public class MainController {
   CommandExecute commandExecute;
   LinkedList<TabProjectPane> projects;
   @FXML private Button runOption;
-
   @FXML private Button compileOption;
-
   @FXML private TabPane panelCompilingOptions;
 
   int type;
 
   @FXML private TabPane projectsPane;
-
-  // inject tab content
-  @FXML private Tab optimizationTab;
-
-  private OptimizationPanelController optimizationPanelController;
-
   @FXML Tab textResult;
-
-  @FXML private Tab debugTab;
-
-  // changes
-  private DebugPanelController debugPanelController;
 
   StackPane secondaryLayout;
 
@@ -78,6 +72,22 @@ public class MainController {
   TextArea textAreaFiles;
   TextArea textAreaLibraries;
   private TextArea textAreaResult;
+
+  // Option-Tab Components and Controllers
+  @FXML private Parent compilerOpts;
+  @FXML private CompilerOptsController compilerOptsController;
+  @FXML private Parent linkingOpts;
+  @FXML private LinkingOptsController linkingOptsController;
+  @FXML private Parent debuggingOpts;
+  @FXML private DebuggingOptsController debuggingOptsController;
+  @FXML private Parent executeOpts;
+  @FXML private ExecuteOptsController executeOptsController;
+  @FXML private Parent codegenOpts;
+  @FXML private CodegenOptsController codegenOptsController;
+  @FXML private Parent optimizationOpts;
+  @FXML private OptimizationOptsController optimizationOptsController;
+  @FXML private Parent developerOpts;
+  @FXML private DeveloperOptsController developerOptsController;
 
   public MainController() {}
 
@@ -90,36 +100,12 @@ public class MainController {
     this.textAreaResult = new TextArea();
     this.textAreaResult.setEditable(false);
     this.textResult.setContent(textAreaResult);
-    initializeSubControllers();
   }
-
-  private void initializeSubControllers() {
-    FXMLLoader loader =
-        new FXMLLoader(
-            getClass().getResource("/application/views/optionTabs/optimizationOpts.fxml"));
-    try {
-      loader.load();
-      this.optimizationPanelController = (OptimizationPanelController) loader.getController();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-
-    // changes
-    FXMLLoader loader1 =
-        new FXMLLoader(getClass().getResource("/application/views/optionTabs/debuggingOpts.fxml"));
-    try {
-      loader1.load();
-      this.debugPanelController = (DebugPanelController) loader1.getController();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-  // changes
 
   @FXML
   private void close() {
-    optimizationPanelController.getOptimizationFlags();
-    debugPanelController.getDebugFlags();
+    //    optimizationPanelController.getOptimizationFlags();
+    //    debugPanelController.getDebugFlags();
     System.exit(0);
   }
 
@@ -146,21 +132,6 @@ public class MainController {
     return argsStr;
   }
 
-  private String buildLibs() {
-    List<String> args = new ArrayList<String>();
-    String argsStr = "";
-    // One-Item-Per-Line Collection
-    TextArea libs = (TextArea) Main.getScene().lookup(".linking-libraries");
-    String[] libsSet = libs.getText().split("\n");
-    for (String libStr : libsSet) {
-      if (libStr.strip().length() > 0) {
-        args.add("-l " + libStr);
-        argsStr = argsStr + "-l " + libStr + " ";
-      }
-    }
-    return argsStr;
-  }
-
   @FXML
   private void buildProject() {
     if (projectsPane.getTabs().size() > 0) {
@@ -169,7 +140,7 @@ public class MainController {
       addFlagsToProject(prCompile);
       // System.out.println(prCompile.getName());
       String argStr = buildArgStr();
-      String libs = buildLibs();
+      String libs = linkingOptsController.buildLibs();
       try {
         String[] result = this.commandExecute.buildProject(prCompile, argStr, libs);
         this.textAreaResult.setText(
@@ -881,8 +852,8 @@ public class MainController {
 
   private void addFlagsToProject(Project project) {
     // add optimization options to the project
-    project.setOptimizationFlags(optimizationPanelController.getOptimizationFlags());
-
-    project.setDebugFlags(debugPanelController.getDebugFlags());
+    //    project.setOptimizationFlags(optimizationPanelController.getOptimizationFlags());
+    //
+    //    project.setDebugFlags(debugPanelController.getDebugFlags());
   }
 }

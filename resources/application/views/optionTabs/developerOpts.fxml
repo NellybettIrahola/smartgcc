@@ -114,8 +114,58 @@
                   </HBox>
                   <HBox>
                      <children>
-                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-da" />
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-dA" />
                         <Label text="Annotate the assembler output with miscellaneous debugging information.">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-dD" />
+                        <Label text="Dump all macro definitions, at the end of preprocessing, in additionto normal output.">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-dH" />
+                        <Label text="Produce a core dump whenever an error occurs.">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-dp" />
+                        <Label text="Annotate the assembler output with a comment indicating whichpattern and alternative is used. The length and cost of each instruction are also printed.">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-dP" />
+                        <Label text="Dump the RTL in the assembler output as a comment before eachinstruction. Also turns on ‘-dp’ annotation.">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-dx" />
+                        <Label text="Just generate RTL for a function instead of compiling it. Usuallyused with ‘-fdump-rtl-expand’.">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>

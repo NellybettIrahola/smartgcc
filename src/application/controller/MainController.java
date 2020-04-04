@@ -89,7 +89,7 @@ public class MainController {
   @FXML private OptimizationOptsController optimizationOptsController;
   @FXML private Parent developerOpts;
   @FXML private DeveloperOptsController developerOptsController;
-
+  @FXML private ChooseUserController chooseUserController;
   // Tabs
   @FXML private Tab developerOptions;
   @FXML private Tab optimizationTab;
@@ -423,19 +423,27 @@ public class MainController {
 
   @FXML
   public void onSaveProjectAction() {
-    FileOutputStream fileOutputStream;
-    String name = this.projectsPane.getSelectionModel().getSelectedItem().getText();
-    Project pr = this.smartModel.getProject(name);
-    try {
-      String directory = pr.getProjectLocation() + File.separator + pr.getName() + "SmartGcc";
-      System.out.println(directory);
-      fileOutputStream = new FileOutputStream(new File(directory).getAbsolutePath());
-      ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-      objectOutputStream.writeObject(pr);
-      objectOutputStream.flush();
-      objectOutputStream.close();
-    } catch (Exception e) {
-      System.out.println("Problems saving project");
+    if (this.projectsPane.getTabs().size() > 0) {
+      FileOutputStream fileOutputStream;
+      String name = this.projectsPane.getSelectionModel().getSelectedItem().getText();
+      Project pr = this.smartModel.getProject(name);
+      try {
+        String directory = pr.getProjectLocation() + File.separator + pr.getName() + "SmartGcc";
+        System.out.println(directory);
+        fileOutputStream = new FileOutputStream(new File(directory).getAbsolutePath());
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+        objectOutputStream.writeObject(pr);
+        objectOutputStream.flush();
+        objectOutputStream.close();
+      } catch (Exception e) {
+        System.out.println("Problems saving project");
+      }
+    } else {
+      Alert alertLibrary = new Alert(AlertType.ERROR);
+      alertLibrary.setTitle("Error Dialog");
+      alertLibrary.setHeaderText("Please create a Project");
+      alertLibrary.setContentText("Please create a project first.");
+      alertLibrary.showAndWait();
     }
   }
 
@@ -786,10 +794,13 @@ public class MainController {
     //    project.setDebugFlags(debugPanelController.getDebugFlags());
   }
 
-  public void generatePanels() {
-    if (this.type == 0) {
+  public void generatePanels(int i) {
+    if (i == 0) {
       this.panelCompilingOptions.getTabs().remove(this.developerOptions);
       this.panelCompilingOptions.getTabs().remove(this.codeGenerationOptions);
+      this.panelCompilingOptions.getTabs().remove(this.optimizationTab);
+    } else if (i == 1) {
+      this.panelCompilingOptions.getTabs().remove(this.developerOptions);
     }
   }
 }

@@ -2,12 +2,13 @@ package application.controller;
 
 import application.Main;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 
 public class ChooseUserController {
 
   @FXML Button typical;
-  @FXML MainController main;
+  MainController main;
 
   @FXML
   private void switchToMainPanelTypical() throws Exception {
@@ -28,6 +29,11 @@ public class ChooseUserController {
   }
 
   public void generatePanels(int type) throws Exception {
-    Main.setRoot("/application/views/MainPanel");
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/views/MainPanel.fxml"));
+    this.main = new MainController();
+    loader.setController(main);
+
+    Main.getScene().setRoot(loader.load());
+    this.main.generatePanels(type);
   }
 }

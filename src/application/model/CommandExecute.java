@@ -3,7 +3,10 @@ package application.model;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.LinkedList;
 
@@ -13,8 +16,12 @@ public class CommandExecute {
 	String libraries;
 	String flags;
 	ProcessBuilder builder;
+	ProcessBuilder buildRun;
+	String inputRun;
+	
 	public CommandExecute() {
 			this.isWindows=System.getProperty("os.name").toLowerCase().startsWith("windows");	
+			this.inputRun="";
 	}
 	
 	public static String generateStringFromList(LinkedList<String> list) {
@@ -51,6 +58,7 @@ public class CommandExecute {
 	public String[] buildExecution(String command) throws IOException, InterruptedException {
 		this.builder=new ProcessBuilder();
 		String[] resultReturn=new String[2];
+		this.builder=new ProcessBuilder();
 		String result="";
 		System.out.println(command);
 		builder.directory(new File(System.getProperty("user.home")));
@@ -92,4 +100,53 @@ public class CommandExecute {
 		return resultReturn;
 	}
 	
+	public static boolean isAlive(Process p) {
+	    try {
+	      p.exitValue();
+	      return false;
+	    }
+	    catch (IllegalThreadStateException e) {
+	      return true;
+	    }
+	  }
+
+	public void runProgram(Project pr) throws IOException {
+		ProcessBuilder builder = new ProcessBuilder();
+	    builder.redirectErrorStream(true); // so we can ignore the error stream
+	    builder.directory(new File(pr.getProjectLocation()));
+		
+	    if(this.isWindows) {
+			builder.command("cmd.exe","-c",pr.name);
+		}else {
+			builder.command("bash","-c","./"+pr.name);
+		}
+	    Process process = builder.start();
+	    InputStream out = process.getInputStream();
+	    OutputStream in = process.getOutputStream();
+
+	    byte[] buffer = new byte[4000];
+	    while (isAlive(process)) {
+	      int no = out.available();
+	      if (no > 0) {
+	        int n = out.read(buffer, 0, Math.min(no, buffer.length));
+	        System.out.println(new String(buffer, 0, n));
+	      }
+
+	      if (!this.inputRun.contentEquals("")) {
+	    	  byte[] b = this.inputRun.getBytes(Charset.forName("UTF-8"));
+	    	  in.write(b,0,this.inputRun.length());
+	    	  in.flush();
+	      }
+
+	      try {
+	        Thread.sleep(10);
+	      }
+	      catch (InterruptedException e) {
+	      }
+	    }
+
+	    System.out.println(process.exitValue());
+	  }
+	
+
 }

@@ -257,7 +257,7 @@ public class MainController {
 	
 	
 	public HBox createFileOptions(String textFile) {
-		 LinkedList<String> extensions = new LinkedList<String>(Arrays.asList("c","h","C","cpp","CPP","c++","cp","cxx"));
+		 LinkedList<String> extensions = new LinkedList<String>(Arrays.asList("c","i","s","o","C","cpp","CPP","c++","cp","cxx"));
 		 Label labelFiles = new Label("Dependency Files");
 		 Button addFile = new Button("+");
 		 Button deleteFile =new Button("-");
@@ -782,6 +782,10 @@ public class MainController {
 			Tab codeDeveloper=new Tab("Developer Options");
 			this.panelCompilingOptions.getTabs().addAll(codeDeveloper);
 		}
+		
+	}
+	
+	public void runProject() {
 		
 	}
 	

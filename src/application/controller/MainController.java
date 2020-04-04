@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -34,6 +35,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -70,7 +72,6 @@ public class MainController {
   TextField inputProjectDirectory;
   RulesTextField inputProjectName;
   TextArea textAreaFiles;
-  TextArea textAreaLibraries;
   private TextArea textAreaResult;
 
   // Option-Tab Components and Controllers
@@ -88,6 +89,15 @@ public class MainController {
   @FXML private OptimizationOptsController optimizationOptsController;
   @FXML private Parent developerOpts;
   @FXML private DeveloperOptsController developerOptsController;
+  @FXML private ChooseUserController chooseUserController;
+  // Tabs
+  @FXML private Tab developerOptions;
+  @FXML private Tab optimizationTab;
+  @FXML private Tab codeGenerationOptions;
+  @FXML private Tab executeOptions;
+  @FXML private Tab debuggingOptions;
+  @FXML private Tab linkingOptions;
+  @FXML private Tab compilerOptions;
 
   public MainController() {}
 
@@ -149,8 +159,10 @@ public class MainController {
                 + "The executed command was:\n"
                 + result[0]
                 + "\n"
+                + "The operation was:\n"
+                + result[1]
                 + "The result was:\n"
-                + result[1]);
+                + result[2]);
       } catch (Exception e) {
         System.out.println("Error in execution");
       }
@@ -208,9 +220,6 @@ public class MainController {
     // Files
     HBox hbFileOptions = this.createFileOptions("");
 
-    // Libraries
-    HBox hbLibrariesOptions = this.createLibraries("");
-
     // Create and Cancel Button
     Button createButton = new Button("Create");
     Button cancelButton = new Button("Cancel");
@@ -234,20 +243,13 @@ public class MainController {
     VBox newProject = new VBox();
     newProject
         .getChildren()
-        .addAll(
-            hbProjectDirectory,
-            hbProjectName,
-            hbFileOptions,
-            textAreaFiles,
-            hbLibrariesOptions,
-            textAreaLibraries,
-            hbFinalButtons);
+        .addAll(hbProjectDirectory, hbProjectName, hbFileOptions, textAreaFiles, hbFinalButtons);
     newProject.setPadding(new Insets(10, 50, 50, 50));
     newProject.setSpacing(10);
 
     // Adding elements
     this.secondaryLayout.getChildren().add(newProject);
-    Scene secondScene = new Scene(this.secondaryLayout, 500, 500);
+    Scene secondScene = new Scene(this.secondaryLayout, 500, 400);
 
     // New window (Stage)
     Stage newWindow = new Stage();
@@ -373,78 +375,12 @@ public class MainController {
     return hbFileOptions;
   }
 
-  public HBox createLibraries(String textLibraries) {
-    Label labelLibraries = new Label("Dependency Libraries");
-    Button addLibrary = new Button("+");
-    Button deleteLibrary = new Button("-");
-
-    textAreaLibraries = new TextArea();
-    textAreaLibraries.setEditable(false);
-    textAreaLibraries.setText(textLibraries);
-    if (textAreaLibraries.getText().equals("")) deleteLibrary.setDisable(true);
-
-    FileChooser selectLibrary = new FileChooser();
-    EventHandler<ActionEvent> eventAddLibraries =
-        new EventHandler<ActionEvent>() {
-
-          public void handle(ActionEvent e) {
-
-            // get the library selected
-            File selectedLibrary = selectLibrary.showOpenDialog(Main.getStage());
-
-            if (selectedLibrary != null) {
-              String selectedLibraryPath = selectedLibrary.getAbsolutePath();
-              String extensionLibrary =
-                  selectedLibraryPath.substring(
-                      selectedLibraryPath.lastIndexOf(".") + 1, selectedLibraryPath.length());
-
-              if ((selectedLibraryPath.lastIndexOf(".") + 1) != 0
-                  && (extensionLibrary.equals("o")
-                      || extensionLibrary.equals("a")
-                      || extensionLibrary.equals("so"))) {
-                textAreaLibraries.setText(
-                    textAreaLibraries.getText() + selectedLibrary.getAbsolutePath() + "\n");
-                deleteLibrary.setDisable(false);
-              } else {
-                Alert alertLibrary = new Alert(AlertType.INFORMATION);
-                alertLibrary.setTitle("Information Dialog");
-                alertLibrary.setHeaderText("Bad Library extension");
-                alertLibrary.setContentText(
-                    "Please select only files with this extensions: .a, .so or .o");
-                alertLibrary.showAndWait();
-              }
-            }
-          }
-        };
-
-    addLibrary.setOnAction(eventAddLibraries);
-
-    deleteLibrary.setOnAction(
-        new EventHandler<ActionEvent>() {
-          @Override
-          public void handle(ActionEvent e) {
-            String textAreaModify = textAreaLibraries.getText();
-
-            if (!textAreaModify.contentEquals(""))
-              textAreaModify = textAreaModify.substring(0, (textAreaModify.lastIndexOf("\n")));
-            textAreaModify = textAreaModify.substring(0, (textAreaModify.lastIndexOf("\n") + 1));
-            textAreaLibraries.setText(textAreaModify);
-            if (textAreaModify.equals("")) deleteLibrary.setDisable(true);
-          }
-        });
-
-    HBox hbLibrariesOptions = new HBox();
-    hbLibrariesOptions.getChildren().addAll(labelLibraries, addLibrary, deleteLibrary);
-    hbLibrariesOptions.setSpacing(10);
-    return hbLibrariesOptions;
-  }
-
-  public void updateProject(String name, String files, String librariesInput) {
+  public void updateProject(String name, String files) {
 
     LinkedList<String> sourceFiles = this.getSourceFiles(this.textAreaFiles.getText());
     LinkedList<String> objectFiles = this.getObjectFiles(this.textAreaFiles.getText());
-    LinkedList<String> libraries = this.createLibraryVariables();
-    if (sourceFiles != null && objectFiles != null && libraries != null) {
+
+    if (sourceFiles != null && objectFiles != null) {
       if (this.textAreaFiles.getText().equals("")) {
         Alert alertLibrary = new Alert(AlertType.ERROR);
         alertLibrary.setTitle("Error Dialog");
@@ -453,7 +389,7 @@ public class MainController {
         alertLibrary.showAndWait();
 
       } else {
-        Project pr = this.smartModel.updateProject(name, sourceFiles, objectFiles, libraries);
+        Project pr = this.smartModel.updateProject(name, sourceFiles, objectFiles);
         ScrollPane scroll = this.setProjectInfo(pr);
         for (TabProjectPane tab : this.projects) {
           if (tab.getText().equals(pr.getName())) {
@@ -487,19 +423,27 @@ public class MainController {
 
   @FXML
   public void onSaveProjectAction() {
-    FileOutputStream fileOutputStream;
-    String name = this.projectsPane.getSelectionModel().getSelectedItem().getText();
-    Project pr = this.smartModel.getProject(name);
-    try {
-      String directory = pr.getProjectLocation() + File.separator + pr.getName() + "SmartGcc";
-      System.out.println(directory);
-      fileOutputStream = new FileOutputStream(new File(directory).getAbsolutePath());
-      ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-      objectOutputStream.writeObject(pr);
-      objectOutputStream.flush();
-      objectOutputStream.close();
-    } catch (Exception e) {
-      System.out.println("Problems saving project");
+    if (this.projectsPane.getTabs().size() > 0) {
+      FileOutputStream fileOutputStream;
+      String name = this.projectsPane.getSelectionModel().getSelectedItem().getText();
+      Project pr = this.smartModel.getProject(name);
+      try {
+        String directory = pr.getProjectLocation() + File.separator + pr.getName() + "SmartGcc";
+        System.out.println(directory);
+        fileOutputStream = new FileOutputStream(new File(directory).getAbsolutePath());
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+        objectOutputStream.writeObject(pr);
+        objectOutputStream.flush();
+        objectOutputStream.close();
+      } catch (Exception e) {
+        System.out.println("Problems saving project");
+      }
+    } else {
+      Alert alertLibrary = new Alert(AlertType.ERROR);
+      alertLibrary.setTitle("Error Dialog");
+      alertLibrary.setHeaderText("Please create a Project");
+      alertLibrary.setContentText("Please create a project first.");
+      alertLibrary.showAndWait();
     }
   }
 
@@ -563,10 +507,6 @@ public class MainController {
             + CommandExecute.generateStringFromList(pr.getObjectFiles());
     HBox hbFileOptions = this.createFileOptions(textFiles);
 
-    // Libraries
-    String textLibraries = CommandExecute.generateStringFromList(pr.getLibraries());
-    HBox hbLibrariesOptions = this.createLibraries(textLibraries);
-
     // Create and Cancel Button
     Button createButton = new Button("Update");
     Button cancelButton = new Button("Cancel");
@@ -580,8 +520,7 @@ public class MainController {
           }
         });
 
-    createButton.setOnAction(
-        e -> updateProject(pr.getName(), textAreaFiles.getText(), textAreaLibraries.getText()));
+    createButton.setOnAction(e -> updateProject(pr.getName(), textAreaFiles.getText()));
 
     HBox hbFinalButtons = new HBox();
     hbFinalButtons.getChildren().addAll(createButton, cancelButton);
@@ -592,20 +531,13 @@ public class MainController {
     VBox newProject = new VBox();
     newProject
         .getChildren()
-        .addAll(
-            hbProjectDirectory,
-            hbProjectName,
-            hbFileOptions,
-            textAreaFiles,
-            hbLibrariesOptions,
-            textAreaLibraries,
-            hbFinalButtons);
+        .addAll(hbProjectDirectory, hbProjectName, hbFileOptions, textAreaFiles, hbFinalButtons);
     newProject.setPadding(new Insets(10, 50, 50, 50));
     newProject.setSpacing(10);
 
     // Adding elements
     this.secondaryLayout.getChildren().add(newProject);
-    Scene secondScene = new Scene(this.secondaryLayout, 500, 500);
+    Scene secondScene = new Scene(this.secondaryLayout, 500, 400);
 
     // New window (Stage)
     Stage newWindow = new Stage();
@@ -637,13 +569,10 @@ public class MainController {
     directoryName.setPadding(new Insets(20, 0, 0, 0));
     Label projectFiles = new Label("Project Files:");
     projectFiles.setPadding(new Insets(20, 0, 0, 0));
-    Label projectLibraries = new Label("Project Libraries:");
-    projectLibraries.setPadding(new Insets(20, 0, 0, 0));
 
     projectName.setStyle(styleBold);
     directoryName.setStyle(styleBold);
     projectFiles.setStyle(styleBold);
-    projectLibraries.setStyle(styleBold);
 
     VBox leftControl = new VBox();
     leftControl
@@ -657,8 +586,6 @@ public class MainController {
             new Label(
                 CommandExecute.generateStringFromList(project.getSourceFiles())
                     + CommandExecute.generateStringFromList((project.getObjectFiles()))),
-            projectLibraries,
-            new Label(CommandExecute.generateStringFromList(project.getLibraries())),
             buttonBox);
 
     scrollPane.setContent(leftControl);
@@ -674,10 +601,20 @@ public class MainController {
     tab.setScroll(scrollPane);
     tab.setOnCloseRequest(
         e -> {
-          String name = tab.getText();
-          System.out.println(name);
-          this.smartModel.deleteProject(name);
-          this.projects.remove(tab);
+          Alert alert = new Alert(AlertType.CONFIRMATION);
+          alert.setTitle("Confirmation Dialog");
+          alert.setHeaderText("Please confirm this action.");
+          alert.setContentText("Are you sure you want to delete the project?");
+
+          Optional<ButtonType> result = alert.showAndWait();
+          if (result.get() == ButtonType.OK) {
+            String name = tab.getText();
+            System.out.println(name);
+            this.smartModel.deleteProject(name);
+            this.projects.remove(tab);
+          } else {
+            e.consume();
+          }
         });
     this.projects.add(tab);
     this.projectsPane.getTabs().add(tab);
@@ -855,5 +792,15 @@ public class MainController {
     //    project.setOptimizationFlags(optimizationPanelController.getOptimizationFlags());
     //
     //    project.setDebugFlags(debugPanelController.getDebugFlags());
+  }
+
+  public void generatePanels(int i) {
+    if (i == 0) {
+      this.panelCompilingOptions.getTabs().remove(this.developerOptions);
+      this.panelCompilingOptions.getTabs().remove(this.codeGenerationOptions);
+      this.panelCompilingOptions.getTabs().remove(this.optimizationTab);
+    } else if (i == 1) {
+      this.panelCompilingOptions.getTabs().remove(this.developerOptions);
+    }
   }
 }

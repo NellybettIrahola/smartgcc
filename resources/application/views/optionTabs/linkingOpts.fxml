@@ -38,17 +38,17 @@
       </FlowPane>
       <FlowPane rowValignment="TOP">
          <children>
-            <Label text="Object files (one per line)" />
+            <Label styleClass="textAreaLabel" text="Object files (one per line)" />
             <TextArea prefHeight="100.0" prefWidth="200.0" styleClass="linking-objects" />
          </children>
       </FlowPane>
       <FlowPane rowValignment="TOP">
          <children>
-            <Label text="Libraries (one per line)" />
+            <Label styleClass="textAreaLabel" text="Libraries (one per line)" />
             <TextArea prefHeight="100.0" prefWidth="200.0" styleClass="linking-libraries" text="stdc++&#10;" />
          </children>
       </FlowPane>
-      <FlowPane>
+      <FlowPane id="excluded-libs-pane">
          <children>
             <Label text="Excluded Libraries" />
             <VBox>
@@ -116,7 +116,7 @@
             </VBox>
          </children>
       </FlowPane>
-      <FlowPane>
+      <FlowPane id="pie-pane">
          <children>
             <Label text="Position Independent Executable" />
             <VBox>
@@ -156,7 +156,7 @@
             </VBox>
          </children>
       </FlowPane>
-      <FlowPane>
+      <FlowPane id="static-pane">
          <children>
             <Label text="Static" />
             <VBox>

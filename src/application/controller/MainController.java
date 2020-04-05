@@ -37,6 +37,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SingleSelectionModel;
@@ -98,6 +99,14 @@ public class MainController {
   @FXML private Tab debuggingOptions;
   @FXML private Tab linkingOptions;
   @FXML private Tab compilerOptions;
+  // Check Menu Items
+  @FXML private CheckMenuItem compilingCheck;
+  @FXML private CheckMenuItem linkingCheck;
+  @FXML private CheckMenuItem executingCheck;
+  @FXML private CheckMenuItem debuggingCheck;
+  @FXML private CheckMenuItem codeGenerationCheck;
+  @FXML private CheckMenuItem codeOptimizationCheck;
+  @FXML private CheckMenuItem developerCheck;
 
   public MainController() {}
 
@@ -794,13 +803,81 @@ public class MainController {
     //    project.setDebugFlags(debugPanelController.getDebugFlags());
   }
 
+  @FXML
+  void handleAllOptions(ActionEvent event) {
+
+    CheckMenuItem sourceButton = (CheckMenuItem) event.getSource();
+    String compilationPanel = sourceButton.getText();
+
+    switch (compilationPanel) {
+      case "Compiler Options":
+        if (containTab(this.compilerOptions.getText()) == -1 && sourceButton.isSelected())
+          this.panelCompilingOptions.getTabs().add(this.compilerOptions);
+        if (!sourceButton.isSelected() && containTab(this.compilerOptions.getText()) == 0)
+          this.panelCompilingOptions.getTabs().remove(this.compilerOptions);
+        break;
+      case "Linking Options":
+        if (containTab(this.linkingOptions.getText()) == -1 && sourceButton.isSelected())
+          this.panelCompilingOptions.getTabs().add(this.linkingOptions);
+        if (!sourceButton.isSelected() && containTab(this.linkingOptions.getText()) == 0)
+          this.panelCompilingOptions.getTabs().remove(this.linkingOptions);
+        break;
+      case "Execute Options":
+        if (containTab(this.executeOptions.getText()) == -1 && sourceButton.isSelected())
+          this.panelCompilingOptions.getTabs().add(this.executeOptions);
+        if (!sourceButton.isSelected() && containTab(this.executeOptions.getText()) == 0)
+          this.panelCompilingOptions.getTabs().remove(this.executeOptions);
+        break;
+      case "Debugging Options":
+        if (containTab(this.debuggingOptions.getText()) == -1 && sourceButton.isSelected())
+          this.panelCompilingOptions.getTabs().add(this.debuggingOptions);
+        if (!sourceButton.isSelected() && containTab(this.debuggingOptions.getText()) == 0)
+          this.panelCompilingOptions.getTabs().remove(this.debuggingOptions);
+        break;
+      case "Code Generation Options":
+        if (containTab(this.codeGenerationOptions.getText()) == -1 && sourceButton.isSelected())
+          this.panelCompilingOptions.getTabs().add(this.codeGenerationOptions);
+        if (!sourceButton.isSelected() && containTab(this.codeGenerationOptions.getText()) == 0)
+          this.panelCompilingOptions.getTabs().remove(this.codeGenerationOptions);
+        break;
+      case "Code Optimization Options":
+        if (containTab(this.compilerOptions.getText()) == -1 && sourceButton.isSelected())
+          this.panelCompilingOptions.getTabs().add(this.compilerOptions);
+        if (!sourceButton.isSelected() && containTab(this.compilerOptions.getText()) == 0)
+          this.panelCompilingOptions.getTabs().remove(this.compilerOptions);
+        break;
+      case "Developer Options":
+        if (containTab(this.compilerOptions.getText()) == -1 && sourceButton.isSelected())
+          this.panelCompilingOptions.getTabs().add(this.compilerOptions);
+        if (!sourceButton.isSelected() && containTab(this.compilerOptions.getText()) == 0)
+          this.panelCompilingOptions.getTabs().remove(this.compilerOptions);
+        break;
+      default:
+        break;
+    }
+  }
+
+  public int containTab(String name) {
+
+    for (Tab tab : this.panelCompilingOptions.getTabs()) {
+      if (tab.getText().contentEquals(name)) return 0;
+    }
+    return -1;
+  }
+
   public void generatePanels(int i) {
+
     if (i == 0) {
+      this.developerCheck.setSelected(false);
+      this.codeGenerationCheck.setSelected(false);
+      this.codeOptimizationCheck.setSelected(false);
       this.panelCompilingOptions.getTabs().remove(this.developerOptions);
       this.panelCompilingOptions.getTabs().remove(this.codeGenerationOptions);
       this.panelCompilingOptions.getTabs().remove(this.optimizationTab);
+
     } else if (i == 1) {
       this.panelCompilingOptions.getTabs().remove(this.developerOptions);
+      this.developerCheck.setSelected(false);
     }
   }
 }

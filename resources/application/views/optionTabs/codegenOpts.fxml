@@ -3,6 +3,7 @@
 <?import javafx.scene.control.CheckBox ?>
 <?import javafx.scene.control.Label ?>
 <?import javafx.scene.control.RadioButton ?>
+<?import javafx.scene.control.Separator ?>
 <?import javafx.scene.control.ToggleGroup ?>
 <?import javafx.scene.layout.FlowPane ?>
 <?import javafx.scene.layout.HBox ?>
@@ -27,6 +28,7 @@
                     </RadioButton>
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fstack-reuse=named_vars" toggleGroup="$fstackreuse" />
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fstack-reuse=none" toggleGroup="$fstackreuse" />
+                    <RadioButton mnemonicParsing="false" text="none" selected="true" style="-fx-font-style: italic;" toggleGroup="$fstackreuse" />
                   </children>
                 </VBox>
                 <Label prefWidth="500.0" wrapText="true">
@@ -61,6 +63,7 @@
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fvisibility=internal" toggleGroup="$fvisibility" />
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fvisibility=hidden" toggleGroup="$fvisibility" />
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fvisibility=protected" toggleGroup="$fvisibility" />
+                    <RadioButton mnemonicParsing="false" text="none" selected="true" style="-fx-font-style: italic;" toggleGroup="$fvisibility" />
                   </children>
                 </VBox>
                 <Label prefWidth="500.0" wrapText="true">
@@ -83,14 +86,18 @@
         </VBox>
       </children>
     </FlowPane>
-    <FlowPane id="" rowValignment="TOP">
+    <FlowPane id="overflow" rowValignment="TOP">
       <children>
         <Label text="Overflow Trap/Wrap:" />
         <VBox>
           <children>
             <HBox>
               <children>
-                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-ftrapv" />
+                <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-ftrapv">
+                  <toggleGroup>
+                    <ToggleGroup fx:id="trapv" />
+                  </toggleGroup>
+                </RadioButton>
                 <Label prefWidth="500.0" wrapText="true">
                   <text>
                     This option generates traps for signed overflow on addition, subtraction, multiplication operations.
@@ -103,13 +110,25 @@
             </HBox>
             <HBox>
               <children>
-                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fno-trapv" />
+                <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fno-trapv" toggleGroup="$trapv" />
                 <Label prefWidth="500.0" wrapText="true"></Label>
               </children>
             </HBox>
             <HBox>
               <children>
-                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fwrapv" />
+                <RadioButton mnemonicParsing="false" text="none" selected="true" style="-fx-font-style: italic;" toggleGroup="$trapv" />
+                <Label prefWidth="500.0" wrapText="true"></Label>
+              </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+
+            <HBox>
+              <children>
+                <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fwrapv">
+                  <toggleGroup>
+                    <ToggleGroup fx:id="wrapv" />
+                  </toggleGroup>
+                </RadioButton>
                 <Label prefWidth="500.0" wrapText="true">
                   <text>
                     This option instructs the compiler to assume that signed arithmetic overflow of addition,
@@ -124,13 +143,25 @@
             </HBox>
             <HBox>
               <children>
-                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fno-fwrapv" />
+                <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fno-fwrapv" toggleGroup="$wrapv" />
                 <Label prefWidth="500.0" wrapText="true"></Label>
               </children>
             </HBox>
             <HBox>
               <children>
-                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fwrapv-pointer" />
+                <RadioButton mnemonicParsing="false" text="none" selected="true" style="-fx-font-style: italic;" toggleGroup="$wrapv" />
+                <Label prefWidth="500.0" wrapText="true"></Label>
+              </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+
+            <HBox>
+              <children>
+                <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fwrapv-pointer">
+                  <toggleGroup>
+                    <ToggleGroup fx:id="wrapvptr" />
+                  </toggleGroup>
+                </RadioButton>
                 <Label prefWidth="500.0" wrapText="true">
                   <text>
                     This option instructs the compiler to assume that pointer arithmetic overflow on addition and
@@ -142,13 +173,25 @@
             </HBox>
             <HBox>
               <children>
-                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fnowrapv-pointer" />
+                <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fnowrapv-pointer" toggleGroup="$wrapvptr" />
                 <Label prefWidth="500.0" wrapText="true"></Label>
               </children>
             </HBox>
             <HBox>
               <children>
-                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fstrict-overflow" />
+                <RadioButton mnemonicParsing="false" text="none" selected="true" style="-fx-font-style: italic;" toggleGroup="$wrapvptr" />
+                <Label prefWidth="500.0" wrapText="true"></Label>
+              </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+
+            <HBox>
+              <children>
+                <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fstrict-overflow">
+                  <toggleGroup>
+                    <ToggleGroup fx:id="strictoverflow" />
+                  </toggleGroup>
+                </RadioButton>
                 <Label prefWidth="500.0" wrapText="true">
                   <text>
                     This option implies ‘-fno-wrapv’ ‘-fno-wrapv-pointer’ and when negated
@@ -159,7 +202,13 @@
             </HBox>
             <HBox>
               <children>
-                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fno-strict-overflow" />
+                <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fno-strict-overflow" toggleGroup="$strictoverflow" />
+                <Label prefWidth="500.0" wrapText="true"></Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <RadioButton mnemonicParsing="false" text="none" selected="true" style="-fx-font-style: italic;" toggleGroup="$strictoverflow" />
                 <Label prefWidth="500.0" wrapText="true"></Label>
               </children>
             </HBox>
@@ -167,7 +216,7 @@
         </VBox>
       </children>
     </FlowPane>
-    <FlowPane id="" rowValignment="TOP">
+    <FlowPane id="position" rowValignment="TOP">
       <children>
         <Label text="Position Independence:" />
         <VBox>
@@ -209,6 +258,7 @@
                 </Label>
               </children>
             </HBox>
+            <Separator prefWidth="200.0" />
             <HBox>
               <children>
                 <VBox>
@@ -228,6 +278,7 @@
                 </Label>
               </children>
             </HBox>
+            <Separator prefWidth="200.0" />
             <HBox>
               <children>
                 <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fno-plt" />
@@ -249,6 +300,7 @@
                 </Label>
               </children>
             </HBox>
+            <Separator prefWidth="200.0" />
             <HBox>
               <children>
                 <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fno-jump-tables" />

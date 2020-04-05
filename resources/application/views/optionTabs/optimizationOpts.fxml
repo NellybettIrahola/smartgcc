@@ -109,7 +109,7 @@
             </HBox>
             <HBox>
               <children>
-                <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="none" selected="true" style="-fx-font-style: italic;" toggleGroup="$olevel" />
+                <RadioButton mnemonicParsing="false" text="none" selected="true" style="-fx-font-style: italic;" toggleGroup="$olevel" />
                 <Label prefWidth="500.0" wrapText="true">
                   <text>
                     Deselection of -O levels.

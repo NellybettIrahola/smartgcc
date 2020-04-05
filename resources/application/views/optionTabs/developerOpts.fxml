@@ -14,7 +14,7 @@
       <Label styleClass="h1" text="Developer Options" />
       <FlowPane id="developer-dump-exit-pane">
          <children>
-            <Label text="Dump and Exit: " />
+            <Label styleClass="h2" text="Dump and Exit: " />
             <VBox>
                <children>
                   <HBox>
@@ -57,7 +57,7 @@
       </FlowPane>
       <FlowPane id="developer-print-pane">
          <children>
-            <Label text="Print Series:" />
+            <Label styleClass="h2" text="Print Series:" />
             <VBox>
                <children>
                   <HBox>
@@ -114,7 +114,7 @@
       </FlowPane>
       <FlowPane id="developer-misc-pane" rowValignment="TOP">
          <children>
-            <Label text="Misc Series:" />
+            <Label styleClass="h2" text="Misc Series:" />
             <VBox>
                <children>
                   <HBox>
@@ -135,7 +135,7 @@
       </FlowPane>
       <FlowPane id="fdump-rtl-pane" prefHeight="200.0" prefWidth="200.0" rowValignment="TOP">
          <children>
-            <Label text="-fdump-rtl Series:" />
+            <Label styleClass="h2" text="-fdump-rtl Series:" />
             <VBox>
                <children>
                   <HBox VBox.vgrow="ALWAYS">
@@ -558,7 +558,7 @@
       </FlowPane>
       <FlowPane id="developer-dumps-pane" prefHeight="200.0" prefWidth="200.0" rowValignment="TOP">
          <children>
-            <Label text="-d Series:" />
+            <Label styleClass="h2" text="-d Series:" />
             <VBox>
                <children>
                   <HBox VBox.vgrow="ALWAYS">

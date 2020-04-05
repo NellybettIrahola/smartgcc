@@ -5,3 +5,7 @@ FlowPane {
 HBox > * {
   -fx-padding: 0 0 0 20px;
 }
+
+#extras RadioButton {
+  -fx-min-width: 140px;
+}

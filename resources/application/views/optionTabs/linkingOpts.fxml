@@ -10,47 +10,16 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" stylesheets="@linkingOpts.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.optiontabs.LinkingOptsController">
    <children>
-      <Label text="Linking Options" />
-      <FlowPane>
-         <children>
-            <Label text="Disable Linker" />
-            <VBox>
-               <children>
-                  <HBox>
-                     <children>
-                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-c" />
-                        <Label prefWidth="500.0" wrapText="true">
-                           <text>
-                              Compile or assemble the source files, but do not link. The linking stage simply is not
-                              done. The ultimate output is in the form of an object file for each source file.
-
-                              // By default, the object file name for a source file is made by replacing the suffix‘.c’,
-                              ‘.i’, ‘.s’, etc., with ‘.o’.
-
-                              // Unrecognized input files, not requiring compilation or assembly, are ignored.
-                           </text>
-                        </Label>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-         </children>
-      </FlowPane>
+      <Label styleClass="h1" text="Linking Options" />
       <FlowPane rowValignment="TOP">
          <children>
-            <Label text="Object files (one per line)" />
-            <TextArea prefHeight="100.0" prefWidth="200.0" styleClass="linking-objects" />
-         </children>
-      </FlowPane>
-      <FlowPane rowValignment="TOP">
-         <children>
-            <Label text="Libraries (one per line)" />
+            <Label styleClass="textAreaLabel" text="Libraries (one per line)" />
             <TextArea prefHeight="100.0" prefWidth="200.0" styleClass="linking-libraries" text="stdc++&#10;" />
          </children>
       </FlowPane>
-      <FlowPane>
+      <FlowPane id="excluded-libs-pane">
          <children>
-            <Label text="Excluded Libraries" />
+            <Label styleClass="h2" text="Excluded Libraries" />
             <VBox>
                <children>
                   <HBox>
@@ -116,9 +85,9 @@
             </VBox>
          </children>
       </FlowPane>
-      <FlowPane>
+      <FlowPane id="pie-pane">
          <children>
-            <Label text="Position Independent Executable" />
+            <Label styleClass="h2" text="Position Independent Executable" />
             <VBox>
                <children>
                   <HBox>
@@ -156,9 +125,9 @@
             </VBox>
          </children>
       </FlowPane>
-      <FlowPane>
+      <FlowPane id="static-pane">
          <children>
-            <Label text="Static" />
+            <Label styleClass="h2" text="Static" />
             <VBox>
                <children>
                   <HBox>

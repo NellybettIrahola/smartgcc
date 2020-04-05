@@ -1,53 +1,270 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.CheckBox ?>
+<?import javafx.scene.control.Label ?>
+<?import javafx.scene.control.RadioButton ?>
+<?import javafx.scene.control.ToggleGroup ?>
+<?import javafx.scene.layout.FlowPane ?>
+<?import javafx.scene.layout.HBox ?>
+<?import javafx.scene.layout.VBox ?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.optiontabs.CodegenOptsController">
-   <children>
-      <Label text="Codegen Options" />
-      <FlowPane prefHeight="52.0" prefWidth="600.0">
-         <children>
-            <Label prefHeight="17.0" prefWidth="201.0" text="-fstack-reuse = reuse-level" />
-            <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="110.0" text="All" />
-            <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="100.0" text="named_vars" />
-            <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="101.0" text="None" />
-         </children>
-      </FlowPane>
-      <FlowPane prefHeight="60.0" prefWidth="600.0">
-         <children>
-            <Label prefHeight="17.0" prefWidth="148.0" text="-fvisibility" />
-            <CheckBox mnemonicParsing="false" prefHeight="17.0" prefWidth="226.0" text="default" />
-            <CheckBox mnemonicParsing="false" prefHeight="17.0" prefWidth="193.0" text="internal" />
-            <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="174.0" text="hidden" />
-            <CheckBox mnemonicParsing="false" text="protected" />
-         </children>
-      </FlowPane>
-      <FlowPane prefHeight="53.0" prefWidth="600.0">
-         <children>
-            <Label prefHeight="17.0" prefWidth="133.0" text="fPIE" />
-            <CheckBox mnemonicParsing="false" prefHeight="17.0" prefWidth="160.0" text="-fpic" />
-            <CheckBox mnemonicParsing="false" prefHeight="17.0" prefWidth="157.0" text="-fPIC" />
-         </children>
-      </FlowPane>
-      <FlowPane prefHeight="48.0" prefWidth="600.0">
-         <children>
-            <Label prefHeight="17.0" prefWidth="143.0" text="-ftls-model = model" />
-            <CheckBox mnemonicParsing="false" prefHeight="17.0" prefWidth="150.0" text="initial-exec" />
-            <CheckBox mnemonicParsing="false" prefHeight="17.0" prefWidth="151.0" text="global-dynamic" />
-         </children>
-      </FlowPane>
-      <FlowPane prefHeight="100.0" prefWidth="600.0">
-         <children>
-            <Label prefHeight="17.0" prefWidth="160.0" text="-fstrict-overflow" />
-            <CheckBox mnemonicParsing="false" prefHeight="17.0" prefWidth="188.0" text="-fno-wrapv" />
-            <CheckBox mnemonicParsing="false" prefHeight="17.0" prefWidth="200.0" text="-fno-wrapv-pointer" />
-            <CheckBox mnemonicParsing="false" prefHeight="17.0" prefWidth="223.0" text="-fwrapv" />
-            <CheckBox mnemonicParsing="false" prefHeight="17.0" prefWidth="177.0" text="-fwrapv-pointer" />
-         </children>
-      </FlowPane>
-   </children>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" stylesheets="@codegenOpts.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.optiontabs.CodegenOptsController">
+  <children>
+    <Label text="Codegen Options" />
+    <FlowPane>
+      <children>
+        <Label text="Stack-reuse Flags:" />
+        <VBox>
+          <children>
+            <HBox>
+              <children>
+                <VBox>
+                  <children>
+                    <RadioButton mnemonicParsing="false" text="-fstack-reuse=all">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="fstackreuse" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fstack-reuse=named_vars" toggleGroup="$fstackreuse" />
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fstack-reuse=none" toggleGroup="$fstackreuse" />
+                  </children>
+                </VBox>
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    This option controls stack space reuse for user declared local/auto variables and compiler
+                    generated temporaries. reuse level can be ‘all’, ‘named_vars’, or ‘none’. ‘all’ enables
+                    stack reuse for all local variables and temporaries,‘named_vars’ enables the reuse only
+                    for user defined local variables with names, and ‘none’ disables stack reuse completely.
+                    The default value is ‘all’.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+          </children>
+        </VBox>
+      </children>
+    </FlowPane>
+    <FlowPane>
+      <children>
+        <Label text="Visibility Flags:" />
+        <VBox>
+          <children>
+            <HBox>
+              <children>
+                <VBox>
+                  <children>
+                    <RadioButton mnemonicParsing="false" text="-fvisibility=default">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="fvisibility" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fvisibility=internal" toggleGroup="$fvisibility" />
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fvisibility=hidden" toggleGroup="$fvisibility" />
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fvisibility=protected" toggleGroup="$fvisibility" />
+                  </children>
+                </VBox>
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    Set the default ELF image symbol visibility to the specified option—all symbols are marked
+                    with this unless overridden within the code. Using this feature can very substantially
+                    improve linking and load times of shared object libraries, produce more optimized code,
+                    provide near-perfect API export and prevent symbol clashes. It is strongly recommended
+                    that you use this in any shared objects you distribute.
+
+                    // Despite the nomenclature, ‘default’ always means public; i.e., available to be linked
+                    against from outside the shared object. ‘protected’ and ‘internal’ are pretty useless in
+                    real-world usage so the only other commonly used option is‘hidden’. The default if
+                    ‘-fvisibility’ isn’t specified is ‘default’, i.e., make every symbol public.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+          </children>
+        </VBox>
+      </children>
+    </FlowPane>
+    <FlowPane id="" rowValignment="TOP">
+      <children>
+        <Label text="Overflow Trap/Wrap:" />
+        <VBox>
+          <children>
+            <HBox>
+              <children>
+                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-ftrapv" />
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    This option generates traps for signed overflow on addition, subtraction, multiplication operations.
+                    The options ‘-ftrapv’ and ‘-fwrapv’ override each other, so using ‘-ftrapv’‘-fwrapv’ on the
+                    command-line results in ‘-fwrapv’ being effective. Note that only active options override, so using
+                    ‘-ftrapv’ ‘-fwrapv’‘-fno-wrapv’ on the command-line results in‘-ftrapv’ being effective.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fno-trapv" />
+                <Label prefWidth="500.0" wrapText="true"></Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fwrapv" />
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    This option instructs the compiler to assume that signed arithmetic overflow of addition,
+                    subtraction and multiplication wraps around using twos-complement representation. This flag enables
+                    some optimizations and disables others. The options ‘-ftrapv’ and ‘-fwrapv’ override each other, so
+                    using ‘-ftrapv’‘-fwrapv’ on the command-line results in ‘-fwrapv’ being effective. Note that only
+                    active options override, so using ‘-ftrapv’ ‘-fwrapv’ ‘-fno-wrapv’ on the command-line results in
+                    ‘-ftrapv’ being effective.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fno-fwrapv" />
+                <Label prefWidth="500.0" wrapText="true"></Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fwrapv-pointer" />
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    This option instructs the compiler to assume that pointer arithmetic overflow on addition and
+                    subtraction wraps around using twos-complement representation. This flag disables some optimizations
+                    which assume pointer overflow is invalid.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fnowrapv-pointer" />
+                <Label prefWidth="500.0" wrapText="true"></Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fstrict-overflow" />
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    This option implies ‘-fno-wrapv’ ‘-fno-wrapv-pointer’ and when negated
+                    implies ‘-fwrapv’ ‘-fwrapv-pointer’.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fno-strict-overflow" />
+                <Label prefWidth="500.0" wrapText="true"></Label>
+              </children>
+            </HBox>
+          </children>
+        </VBox>
+      </children>
+    </FlowPane>
+    <FlowPane id="" rowValignment="TOP">
+      <children>
+        <Label text="Position Independence:" />
+        <VBox>
+          <children>
+            <HBox>
+              <children>
+                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fpic" />
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    Generate position-independent code (PIC) suitable for use in a shared library, if supported for the
+                    target machine. Such code accesses all constant addresses through a global offset table (GOT). The
+                    dynamic loader resolves the GOT entries when the program starts (the dynamic loader is not part of
+                    GCC; it is part of the operating system). If the GOT size for the linked executable exceeds a
+                    machine-specific maximum size, you get an error message from the linker indicating that ‘-fpic’ does
+                    not work; in that case, recompile with ‘-fPIC’ instead. (These maximums are 8k on the SPARC, 28k on
+                    AArch64 and 32k on the m68k and RS/6000. The x86 has no such limit.)
+
+                    // Position-independent code requires special support, and therefore works only on certain machines.
+                    For the x86, GCC supports PIC for System V but not for the Sun 386i. Code generated for the IBM
+                    RS/6000 is always position-independent.
+
+                    // When this flag is set, the macros __pic__ and __PIC__ are defined to 1.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fPIC" />
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    If supported for the target machine, emit position-independent code, suitable for dynamic linking
+                    and avoiding any limit on the size of the global offset table. This option makes a difference on
+                    AArch64, m68k, PowerPC and SPARC. Position-independent code requires special support, and therefore
+                    works only on certain machines.
+
+                    // When this flag is set, the macros __pic__ and __PIC__ are defined to 2.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <VBox>
+                  <children>
+                    <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fpie" />
+                    <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fPIE" />
+                  </children>
+                </VBox>
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    These options are similar to ‘-fpic’ and ‘-fPIC’, but the generated positionindependent code can be only linked into executables. Usually these options
+                    are used to compile code that will be linked using the ‘-pie’ GCC option.
+
+                    // ‘-fpie’ and ‘-fPIE’ both define the macros __pie__ and __PIE__. The macros
+                    have the value 1 for ‘-fpie’ and 2 for ‘-fPIE’.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fno-plt" />
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    Do not use the PLT for external function calls in position-independent code. Instead, load the
+                    callee address at call sites from the GOT and branch to it. This leads to more efficient code by
+                    eliminating PLT stubs and exposing GOT loads to optimizations. On architectures such as 32-bit x86
+                    where PLT stubs expect the GOT pointer in a specific register, this gives more register allocation
+                    freedom to the compiler. Lazy binding requires use of the PLT; with ‘-fno-plt’ all external symbols
+                    are resolved at load time.
+
+                    // Alternatively, the function attribute noplt can be used to avoid calls through the PLT for
+                    specific external functions.
+
+                    // In position-dependent code, a few targets also convert calls to functions that are marked to not
+                    use the PLT to use the GOT instead
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fno-jump-tables" />
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    Do not use jump tables for switch statements even where it would be more efficient than other code
+                    generation strategies. This option is of use in conjunction with ‘-fpic’ or ‘-fPIC’ for building
+                    code that forms part of a dynamic linker and cannot reference the address of a jump table. On some
+                    targets, jump tables do not require a GOT and this option is not needed.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+          </children>
+        </VBox>
+      </children>
+    </FlowPane>
+  </children>
 </VBox>

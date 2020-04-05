@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.CheckBox ?>
+<?import javafx.scene.control.Label ?>
+<?import javafx.scene.control.RadioButton ?>
+<?import javafx.scene.control.Separator ?>
+<?import javafx.scene.control.ToggleGroup ?>
+<?import javafx.scene.layout.FlowPane ?>
+<?import javafx.scene.layout.HBox ?>
+<?import javafx.scene.layout.VBox ?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" stylesheets="@developerOpts.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.optiontabs.DeveloperOptsController">
    <children>
@@ -36,7 +36,6 @@
                   <HBox>
                      <children>
                         <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-dumpversion" toggleGroup="$dump" />
-
                         <Label prefWidth="500.0" text="Print the compiler version (for example, 3.0, 6.3.0 or 7)—and don’t do anything else." wrapText="true" />
                      </children>
                   </HBox>

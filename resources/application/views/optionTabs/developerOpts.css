@@ -1,0 +1,28 @@
+FlowPane {
+  -fx-padding: 10px 0;
+}
+
+HBox > * {
+  -fx-padding: 0 0 0 20px;
+}
+
+#developer-dump-exit-pane RadioButton {
+  -fx-min-width: 120px;
+}
+
+#developer-print-pane CheckBox {
+  -fx-min-width: 200px;
+  -fx-padding: 0 0 0 20px;
+}
+
+#developer-misc-pane CheckBox {
+  -fx-min-width: 100px;
+}
+
+#fdump-rtl-pane CheckBox {
+  -fx-min-width: 200px;
+}
+
+#developer-dumps-pane CheckBox {
+  -fx-min-width: 75px;
+}

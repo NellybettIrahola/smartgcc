@@ -248,7 +248,7 @@
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-g1" toggleGroup="$glevel" />
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-g2" toggleGroup="$glevel" />
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-g3" toggleGroup="$glevel" />
-                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$glevel" />
+                    <RadioButton mnemonicParsing="false" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$glevel" />
                     <Separator prefWidth="200.0" />
 
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-ggdb0">
@@ -259,7 +259,7 @@
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-ggdb1" toggleGroup="$ggdblevel" />
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-ggdb2" toggleGroup="$ggdblevel" />
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-ggdb3" toggleGroup="$ggdblevel" />
-                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$ggdblevel" />
+                    <RadioButton mnemonicParsing="false" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$ggdblevel" />
                     <Separator prefWidth="200.0" />
 
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gstabs0">
@@ -270,7 +270,7 @@
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gstabs1" toggleGroup="$gstabslevel" />
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gstabs2" toggleGroup="$gstabslevel" />
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gstabs3" toggleGroup="$gstabslevel" />
-                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$gstabslevel" />
+                    <RadioButton mnemonicParsing="false" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$gstabslevel" />
                     <Separator prefWidth="200.0" />
 
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gxcoff0">
@@ -281,7 +281,7 @@
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gxcoff1" toggleGroup="$gxcofflevel" />
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gxcoff2" toggleGroup="$gxcofflevel" />
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gxcoff3" toggleGroup="$gxcofflevel" />
-                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$gxcofflevel" />
+                    <RadioButton mnemonicParsing="false" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$gxcofflevel" />
                     <Separator prefWidth="200.0" />
 
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gvms0">
@@ -292,7 +292,7 @@
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gvms1" toggleGroup="$gvmslevel" />
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gvms2" toggleGroup="$gvmslevel" />
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gvms3" toggleGroup="$gvmslevel" />
-                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$gvmslevel" />
+                    <RadioButton mnemonicParsing="false" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$gvmslevel" />
                   </children>
                 </VBox>
                 <Label prefWidth="500.0" wrapText="true">

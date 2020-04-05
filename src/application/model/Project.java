@@ -27,13 +27,14 @@ public class Project implements Serializable {
     sourceFiles = new LinkedList<String>();
     objectFiles = new LinkedList<String>();
     libraries = new LinkedList<String>();
+    this.allFlags = "";
   }
 
   public void updateProject(
       LinkedList<String> sourceFiles,
       LinkedList<String> objectFiles,
       LinkedList<String> libraries) {
-
+    this.allFlags = "";
     this.sourceFiles = sourceFiles;
     this.libraries = libraries;
     this.objectFiles = objectFiles;

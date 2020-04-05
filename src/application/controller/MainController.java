@@ -26,6 +26,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -323,6 +324,35 @@ public class MainController {
     }
   }
 
+  public void loadSelectedElements(String name) {
+    Project pr = this.smartModel.getProject(name);
+    List<String> listFlags = null;
+
+    if (pr.allFlags() == null || pr.allFlags().equals("")) {
+      listFlags = new LinkedList<String>();
+    } else {
+      String[] options = pr.allFlags().split(" ");
+      listFlags = Arrays.asList(options);
+    }
+
+    Set<Node> m = Main.getScene().getRoot().lookupAll(".simple-opt");
+    for (Node mm : m) {
+      if (mm instanceof CheckBox) {
+        if (listFlags.contains(((CheckBox) mm).getText())) {
+          ((CheckBox) mm).setSelected(true);
+        } else {
+          ((CheckBox) mm).setSelected(false);
+        }
+      } else if (mm instanceof ToggleButton) {
+        if (listFlags.contains(((ToggleButton) mm).getText())) {
+          ((ToggleButton) mm).setSelected(true);
+        } else {
+          ((ToggleButton) mm).setSelected(false);
+        }
+      }
+    }
+  }
+
   public HBox createFileOptions(String textFile) {
     LinkedList<String> extensions =
         new LinkedList<String>(Arrays.asList("c", "h", "o", "C", "cpp", "CPP", "c++", "cp", "cxx"));
@@ -435,14 +465,12 @@ public class MainController {
     }
   }
 
-  public void updateProjectArgs() {
+  public void updateProjectArgs(String name) {
     if (this.projectsPane.getTabs().size() > 0) {
       String projectFlags = this.buildArgStr();
-      String name = this.projectsPane.getSelectionModel().getSelectedItem().getText();
       Project pr = this.smartModel.getProject(name);
-      pr.setAllFlags(projectFlags);
-      System.out.println(name);
-      System.out.println(pr.allFlags());
+      if (projectFlags != null) pr.setAllFlags(projectFlags);
+      else pr.setAllFlags("");
     }
   }
 
@@ -452,6 +480,7 @@ public class MainController {
       FileOutputStream fileOutputStream;
       String name = this.projectsPane.getSelectionModel().getSelectedItem().getText();
       Project pr = this.smartModel.getProject(name);
+      this.updateProjectArgs(pr.getName());
       try {
         String directory = pr.getProjectLocation() + File.separator + pr.getName() + "SmartGcc";
         System.out.println(directory);
@@ -645,7 +674,8 @@ public class MainController {
     this.projectsPane
         .getSelectionModel()
         .selectedItemProperty()
-        .addListener(e -> this.updateProjectArgs());
+        .addListener((ChangeListener) new ChangeListenerTabs(this));
+    this.loadSelectedElements(project.getName());
     this.projects.add(tab);
     this.projectsPane.getTabs().add(tab);
     this.loadCompilingOptionPanels(project);

@@ -11,10 +11,10 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" stylesheets="@codegenOpts.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.optiontabs.CodegenOptsController">
   <children>
-    <Label text="Codegen Options" />
+    <Label styleClass="h1" text="Codegen Options" />
     <FlowPane>
       <children>
-        <Label text="Stack-reuse Flags:" />
+        <Label styleClass="h2" text="Stack-reuse Flags:" />
         <VBox>
           <children>
             <HBox>
@@ -48,7 +48,7 @@
     </FlowPane>
     <FlowPane>
       <children>
-        <Label text="Visibility Flags:" />
+        <Label styleClass="h2" text="Visibility Flags:" />
         <VBox>
           <children>
             <HBox>
@@ -88,7 +88,7 @@
     </FlowPane>
     <FlowPane id="overflow" rowValignment="TOP">
       <children>
-        <Label text="Overflow Trap/Wrap:" />
+        <Label styleClass="h2" text="Overflow Trap/Wrap:" />
         <VBox>
           <children>
             <HBox>
@@ -218,7 +218,7 @@
     </FlowPane>
     <FlowPane id="position" rowValignment="TOP">
       <children>
-        <Label text="Position Independence:" />
+        <Label styleClass="h2" text="Position Independence:" />
         <VBox>
           <children>
             <HBox>

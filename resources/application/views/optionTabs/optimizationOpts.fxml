@@ -11,10 +11,10 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" stylesheets="@optimizationOpts.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.optiontabs.OptimizationOptsController">
   <children>
-    <Label contentDisplay="TOP" prefHeight="49.0" prefWidth="157.0" text="Code Optimization Options" />
+    <Label styleClass="h1" contentDisplay="TOP" text="Code Optimization Options" />
     <FlowPane id="" rowValignment="TOP">
       <children>
-        <Label text="Optimizations:" />
+        <Label styleClass="h2" text="Optimizations:" />
         <Label>
           <text>
             - If you use multiple ‘-O’ options, with or without level numbers, the last such option is the one that is
@@ -121,9 +121,9 @@
         </VBox>
       </children>
     </FlowPane>
-    <FlowPane id="" rowValignment="TOP">
+    <FlowPane id="extras" rowValignment="TOP">
       <children>
-        <Label text="Extra optimizations:" />
+        <Label styleClass="h2" text="Extra optimizations:" />
         <VBox>
           <children>
 

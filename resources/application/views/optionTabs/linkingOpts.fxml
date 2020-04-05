@@ -10,7 +10,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" stylesheets="@linkingOpts.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.optiontabs.LinkingOptsController">
    <children>
-      <Label text="Linking Options" />
+      <Label styleClass="h1" text="Linking Options" />
       <FlowPane rowValignment="TOP">
          <children>
             <Label styleClass="textAreaLabel" text="Libraries (one per line)" />
@@ -19,7 +19,7 @@
       </FlowPane>
       <FlowPane id="excluded-libs-pane">
          <children>
-            <Label text="Excluded Libraries" />
+            <Label styleClass="h2" text="Excluded Libraries" />
             <VBox>
                <children>
                   <HBox>
@@ -87,7 +87,7 @@
       </FlowPane>
       <FlowPane id="pie-pane">
          <children>
-            <Label text="Position Independent Executable" />
+            <Label styleClass="h2" text="Position Independent Executable" />
             <VBox>
                <children>
                   <HBox>
@@ -127,7 +127,7 @@
       </FlowPane>
       <FlowPane id="static-pane">
          <children>
-            <Label text="Static" />
+            <Label styleClass="h2" text="Static" />
             <VBox>
                <children>
                   <HBox>

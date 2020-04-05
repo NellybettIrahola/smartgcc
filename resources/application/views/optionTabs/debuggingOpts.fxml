@@ -11,10 +11,10 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" stylesheets="@debuggingOpts.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.optiontabs.DebuggingOptsController">
   <children>
-    <Label contentDisplay="TOP" prefHeight="49.0" prefWidth="157.0" text="Debug options" />
+    <Label styleClass="h1" contentDisplay="TOP" text="Debug options" />
     <FlowPane id="debug-info" rowValignment="TOP">
       <children>
-        <Label text="Debugging Information:" />
+        <Label styleClass="h2" text="Debugging Information:" />
         <VBox>
           <children>
             <HBox>
@@ -143,7 +143,7 @@
       <children>
         <VBox>
           <children>
-            <Label text="Debugging Levels:" />
+            <Label styleClass="h2" text="Debugging Levels:" />
             <HBox>
               <children>
                 <VBox>

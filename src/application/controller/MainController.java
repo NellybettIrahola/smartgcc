@@ -95,7 +95,7 @@ public class MainController {
   @FXML private Tab developerOptions;
   @FXML private Tab optimizationTab;
   @FXML private Tab codeGenerationOptions;
-  @FXML private Tab executeOptions;
+  @FXML private Tab codeExecuteOptions;
   @FXML private Tab debuggingOptions;
   @FXML private Tab linkingOptions;
   @FXML private Tab compilerOptions;
@@ -823,10 +823,10 @@ public class MainController {
           this.panelCompilingOptions.getTabs().remove(this.linkingOptions);
         break;
       case "Execute Options":
-        if (containTab(this.executeOptions.getText()) == -1 && sourceButton.isSelected())
-          this.panelCompilingOptions.getTabs().add(this.executeOptions);
-        if (!sourceButton.isSelected() && containTab(this.executeOptions.getText()) == 0)
-          this.panelCompilingOptions.getTabs().remove(this.executeOptions);
+        if (containTab(this.codeExecuteOptions.getText()) == -1 && sourceButton.isSelected())
+          this.panelCompilingOptions.getTabs().add(this.codeExecuteOptions);
+        if (!sourceButton.isSelected() && containTab(this.codeExecuteOptions.getText()) == 0)
+          this.panelCompilingOptions.getTabs().remove(this.codeExecuteOptions);
         break;
       case "Debugging Options":
         if (containTab(this.debuggingOptions.getText()) == -1 && sourceButton.isSelected())
@@ -841,16 +841,16 @@ public class MainController {
           this.panelCompilingOptions.getTabs().remove(this.codeGenerationOptions);
         break;
       case "Code Optimization Options":
-        if (containTab(this.compilerOptions.getText()) == -1 && sourceButton.isSelected())
-          this.panelCompilingOptions.getTabs().add(this.compilerOptions);
-        if (!sourceButton.isSelected() && containTab(this.compilerOptions.getText()) == 0)
-          this.panelCompilingOptions.getTabs().remove(this.compilerOptions);
+        if (containTab(this.optimizationTab.getText()) == -1 && sourceButton.isSelected())
+          this.panelCompilingOptions.getTabs().add(this.optimizationTab);
+        if (!sourceButton.isSelected() && containTab(this.optimizationTab.getText()) == 0)
+          this.panelCompilingOptions.getTabs().remove(this.optimizationTab);
         break;
       case "Developer Options":
-        if (containTab(this.compilerOptions.getText()) == -1 && sourceButton.isSelected())
-          this.panelCompilingOptions.getTabs().add(this.compilerOptions);
-        if (!sourceButton.isSelected() && containTab(this.compilerOptions.getText()) == 0)
-          this.panelCompilingOptions.getTabs().remove(this.compilerOptions);
+        if (containTab(this.developerOptions.getText()) == -1 && sourceButton.isSelected())
+          this.panelCompilingOptions.getTabs().add(this.developerOptions);
+        if (!sourceButton.isSelected() && containTab(this.developerOptions.getText()) == 0)
+          this.panelCompilingOptions.getTabs().remove(this.developerOptions);
         break;
       default:
         break;

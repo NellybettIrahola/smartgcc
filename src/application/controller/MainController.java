@@ -8,6 +8,7 @@ import application.controller.optiontabs.DeveloperOptsController;
 import application.controller.optiontabs.ExecuteOptsController;
 import application.controller.optiontabs.LinkingOptsController;
 import application.controller.optiontabs.OptimizationOptsController;
+import application.controller.optiontabs.RunningProjectController;
 import application.model.CommandExecute;
 import application.model.Project;
 import application.model.SmartModel;
@@ -16,6 +17,7 @@ import application.views.TabProjectPane;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -57,7 +59,7 @@ import javafx.stage.Stage;
 public class MainController {
 
   SmartModel smartModel;
-  CommandExecute commandExecute;
+  public CommandExecute commandExecute;
   LinkedList<TabProjectPane> projects;
   @FXML private Button runOption;
   @FXML private Button compileOption;
@@ -91,6 +93,8 @@ public class MainController {
   @FXML private Parent developerOpts;
   @FXML private DeveloperOptsController developerOptsController;
   @FXML private ChooseUserController chooseUserController;
+  @FXML public RunningProjectController runningProjectController;
+
   // Tabs
   @FXML private Tab developerOptions;
   @FXML private Tab optimizationTab;
@@ -114,11 +118,12 @@ public class MainController {
   public void initialize() {
     System.out.println("maincontroller initialized");
     this.smartModel = new SmartModel();
-    this.commandExecute = new CommandExecute();
+    this.commandExecute = new CommandExecute(this);
     this.projects = new LinkedList<TabProjectPane>();
     this.textAreaResult = new TextArea();
     this.textAreaResult.setEditable(false);
     this.textResult.setContent(textAreaResult);
+    this.runningProjectController.setMain(this);
   }
 
   @FXML
@@ -863,6 +868,30 @@ public class MainController {
       if (tab.getText().contentEquals(name)) return 0;
     }
     return -1;
+  }
+
+  @FXML
+  public void executeProject() {
+    System.out.println("Entre");
+    if (projectsPane.getTabs().size() > 0) {
+      SingleSelectionModel<Tab> selectionModel = projectsPane.getSelectionModel();
+      Project prRun = smartModel.getProject(selectionModel.getSelectedItem().getText());
+      this.commandExecute.setInputRun(this.runningProjectController.inputExecute.getText());
+      try {
+        String[] results = this.commandExecute.runProgram(prRun);
+        this.runningProjectController.resultExecute.setText(
+            this.runningProjectController.resultExecute.getText()
+                + "Errors:\n"
+                + results[0]
+                + "\n"
+                + "Results:\n"
+                + results[1]
+                + "\n");
+      } catch (IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+    }
   }
 
   public void generatePanels(int i) {

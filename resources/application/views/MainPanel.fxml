@@ -143,7 +143,7 @@
             <Tooltip text="Build" />
           </tooltip>
         </Button>
-        <Button fx:id="runOption" mnemonicParsing="false" prefHeight="45.0" prefWidth="56.0">
+        <Button fx:id="runOption" onAction="#executeProject" mnemonicParsing="false" prefHeight="45.0" prefWidth="56.0">
           <graphic>
             <ImageView fitHeight="29.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
               <image>
@@ -197,8 +197,16 @@
         </TabPane>
         <TabPane fx:id="panelCompilingOptions" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
           <tabs>
-            <Tab fx:id="textInput" text="Input" />
-            <Tab fx:id="textResult" text="Output" />
+            <Tab fx:id="textInput" text="Project Execution" >
+            <content>
+                <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                  <content>
+                    <fx:include fx:id="runningProject" source="optionTabs/runningProject.fxml" />
+                  </content>
+                </ScrollPane>
+              </content>
+            </Tab>
+            <Tab fx:id="textResult" text="Project Build" />
             <Tab fx:id="compilerOptions" text="Compiler Options">
               <content>
                 <ScrollPane prefHeight="200.0" prefWidth="200.0">

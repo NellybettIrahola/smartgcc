@@ -1,120 +1,270 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.CheckBox ?>
+<?import javafx.scene.control.Label ?>
+<?import javafx.scene.control.TextArea ?>
+<?import javafx.scene.layout.FlowPane ?>
+<?import javafx.scene.layout.HBox ?>
+<?import javafx.scene.layout.VBox ?>
+<?import javafx.scene.text.Text ?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.optiontabs.LinkingOptsController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" stylesheets="@linkingOpts.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.optiontabs.LinkingOptsController">
    <children>
       <Label text="Linking Options" />
       <FlowPane>
          <children>
             <Label text="Disable Linker" />
-            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-c">
-               <FlowPane.margin>
-                  <Insets left="20.0" />
-               </FlowPane.margin>
-            </CheckBox>
+            <VBox>
+               <children>
+                  <HBox>
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-c" />
+                        <Label prefWidth="500.0" wrapText="true">
+                           <text>
+                              Compile or assemble the source files, but do not link. The linking stage simply is not
+                              done. The ultimate output is in the form of an object file for each source file.
+
+                              // By default, the object file name for a source file is made by replacing the suffix‘.c’,
+                              ‘.i’, ‘.s’, etc., with ‘.o’.
+
+                              // Unrecognized input files, not requiring compilation or assembly, are ignored.
+                           </text>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
          </children>
       </FlowPane>
       <FlowPane rowValignment="TOP">
          <children>
-            <Label text="Object files (one per line)">
-               <FlowPane.margin>
-                  <Insets right="20.0" />
-               </FlowPane.margin>
-            </Label>
+            <Label text="Object files (one per line)" />
             <TextArea prefHeight="100.0" prefWidth="200.0" styleClass="linking-objects" />
          </children>
       </FlowPane>
       <FlowPane rowValignment="TOP">
          <children>
-            <Label text="Libraries (one per line)">
-               <FlowPane.margin>
-                  <Insets right="20.0" />
-               </FlowPane.margin></Label>
+            <Label text="Libraries (one per line)" />
             <TextArea prefHeight="100.0" prefWidth="200.0" styleClass="linking-libraries" text="stdc++&#10;" />
          </children>
       </FlowPane>
       <FlowPane>
          <children>
             <Label text="Excluded Libraries" />
-            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-nostartfiles">
-               <FlowPane.margin>
-                  <Insets left="20.0" />
-               </FlowPane.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-nodefaultlibs">
-               <FlowPane.margin>
-                  <Insets left="20.0" />
-               </FlowPane.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-nolibc">
-               <FlowPane.margin>
-                  <Insets left="20.0" />
-               </FlowPane.margin></CheckBox>
-            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-nostdlib">
-               <FlowPane.margin>
-                  <Insets left="20.0" />
-               </FlowPane.margin></CheckBox>
+            <VBox>
+               <children>
+                  <HBox>
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-nostartfiles" />
+                        <Label prefWidth="500.0" wrapText="true">
+                           <text>Do not use the standard system startup files when linking. The standard system
+                           libraries are used normally, unless ‘-nostdlib’, ‘-nolibc’, or ‘-nodefaultlibs’ is
+                           used.</text>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-nodefaultlibs" />
+                        <Label prefWidth="500.0" wrapText="true">
+                           <text>Do not use the standard system libraries when linking. Only the libraries you specify
+                           are passed to the linker, and options specifying linkage of the system libraries, such as
+                           ‘-static-libgcc’ or ‘-shared-libgcc’, are ignored. The standard startup files are used
+                           normally, unless ‘-nostartfiles’ is used. The compiler may generate calls to memcmp, memset,
+                           memcpy and memmove. These entries are usually resolved by entries in libc. These entry points
+                           should be supplied through some other mechanism when this option is specified.</text>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-nolibc" />
+                        <Label prefWidth="500.0" wrapText="true">
+                           <text>Do not use the C library or system libraries tightly coupled with it when linking.
+                           Still link with the startup files, ‘libgcc’ or toolchain provided language support libraries
+                           such as ‘libgnat’, ‘libgfortran’ or ‘libstdc++’ unless options preventing their inclusion are
+                           used as well. This typically removes ‘-lc’ from the link command line, as well as system
+                           libraries that normally go with it and become meaningless when absence of a C library is
+                           assumed, for example ‘-lpthread’ or ‘-lm’ in some configurations. This is intended for
+                           bare-board targets when there is indeed no C library available.</text>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-nostdlib" />
+                        <Label prefWidth="500.0" wrapText="true">
+                           <text>Do not use the standard system startup files or libraries when linking. No startup
+                           files and only the libraries you specify are passed to the linker, and options specifying
+                           linkage of the system libraries, such as ‘-static-libgcc’ or ‘-shared-libgcc’, are ignored.
+                           The compiler may generate calls to memcmp, memset, memcpy and memmove. These entries are
+                           usually resolved by entries in libc. These entry points should be supplied through some other
+                           mechanism when this option is specified. One of the standard libraries bypassed by
+                           ‘-nostdlib’ and ‘-nodefaultlibs’ is ‘libgcc.a’, a library of internal subroutines which GCC
+                           uses to overcome shortcomings of particular machines, or special needs for some languages.
+                           (See Section “Interfacing to GCC Output” in GNU Compiler Collection (GCC) Internals, for more
+                           discussion of ‘libgcc.a’.) In most cases, you need ‘libgcc.a’ even when you want to avoid
+                           other standard libraries. In other words, when you specify ‘-nostdlib’ or ‘-nodefaultlibs’
+                           you should usually specify ‘-lgcc’ as well. This ensures that you have no unresolved
+                           references to internal GCC library subroutines. (An example of such an internal subroutine is
+                           __main, used to ensure C++ constructors are called; see Section “collect2” in GNU Compiler
+                           Collection (GCC) Internals.)</text>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
          </children>
       </FlowPane>
       <FlowPane>
          <children>
             <Label text="Position Independent Executable" />
-            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-pie">
-               <FlowPane.margin>
-                  <Insets left="20.0" />
-               </FlowPane.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-no-pie">
-               <FlowPane.margin>
-                  <Insets left="20.0" />
-               </FlowPane.margin>
-            </CheckBox>
+            <VBox>
+               <children>
+                  <HBox>
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-pie" />
+                        <Label prefWidth="500.0" wrapText="true">
+                           <text>Produce a dynamically linked position independent executable on targets that support
+                           it. For predictable results, you must also specify the same set of options used for
+                           compilation (‘-fpie’, ‘-fPIE’, or model suboptions) when you specify this linker
+                           option.</text>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-no-pie" />
+                        <Label prefWidth="500.0" wrapText="true">
+                           <text>Don’t produce a dynamically linked position independent executable.</text>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-static-pie" />
+                        <Label prefWidth="500.0" wrapText="true">
+                           <text>Produce a static position independent executable on targets that support it. A static
+                           position independent executable is similar to a static executable, but can be loaded at any
+                           address without a dynamic linker. For predictable results, you must also specify the same set
+                           of options used for compilation (‘-fpie’,‘-fPIE’, or model suboptions) when you specify this
+                           linker option.</text>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
          </children>
       </FlowPane>
       <FlowPane>
          <children>
             <Label text="Static" />
-            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-static">
-               <FlowPane.margin>
-                  <Insets left="20.0" />
-               </FlowPane.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-static-libgcc">
-               <FlowPane.margin>
-                  <Insets left="20.0" />
-               </FlowPane.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-static-libasan">
-               <FlowPane.margin>
-                  <Insets left="20.0" />
-               </FlowPane.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-static-libtsan">
-               <FlowPane.margin>
-                  <Insets left="20.0" />
-               </FlowPane.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-static-liblsan">
-               <FlowPane.margin>
-                  <Insets left="20.0" />
-               </FlowPane.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-static-libubsan">
-               <FlowPane.margin>
-                  <Insets left="20.0" />
-               </FlowPane.margin>
-            </CheckBox>
-            <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-static-libstdc++">
-               <padding>
-                  <Insets left="20.0" />
-               </padding>
-            </CheckBox>
+            <VBox>
+               <children>
+                  <HBox>
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-static" />
+                        <Label prefWidth="500.0" wrapText="true">
+                           <text>On systems that support dynamic linking, this overrides ‘-pie’ and prevents linking
+                           with the shared libraries. On other systems, this option has no effect.</text>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-static-libgcc" />
+                        <Label prefWidth="500.0" wrapText="true">
+                           <text>On systems that provide ‘libgcc’ as a shared library, these options force the use of
+                           either the shared or static version, respectively. If no shared version of‘libgcc’ was built
+                           when the compiler was configured, these options have no effect.
+
+                           :: There are several situations in which an application should use the shared‘libgcc’ instead of
+                           the static version. The most common of these is when the application wishes to throw and
+                           catch exceptions across different shared libraries. In that case, each of the libraries as
+                           well as the application itself should use the shared ‘libgcc’.
+
+                           :: Therefore, the G++ driver automatically adds ‘-shared-libgcc’ whenever you build a shared
+                           library or a main executable, because C++ programs typically use exceptions, so this is the
+                           right thing to do.
+
+                           :: If, instead, you use the GCC driver to create shared libraries, you may find that they are
+                           not always linked with the shared ‘libgcc’. If GCC finds, at its configuration time, that you
+                           have a non-GNU linker or a GNU linker that does not support option ‘--eh-frame-hdr’, it links
+                           the shared version of ‘libgcc’ into shared libraries by default. Otherwise, it takes
+                           advantage of the linker and optimizes away the linking with the shared version of‘libgcc’,
+                           linking with the static version of libgcc by default. This allows exceptions to propagate
+                           through such shared libraries, without incurring relocation costs at library load time.
+                           
+                           :: However, if a library or main executable is supposed to throw or catch exceptions, you must
+                           link it using the G++ driver, or using the option‘-shared-libgcc’, such that it is linked
+                           with the shared ‘libgcc’.</text>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-static-libasan" />
+                        <Label prefWidth="500.0" wrapText="true">
+                           <text>When the ‘-fsanitize=address’ option is used to link a program, the GCC driver
+                           automatically links against ‘libasan’. If ‘libasan’ is available as a shared library, and the
+                           ‘-static’ option is not used, then this links against the shared version of ‘libasan’. The
+                           ‘-static-libasan’ option directs the GCC driver to link ‘libasan’ statically, without
+                           necessarily linking other libraries statically.</text>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-static-libtsan" />
+                        <Label prefWidth="500.0" wrapText="true">
+                           <text>When the ‘-fsanitize=thread’ option is used to link a program, the GCC driver
+                           automatically links against ‘libtsan’. If ‘libtsan’ is available as a shared library, and the
+                           ‘-static’ option is not used, then this links against the shared version of ‘libtsan’. The
+                           ‘-static-libtsan’ option directs the GCC driver to link ‘libtsan’ statically, without
+                           necessarily linking other libraries statically.</text>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-static-liblsan" />
+                        <Label prefWidth="500.0" wrapText="true">
+                           <text>When the ‘-fsanitize=leak’ option is used to link a program, the GCC driver
+                           automatically links against ‘liblsan’. If ‘liblsan’ is available as a shared library, and the
+                           ‘-static’ option is not used, then this links against the shared version of ‘liblsan’. The
+                           ‘-static-liblsan’ option directs the GCC driver to link ‘liblsan’ statically, without
+                           necessarily linking other libraries statically.</text>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-static-libubsan" />
+                        <Label prefWidth="500.0" wrapText="true">
+                           <text>When the ‘-fsanitize=undefined’ option is used to link a program, the GCC driver
+                           automatically links against ‘libubsan’. If ‘libubsan’ is available as a shared library, and
+                           the ‘-static’ option is not used, then this links against the shared version of ‘libubsan’.
+                           The ‘-static-libubsan’ option directs the GCC driver to link ‘libubsan’ statically, without
+                           necessarily linking other libraries statically.</text>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-static-libstdc++" />
+                        <Label prefWidth="500.0" wrapText="true">
+                           <text>When the g++ program is used to link a C++ program, it normally automatically links
+                           against ‘libstdc++’. If ‘libstdc++’ is available as a shared library, and the ‘-static’
+                           option is not used, then this links against the shared version of‘libstdc++’. That is
+                           normally fine. However, it is sometimes useful to freeze the version of ‘libstdc++’ used by
+                           the program without going all the way to a fully static link. The ‘-static-libstdc++’ option
+                           directs the g++ driver to link ‘libstdc++’ statically, without necessarily linking other
+                           libraries statically.</text>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
          </children>
       </FlowPane>
    </children>

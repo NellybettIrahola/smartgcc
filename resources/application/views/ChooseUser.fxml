@@ -79,6 +79,7 @@
                         </ImageView>
                         <Label text="Compiler Options" />
                         <Label text="Linking Options" />
+                        <Label text="Debugging Options" />
                         <Label text="Execute Options" />
                         <Label />
                         <Label />
@@ -102,6 +103,7 @@
                         </ImageView>
                         <Label text="Compiler Options" />
                         <Label text="Linking Options" />
+                        <Label text="Debugging Options" />
                         <Label text="Execute Options" />
                         <Label text="Code Generation Options" />
                         <Label text="Code Optimization Options" />
@@ -125,6 +127,7 @@
                         </ImageView>
                         <Label text="Compiler Options" />
                         <Label text="Linking Options" />
+                        <Label text="Debugging Options" />
                         <Label text="Execute Options" />
                         <Label text="Code Generation Options" />
                         <Label text="Code Optimization Options" />

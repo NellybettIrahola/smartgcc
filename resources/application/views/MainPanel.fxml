@@ -36,8 +36,8 @@
         </Menu>
         <Menu mnemonicParsing="false" text="Edit">
           <items>
-            <MenuItem mnemonicParsing="false" accelerator="Shortcut+U" text="Undo" />
-            <MenuItem mnemonicParsing="false" accelerator="Shortcut+R" text="Redo" />
+            <MenuItem mnemonicParsing="false" accelerator="Shortcut+Z" text="Undo" />
+            <MenuItem mnemonicParsing="false" accelerator="Shortcut+Y" text="Redo" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Cut" />
             <MenuItem mnemonicParsing="false" text="Copy" />

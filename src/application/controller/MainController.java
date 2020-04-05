@@ -325,7 +325,7 @@ public class MainController {
 
   public HBox createFileOptions(String textFile) {
     LinkedList<String> extensions =
-        new LinkedList<String>(Arrays.asList("c", "h", "C", "cpp", "CPP", "c++", "cp", "cxx"));
+        new LinkedList<String>(Arrays.asList("c", "h", "o", "C", "cpp", "CPP", "c++", "cp", "cxx"));
     Label labelFiles = new Label("Dependency Files");
     Button addFile = new Button("+");
     Button deleteFile = new Button("-");
@@ -432,6 +432,17 @@ public class MainController {
       objectOutputStream.close();
     } catch (Exception e) {
       System.out.println("Problems saving project");
+    }
+  }
+
+  public void updateProjectArgs() {
+    if (this.projectsPane.getTabs().size() > 0) {
+      String projectFlags = this.buildArgStr();
+      String name = this.projectsPane.getSelectionModel().getSelectedItem().getText();
+      Project pr = this.smartModel.getProject(name);
+      pr.setAllFlags(projectFlags);
+      System.out.println(name);
+      System.out.println(pr.allFlags());
     }
   }
 
@@ -630,6 +641,11 @@ public class MainController {
             e.consume();
           }
         });
+
+    this.projectsPane
+        .getSelectionModel()
+        .selectedItemProperty()
+        .addListener(e -> this.updateProjectArgs());
     this.projects.add(tab);
     this.projectsPane.getTabs().add(tab);
     this.loadCompilingOptionPanels(project);

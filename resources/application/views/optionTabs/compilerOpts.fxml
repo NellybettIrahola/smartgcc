@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="270.0" prefWidth="977.0" spacing="20.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox prefHeight="174.0" prefWidth="680.0" spacing="20.0">
@@ -18,7 +17,7 @@
                   <Label text="Compilation Stages" />
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <RadioButton mnemonicParsing="false" text="-E">
+                        <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-E">
                            <toggleGroup>
                               <ToggleGroup fx:id="stages" />
                            </toggleGroup>
@@ -34,7 +33,7 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <RadioButton mnemonicParsing="false" prefHeight="20.0" prefWidth="49.0" text="-c" toggleGroup="$stages">
+                        <RadioButton mnemonicParsing="false" prefHeight="20.0" prefWidth="49.0" styleClass="simple-opt" text="-c" toggleGroup="$stages">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -44,7 +43,7 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <RadioButton mnemonicParsing="false" text="-S" toggleGroup="$stages" />
+                        <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-S" toggleGroup="$stages" />
                         <Label styleClass="simple-opt" text="(Compiling)" />
                      </children>
                   </HBox>
@@ -74,7 +73,7 @@
                   <Label text="Warnings" />
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" styleClass="simple-opt">
                      <children>
-                        <CheckBox mnemonicParsing="false" text="-Wall" />
+                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-Wall" />
                         <Label text="(Many)" />
                      </children>
                   </HBox>

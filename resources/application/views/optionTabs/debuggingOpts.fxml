@@ -1,33 +1,219 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.CheckBox ?>
+<?import javafx.scene.control.Label ?>
+<?import javafx.scene.control.RadioButton ?>
+<?import javafx.scene.control.Separator ?>
+<?import javafx.scene.control.ToggleGroup ?>
+<?import javafx.scene.layout.FlowPane ?>
+<?import javafx.scene.layout.HBox ?>
+<?import javafx.scene.layout.VBox ?>
 
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" stylesheets="@debuggingOpts.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.optiontabs.DebuggingOptsController">
+  <children>
+    <Label contentDisplay="TOP" prefHeight="49.0" prefWidth="157.0" text="Debug options" />
+    <FlowPane id="developer-misc-pane" rowValignment="TOP">
+      <children>
+        <Label text="Debugging Information:" />
+        <VBox>
+          <children>
+            <HBox>
+              <children>
+                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-g" />
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    Produce debugging information in the operating system’s native format (stabs, COFF, XCOFF, or
+                    DWARF). GDB can work with this debugging information.
+                    
+                    // On most systems that use stabs format, ‘-g’ enables use of extra debugging information that only
+                    GDB can use; this extra information makes debugging work better in GDB but probably makes other
+                    debuggers crash or refuse to read the program. If you want to control for certain whether to
+                    generate the extra information, use ‘-gstabs+’, ‘-gstabs’, ‘-gxcoff+’, ‘-gxcoff’, or ‘-gvms’ (see
+                    below).
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-ggdb" />
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    Produce debugging information for use by GDB. This means to use the most expressive format available
+                    (DWARF, stabs, or the native format if neither of those are supported), including GDB extensions if
+                    at all possible.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <VBox>
+                  <children>
+                    <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-gdwarf" />
+                    <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-gdwarf-2" />
+                    <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-gdwarf-3" />
+                    <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-gdwarf-4" />
+                    <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-gdwarf-5" />
+                  </children>
+                </VBox>
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    Produce debugging information in DWARF format (if that is supported). The value of version may be
+                    either 2, 3, 4 or 5; the default version for most targets is 4. DWARF Version 5 is only
+                    experimental.
+                    
+                    // Note that with DWARF Version 2, some ports require and always use some non-conflicting DWARF 3
+                    extensions in the unwind tables. Version 4 may require GDB 7.0 and ‘-fvar-tracking-assignments’ for
+                    maximum benefit.
+                    
+                    // GCC no longer supports DWARF Version 1, which is substantially different than Version 2 and
+                    later. For historical reasons, some other DWARF-related options such as ‘-fno-dwarf2-cfi-asm’)
+                    retain a reference to DWARF Version 2 in their names, but apply to all currently-supported versions
+                    of DWARF.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-gstabs" />
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    Produce debugging information in stabs format (if that is supported), without GDB extensions. This
+                    is the format used by DBX on most BSD systems. On MIPS, Alpha and System V Release 4 systems this
+                    option produces stabs debugging output that is not understood by DBX. On System V Release 4 systems
+                    this option requires the GNU assembler.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-gstabs+" />
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    Produce debugging information in stabs format (if that is supported), using GNU extensions
+                    understood only by the GNU debugger (GDB). The use of these extensions is likely to make other
+                    debuggers crash or refuse to read the program.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-gxcoff" />
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    Produce debugging information in XCOFF format (if that is supported). This is the format used by the
+                    DBX debugger on IBM RS/6000 systems.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-gxcoff+" />
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    Produce debugging information in XCOFF format (if that is supported), using GNU extensions
+                    understood only by the GNU debugger (GDB). The use of these extensions is likely to make other
+                    debuggers crash or refuse to read the program, and may cause assemblers other than the GNU assembler
+                    (GAS) to fail with an error.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-gvms" />
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    Produce debugging information in Alpha/VMS debug format (if that is supported). This is the format
+                    used by DEBUG on Alpha/VMS systems.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <VBox>
+                  <children>
+                    <RadioButton mnemonicParsing="false" selected="true" style="-fx-font-style: italic;" text="-g0">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="glevel" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-g1" toggleGroup="$glevel" />
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-g2" toggleGroup="$glevel" />
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-g3" toggleGroup="$glevel" />
+                    <Separator prefWidth="200.0" />
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.optiontabs.DebuggingOptsController">
-   <children>
-      <Label contentDisplay="TOP" prefHeight="49.0" prefWidth="157.0" text="    Debug options" />
-      <FlowPane prefHeight="57.0" prefWidth="600.0">
-         <children>
-            <Label prefHeight="21.0" prefWidth="95.0" text="  Format  " />
-            <CheckBox mnemonicParsing="false" prefHeight="21.0" prefWidth="72.0" text="-g" />
-            <CheckBox mnemonicParsing="false" prefHeight="21.0" prefWidth="104.0" text="-gdwarf" />
-            <CheckBox mnemonicParsing="false" prefHeight="21.0" prefWidth="97.0" text="-gstabs" />
-            <CheckBox mnemonicParsing="false" prefHeight="21.0" prefWidth="96.0" text="-gxcoff" />
-            <CheckBox mnemonicParsing="false" text="-gvms" />
-         </children>
-      </FlowPane>
-      <FlowPane prefHeight="74.0" prefWidth="600.0">
-         <children>
-            <Label prefHeight="21.0" prefWidth="60.0" text="  Level" />
-            <CheckBox mnemonicParsing="false" prefHeight="21.0" prefWidth="79.0" text="-glevel" />
-            <CheckBox mnemonicParsing="false" prefHeight="21.0" prefWidth="112.0" text="-ggdblevel" />
-            <CheckBox mnemonicParsing="false" prefHeight="21.0" prefWidth="119.0" text="-gstabslevel" />
-            <CheckBox mnemonicParsing="false" prefHeight="21.0" prefWidth="117.0" text="-gxcofflevel" />
-            <CheckBox mnemonicParsing="false" text="-gvmslevel" />
-         </children>
-      </FlowPane>
-   </children>
+                    <RadioButton mnemonicParsing="false" selected="true" style="-fx-font-style: italic;" text="-ggdb0">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="ggdblevel" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-ggdb1" toggleGroup="$ggdblevel" />
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-ggdb2" toggleGroup="$ggdblevel" />
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-ggdb3" toggleGroup="$ggdblevel" />
+                    <Separator prefWidth="200.0" />
+
+                    <RadioButton mnemonicParsing="false" selected="true" style="-fx-font-style: italic;" text="-gstabs0">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="gstabslevel" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gstabs1" toggleGroup="$gstabslevel" />
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gstabs2" toggleGroup="$gstabslevel" />
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gstabs3" toggleGroup="$gstabslevel" />
+                    <Separator prefWidth="200.0" />
+
+                    <RadioButton mnemonicParsing="false" selected="true" style="-fx-font-style: italic;" text="-gxcoff0">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="gxcofflevel" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gxcoff1" toggleGroup="$gxcofflevel" />
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gxcoff2" toggleGroup="$gxcofflevel" />
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gxcoff3" toggleGroup="$gxcofflevel" />
+                    <Separator prefWidth="200.0" />
+
+                    <RadioButton mnemonicParsing="false" selected="true" style="-fx-font-style: italic;" text="-gvms0">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="gvmslevel" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gvms1" toggleGroup="$gvmslevel" />
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gvms2" toggleGroup="$gvmslevel" />
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gvms3" toggleGroup="$gvmslevel" />
+                  </children>
+                </VBox>
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    Request debugging information and also use level to specify how much information. The default level
+                    is 2.
+                    
+                    // Level 0 produces no debug information at all. Thus, ‘-g0’ negates ‘-g’.
+                    
+                    // Level 1 produces minimal information, enough for making backtraces in parts of the program that
+                    you don’t plan to debug. This includes descriptions of functions and external variables, and line
+                    number tables, but no information about local variables.
+                    
+                    // Level 3 includes extra information, such as all the macro definitions present in the program.
+                    Some debuggers support macro expansion when you use ‘-g3’. If you use multiple ‘-g’ options, with or
+                    without level numbers, the last such option is the one that is effective.
+                    
+                    // ‘-gdwarf’ does not accept a concatenated debug level, to avoid confusion with
+                    
+                    // ‘-gdwarf-level’. Instead use an additional ‘-glevel’ option to change the debug level for DWARF.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+          </children>
+        </VBox>
+      </children>
+    </FlowPane>
+  </children>
 </VBox>

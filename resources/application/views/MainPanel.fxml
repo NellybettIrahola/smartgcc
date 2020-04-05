@@ -39,9 +39,9 @@
             <MenuItem mnemonicParsing="false" accelerator="Shortcut+Z" text="Undo" />
             <MenuItem mnemonicParsing="false" accelerator="Shortcut+Y" text="Redo" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Cut" />
-            <MenuItem mnemonicParsing="false" text="Copy" />
-            <MenuItem mnemonicParsing="false" text="Paste" />
+            <MenuItem mnemonicParsing="false" onAction="#onCutAction" accelerator="Shortcut+X" text="Cut" />
+            <MenuItem mnemonicParsing="false" onAction="#onCopyAction" accelerator="Shortcut+C" text="Copy" />
+            <MenuItem mnemonicParsing="false" onAction="#onPasteAction" accelerator="Shortcut+V" text="Paste" />
             <MenuItem mnemonicParsing="false" text="Delete" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" onAction="#buildProject" accelerator="Shortcut+B" text="Build Project" />

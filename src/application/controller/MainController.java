@@ -955,4 +955,13 @@ public class MainController {
       this.developerCheck.setSelected(false);
     }
   }
+
+  @FXML
+  private void onCutAction(ActionEvent event) {}
+
+  @FXML
+  private void onCopyAction(ActionEvent event) {}
+
+  @FXML
+  private void onPasteAction(ActionEvent event) {}
 }

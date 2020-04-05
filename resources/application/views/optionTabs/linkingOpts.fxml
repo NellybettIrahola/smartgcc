@@ -38,12 +38,6 @@
       </FlowPane>
       <FlowPane rowValignment="TOP">
          <children>
-            <Label styleClass="textAreaLabel" text="Object files (one per line)" />
-            <TextArea prefHeight="100.0" prefWidth="200.0" styleClass="linking-objects" />
-         </children>
-      </FlowPane>
-      <FlowPane rowValignment="TOP">
-         <children>
             <Label styleClass="textAreaLabel" text="Libraries (one per line)" />
             <TextArea prefHeight="100.0" prefWidth="200.0" styleClass="linking-libraries" text="stdc++&#10;" />
          </children>

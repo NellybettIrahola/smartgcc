@@ -11,31 +11,6 @@
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" stylesheets="@linkingOpts.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.optiontabs.LinkingOptsController">
    <children>
       <Label text="Linking Options" />
-      <FlowPane>
-         <children>
-            <Label text="Disable Linker" />
-            <VBox>
-               <children>
-                  <HBox>
-                     <children>
-                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-c" />
-                        <Label prefWidth="500.0" wrapText="true">
-                           <text>
-                              Compile or assemble the source files, but do not link. The linking stage simply is not
-                              done. The ultimate output is in the form of an object file for each source file.
-
-                              // By default, the object file name for a source file is made by replacing the suffix‘.c’,
-                              ‘.i’, ‘.s’, etc., with ‘.o’.
-
-                              // Unrecognized input files, not requiring compilation or assembly, are ignored.
-                           </text>
-                        </Label>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-         </children>
-      </FlowPane>
       <FlowPane rowValignment="TOP">
          <children>
             <Label styleClass="textAreaLabel" text="Libraries (one per line)" />

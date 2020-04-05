@@ -12,7 +12,7 @@
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" stylesheets="@debuggingOpts.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.optiontabs.DebuggingOptsController">
   <children>
     <Label contentDisplay="TOP" prefHeight="49.0" prefWidth="157.0" text="Debug options" />
-    <FlowPane id="developer-misc-pane" rowValignment="TOP">
+    <FlowPane id="debug-info" rowValignment="TOP">
       <children>
         <Label text="Debugging Information:" />
         <VBox>
@@ -135,6 +135,15 @@
                 </Label>
               </children>
             </HBox>
+          </children>
+        </VBox>
+      </children>
+    </FlowPane>
+    <FlowPane id="debug-levels">
+      <children>
+        <VBox>
+          <children>
+            <Label text="Debugging Levels:" />
             <HBox>
               <children>
                 <VBox>
@@ -147,7 +156,7 @@
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-g1" toggleGroup="$glevel" />
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-g2" toggleGroup="$glevel" />
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-g3" toggleGroup="$glevel" />
-                    <Separator prefWidth="200.0" />
+                    <Separator prefWidth="80.0" />
 
                     <RadioButton mnemonicParsing="false" selected="true" text="-ggdb0">
                       <toggleGroup>
@@ -157,7 +166,7 @@
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-ggdb1" toggleGroup="$ggdblevel" />
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-ggdb2" toggleGroup="$ggdblevel" />
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-ggdb3" toggleGroup="$ggdblevel" />
-                    <Separator prefWidth="200.0" />
+                    <Separator prefWidth="80.0" />
 
                     <RadioButton mnemonicParsing="false" selected="true" text="-gstabs0">
                       <toggleGroup>
@@ -167,7 +176,7 @@
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gstabs1" toggleGroup="$gstabslevel" />
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gstabs2" toggleGroup="$gstabslevel" />
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gstabs3" toggleGroup="$gstabslevel" />
-                    <Separator prefWidth="200.0" />
+                    <Separator prefWidth="80.0" />
 
                     <RadioButton mnemonicParsing="false" selected="true" text="-gxcoff0">
                       <toggleGroup>
@@ -177,7 +186,7 @@
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gxcoff1" toggleGroup="$gxcofflevel" />
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gxcoff2" toggleGroup="$gxcofflevel" />
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gxcoff3" toggleGroup="$gxcofflevel" />
-                    <Separator prefWidth="200.0" />
+                    <Separator prefWidth="80.0" />
 
                     <RadioButton mnemonicParsing="false" selected="true" text="-gvms0">
                       <toggleGroup>

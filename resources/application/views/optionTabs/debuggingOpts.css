@@ -5,3 +5,11 @@ FlowPane {
 HBox > * {
   -fx-padding: 0 0 0 20px;
 }
+
+#debug-info CheckBox {
+  -fx-min-width: 120px;
+}
+
+#debug-levels RadioButton {
+  -fx-min-width: 80px;
+}

@@ -17,7 +17,6 @@ public class Main extends Application {
   public void start(Stage stage) throws IOException {
     this.primary = stage;
     scene = new Scene(loadFXML("/application/views/ChooseUser"), 1280, 720);
-    scene.getStylesheets().add("/application/css/smartgcc.css");
     stage.setScene(scene);
     stage.show();
   }

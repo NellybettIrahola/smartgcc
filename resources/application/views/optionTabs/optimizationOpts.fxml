@@ -1,23 +1,841 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.control.CheckBox ?>
+<?import javafx.scene.control.Label ?>
+<?import javafx.scene.control.RadioButton ?>
+<?import javafx.scene.control.Separator ?>
+<?import javafx.scene.control.ToggleGroup ?>
+<?import javafx.scene.layout.FlowPane ?>
+<?import javafx.scene.layout.HBox ?>
+<?import javafx.scene.layout.VBox ?>
 
-<Pane fx:id="optimizationOptsPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="244.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.optiontabs.OptimizationOptsController">
-   	<children>
-      	<RadioButton fx:id="radioButtonOg" layoutX="14.0" layoutY="184.0" mnemonicParsing="false" text="-Og" />
-      	<RadioButton fx:id="radioButtonOfast" layoutX="14.0" layoutY="212.0" mnemonicParsing="false" text="-Ofast" />
-      	<RadioButton fx:id="radioButtonOs" layoutX="14.0" layoutY="156.0" mnemonicParsing="false" text="-Os" />
-      	<RadioButton fx:id="radioButtonO3" layoutX="14.0" layoutY="128.0" mnemonicParsing="false" text="-O3" />
-      	<RadioButton fx:id="radioButtonO2" layoutX="14.0" layoutY="100.0" mnemonicParsing="false" text="-O2" />
-      	<RadioButton fx:id="radioButtonO1" layoutX="14.0" layoutY="72.0" mnemonicParsing="false" text="-O1" />
-      	<RadioButton fx:id="radioButtonO0" layoutX="14.0" layoutY="44.0" mnemonicParsing="false" text="-O0">
-         <opaqueInsets>
-           <Insets />
-         </opaqueInsets>
-      	</RadioButton>
-      	<Label layoutX="22.0" layoutY="14.0" text="Optimization Level" />
-   	</children>
-</Pane>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" stylesheets="@optimizationOpts.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.optiontabs.OptimizationOptsController">
+  <children>
+    <Label contentDisplay="TOP" prefHeight="49.0" prefWidth="157.0" text="Code Optimization Options" />
+    <FlowPane id="" rowValignment="TOP">
+      <children>
+        <Label text="Optimizations:" />
+        <Label>
+          <text>
+            - If you use multiple ‘-O’ options, with or without level numbers, the last such option is the one that is
+            effective.
+          </text>
+        </Label>
+        <VBox>
+          <children>
+            <HBox>
+              <children>
+                <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-O0">
+                  <toggleGroup>
+                    <ToggleGroup fx:id="olevel" />
+                  </toggleGroup>
+                </RadioButton>
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    Reduce compilation time and make debugging produce the expected results. This is the default.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-O1" toggleGroup="$olevel" />
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    Optimize. Optimizing compilation takes somewhat more time, and a lot more memory for a large
+                    function.
+
+                    // With ‘-O’, the compiler tries to reduce code size and execution time, without performing any
+                    optimizations that take a great deal of compilation time.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-O2" toggleGroup="$olevel" />
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    Optimize even more. GCC performs nearly all supported optimizations that do not involve a
+                    space-speed tradeoff. As compared to ‘-O’, this option increases both compilation time and the
+                    performance of the generated code.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-O3" toggleGroup="$olevel" />
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    Optimize yet more. ‘-O3’ turns on all optimizations specified by ‘-O2’ and also more.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-Os" toggleGroup="$olevel" />
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    Optimize for size. ‘-Os’ enables all ‘-O2’ optimizations except those that often increase code size.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-Ofast" toggleGroup="$olevel" />
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    Disregard strict standards compliance. ‘-Ofast’ enables all ‘-O3’ optimizations. It also enables
+                    optimizations that are not valid for all standard-compliant programs.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-Og" toggleGroup="$olevel" />
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    Optimize debugging experience. ‘-Og’ should be the optimization level of choice for the standard
+                    edit-compile-debug cycle, offering a reasonable level of optimization while maintaining fast
+                    compilation and a good debugging experience. It is a better choice than ‘-O0’ for producing
+                    debuggable code because some compiler passes that collect debug information are disabled at ‘-O0’.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="none" selected="true" style="-fx-font-style: italic;" toggleGroup="$olevel" />
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    Deselection of -O levels.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+						<!-- OLD STUFF -->
+            <HBox>
+              <children>
+                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-g" />
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    Produce debugging information in the operating system’s native format (stabs, COFF, XCOFF, or
+                    DWARF). GDB can work with this debugging information.
+                    
+                    // On most systems that use stabs format, ‘-g’ enables use of extra debugging information that only
+                    GDB can use; this extra information makes debugging work better in GDB but probably makes other
+                    debuggers crash or refuse to read the program. If you want to control for certain whether to
+                    generate the extra information, use ‘-gstabs+’, ‘-gstabs’, ‘-gxcoff+’, ‘-gxcoff’, or ‘-gvms’ (see
+                    below).
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-ggdb" />
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    Produce debugging information for use by GDB. This means to use the most expressive format available
+                    (DWARF, stabs, or the native format if neither of those are supported), including GDB extensions if
+                    at all possible.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <VBox>
+                  <children>
+                    <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-gdwarf" />
+                    <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-gdwarf-2" />
+                    <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-gdwarf-3" />
+                    <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-gdwarf-4" />
+                    <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-gdwarf-5" />
+                  </children>
+                </VBox>
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    Produce debugging information in DWARF format (if that is supported). The value of version may be
+                    either 2, 3, 4 or 5; the default version for most targets is 4. DWARF Version 5 is only
+                    experimental.
+                    
+                    // Note that with DWARF Version 2, some ports require and always use some non-conflicting DWARF 3
+                    extensions in the unwind tables. Version 4 may require GDB 7.0 and ‘-fvar-tracking-assignments’ for
+                    maximum benefit.
+                    
+                    // GCC no longer supports DWARF Version 1, which is substantially different than Version 2 and
+                    later. For historical reasons, some other DWARF-related options such as ‘-fno-dwarf2-cfi-asm’)
+                    retain a reference to DWARF Version 2 in their names, but apply to all currently-supported versions
+                    of DWARF.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-gstabs" />
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    Produce debugging information in stabs format (if that is supported), without GDB extensions. This
+                    is the format used by DBX on most BSD systems. On MIPS, Alpha and System V Release 4 systems this
+                    option produces stabs debugging output that is not understood by DBX. On System V Release 4 systems
+                    this option requires the GNU assembler.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-gstabs+" />
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    Produce debugging information in stabs format (if that is supported), using GNU extensions
+                    understood only by the GNU debugger (GDB). The use of these extensions is likely to make other
+                    debuggers crash or refuse to read the program.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-gxcoff" />
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    Produce debugging information in XCOFF format (if that is supported). This is the format used by the
+                    DBX debugger on IBM RS/6000 systems.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-gxcoff+" />
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    Produce debugging information in XCOFF format (if that is supported), using GNU extensions
+                    understood only by the GNU debugger (GDB). The use of these extensions is likely to make other
+                    debuggers crash or refuse to read the program, and may cause assemblers other than the GNU assembler
+                    (GAS) to fail with an error.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-gvms" />
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    Produce debugging information in Alpha/VMS debug format (if that is supported). This is the format
+                    used by DEBUG on Alpha/VMS systems.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <VBox>
+                  <children>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-g0">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="glevel" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-g1" toggleGroup="$glevel" />
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-g2" toggleGroup="$glevel" />
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-g3" toggleGroup="$glevel" />
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$glevel" />
+                    <Separator prefWidth="200.0" />
+
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-ggdb0">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="ggdblevel" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-ggdb1" toggleGroup="$ggdblevel" />
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-ggdb2" toggleGroup="$ggdblevel" />
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-ggdb3" toggleGroup="$ggdblevel" />
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$ggdblevel" />
+                    <Separator prefWidth="200.0" />
+
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gstabs0">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="gstabslevel" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gstabs1" toggleGroup="$gstabslevel" />
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gstabs2" toggleGroup="$gstabslevel" />
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gstabs3" toggleGroup="$gstabslevel" />
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$gstabslevel" />
+                    <Separator prefWidth="200.0" />
+
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gxcoff0">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="gxcofflevel" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gxcoff1" toggleGroup="$gxcofflevel" />
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gxcoff2" toggleGroup="$gxcofflevel" />
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gxcoff3" toggleGroup="$gxcofflevel" />
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$gxcofflevel" />
+                    <Separator prefWidth="200.0" />
+
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gvms0">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="gvmslevel" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gvms1" toggleGroup="$gvmslevel" />
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gvms2" toggleGroup="$gvmslevel" />
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gvms3" toggleGroup="$gvmslevel" />
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$gvmslevel" />
+                  </children>
+                </VBox>
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    Request debugging information and also use level to specify how much information. The default level
+                    is 2.
+                    
+                    // Level 0 produces no debug information at all. Thus, ‘-g0’ negates ‘-g’.
+                    
+                    // Level 1 produces minimal information, enough for making backtraces in parts of the program that
+                    you don’t plan to debug. This includes descriptions of functions and external variables, and line
+                    number tables, but no information about local variables.
+                    
+                    // Level 3 includes extra information, such as all the macro definitions present in the program.
+                    Some debuggers support macro expansion when you use ‘-g3’. If you use multiple ‘-g’ options, with or
+                    without level numbers, the last such option is the one that is effective.
+                    
+                    // ‘-gdwarf’ does not accept a concatenated debug level, to avoid confusion with
+                    
+                    // ‘-gdwarf-level’. Instead use an additional ‘-glevel’ option to change the debug level for DWARF.
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+          </children>
+        </VBox>
+      </children>
+    </FlowPane>
+    <FlowPane id="" rowValignment="TOP">
+      <children>
+        <Label text="Extra optimizations:" />
+        <VBox>
+          <children>
+
+            <HBox>
+              <children>
+                <VBox>
+                  <children>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fbranch-probabilities">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="tgfbranchprobabilities" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fno-branch-probabilities" toggleGroup="$tgfbranchprobabilities"/>
+                    <RadioButton mnemonicParsing="false" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$tgfbranchprobabilities"/>
+                  </children>
+                </VBox>
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    // After running a program compiled with -fprofile-arcs (see Instrumentation Options), you can compile it a second time using -fbranch-probabilities, to improve optimizations based on the number of times each branch was taken. When a program compiled with -fprofile-arcs exits, it saves arc execution counts to a file called sourcename.gcda for each source file. The information in this data file is very dependent on the structure of the generated code, so you must use the same source code and the same optimization options for both compilations.
+// With -fbranch-probabilities, GCC puts a ‘REG_BR_PROB’ note on each ‘JUMP_INSN’ and ‘CALL_INSN’. These can be used to improve optimization. Currently, they are only used in one place: in reorg.c, instead of guessing which path a branch is most likely to take, the ‘REG_BR_PROB’ values are used to exactly determine which path is taken more often.
+// Enabled by -fprofile-use and -fauto-profile.
+
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+
+              <HBox>
+              <children>
+                <VBox>
+                  <children>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fprofile-values">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="tgfprofilevalues" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fno-profile-values" toggleGroup="$tgfprofilevalues"/>
+                    <RadioButton mnemonicParsing="false" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$tgfprofilevalues"/>
+                  </children>
+                </VBox>
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    // If combined with -fprofile-arcs, it adds code so that some data about values of expressions in the program is gathered.
+// With -fbranch-probabilities, it reads back the data gathered from profiling values of expressions for usage in optimizations.
+// Enabled by -fprofile-generate, -fprofile-use, and -fauto-profile.
+
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+
+              <HBox>
+              <children>
+                <VBox>
+                  <children>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fprofile-reorder-functions">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="tgfprofilereorderfunctions" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fno-profile-reorder-functions" toggleGroup="$tgfprofilereorderfunctions"/>
+                    <RadioButton mnemonicParsing="false" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$tgfprofilereorderfunctions"/>
+                  </children>
+                </VBox>
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    // Function reordering based on profile instrumentation collects first time of execution of a function and orders these functions in ascending order.
+// Enabled with -fprofile-use.
+
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+
+              <HBox>
+              <children>
+                <VBox>
+                  <children>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fvpt">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="tgfvpt" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fno-vpt" toggleGroup="$tgfvpt"/>
+                    <RadioButton mnemonicParsing="false" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$tgfvpt"/>
+                  </children>
+                </VBox>
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    // If combined with -fprofile-arcs, this option instructs the compiler to add code to gather information about values of expressions.
+// With -fbranch-probabilities, it reads back the data gathered and actually performs the optimizations based on them. Currently the optimizations include specialization of division operations using the knowledge about the value of the denominator.
+// Enabled with -fprofile-use and -fauto-profile.
+
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+
+              <HBox>
+              <children>
+                <VBox>
+                  <children>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-frename-registers">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="tgfrenameregisters" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fno-rename-registers" toggleGroup="$tgfrenameregisters"/>
+                    <RadioButton mnemonicParsing="false" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$tgfrenameregisters"/>
+                  </children>
+                </VBox>
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    // Attempt to avoid false dependencies in scheduled code by making use of registers left over after register allocation. This optimization most benefits processors with lots of registers. Depending on the debug information format adopted by the target, however, it can make debugging impossible, since variables no longer stay in a “home register”.
+// Enabled by default with -funroll-loops.
+
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+
+              <HBox>
+              <children>
+                <VBox>
+                  <children>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fschedule-fusion">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="tgfschedulefusion" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fno-schedule-fusion" toggleGroup="$tgfschedulefusion"/>
+                    <RadioButton mnemonicParsing="false" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$tgfschedulefusion"/>
+                  </children>
+                </VBox>
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    // Performs a target dependent pass over the instruction stream to schedule instructions of same type together because target machine can execute them more efficiently if they are adjacent to each other in the instruction flow.
+// Enabled at levels -O2, -O3, -Os.
+
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+
+              <HBox>
+              <children>
+                <VBox>
+                  <children>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-ftracer">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="tgftracer" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fno-tracer" toggleGroup="$tgftracer"/>
+                    <RadioButton mnemonicParsing="false" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$tgftracer"/>
+                  </children>
+                </VBox>
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    // Perform tail duplication to enlarge superblock size. This transformation simplifies the control flow of the function allowing other optimizations to do a better job.
+// Enabled by -fprofile-use and -fauto-profile.
+
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+
+              <HBox>
+              <children>
+                <VBox>
+                  <children>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-funroll-loops">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="tgfunrollloops" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fno-unroll-loops" toggleGroup="$tgfunrollloops"/>
+                    <RadioButton mnemonicParsing="false" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$tgfunrollloops"/>
+                  </children>
+                </VBox>
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    // Unroll loops whose number of iterations can be determined at compile time or upon entry to the loop. -funroll-loops implies -frerun-cse-after-loop, -fweb and -frename-registers. It also turns on complete loop peeling (i.e. complete removal of loops with a small constant number of iterations). This option makes code larger, and may or may not make it run faster.
+// Enabled by -fprofile-use and -fauto-profile.
+
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+
+              <HBox>
+              <children>
+                <VBox>
+                  <children>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-funroll-all-loops">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="tgfunrollallloops" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fno-unroll-all-loops" toggleGroup="$tgfunrollallloops"/>
+                    <RadioButton mnemonicParsing="false" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$tgfunrollallloops"/>
+                  </children>
+                </VBox>
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    // Unroll all loops, even if their number of iterations is uncertain when the loop is entered. This usually makes programs run more slowly. -funroll-all-loops implies the same options as -funroll-loops.
+
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+
+              <HBox>
+              <children>
+                <VBox>
+                  <children>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fpeel-loops">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="tgfpeelloops" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fno-peel-loops" toggleGroup="$tgfpeelloops"/>
+                    <RadioButton mnemonicParsing="false" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$tgfpeelloops"/>
+                  </children>
+                </VBox>
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    // Peels loops for which there is enough information that they do not roll much (from profile feedback or static analysis). It also turns on complete loop peeling (i.e. complete removal of loops with small constant number of iterations).
+// Enabled by -O3, -fprofile-use, and -fauto-profile.
+
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+
+              <HBox>
+              <children>
+                <VBox>
+                  <children>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fmove-loop-invariants">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="tgfmoveloopinvariants" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fno-move-loop-invariants" toggleGroup="$tgfmoveloopinvariants"/>
+                    <RadioButton mnemonicParsing="false" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$tgfmoveloopinvariants"/>
+                  </children>
+                </VBox>
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    // Enables the loop invariant motion pass in the RTL loop optimizer. Enabled at level -O1 and higher, except for -Og.
+
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+
+              <HBox>
+              <children>
+                <VBox>
+                  <children>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fsplit-loops">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="tgfsplitloops" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fno-split-loops" toggleGroup="$tgfsplitloops"/>
+                    <RadioButton mnemonicParsing="false" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$tgfsplitloops"/>
+                  </children>
+                </VBox>
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    // Split a loop into two if it contains a condition that’s always true for one side of the iteration space and false for the other.
+// Enabled by -fprofile-use and -fauto-profile.
+
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+
+              <HBox>
+              <children>
+                <VBox>
+                  <children>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-funswitch-loops">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="tgfunswitchloops" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fno-unswitch-loops" toggleGroup="$tgfunswitchloops"/>
+                    <RadioButton mnemonicParsing="false" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$tgfunswitchloops"/>
+                  </children>
+                </VBox>
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    // Move branches with loop invariant conditions out of the loop, with duplicates of the loop on both branches (modified according to result of the condition).
+// Enabled by -fprofile-use and -fauto-profile.
+
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+
+              <HBox>
+              <children>
+                <VBox>
+                  <children>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fversion-loops-for-strides">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="tgfversionloopsforstrides" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fno-version-loops-for-strides" toggleGroup="$tgfversionloopsforstrides"/>
+                    <RadioButton mnemonicParsing="false" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$tgfversionloopsforstrides"/>
+                  </children>
+                </VBox>
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    // If a loop iterates over an array with a variable stride, create another version of the loop that assumes the stride is always one. For example:
+// becomes:
+// This is particularly useful for assumed-shape arrays in Fortran where (for example) it allows better vectorization assuming contiguous accesses. This flag is enabled by default at -O3. It is also enabled by -fprofile-use and -fauto-profile.
+
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+
+              <HBox>
+              <children>
+                <VBox>
+                  <children>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-ffunction-sections">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="tgffunctionsections" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fno-function-sections" toggleGroup="$tgffunctionsections"/>
+                    <RadioButton mnemonicParsing="false" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$tgffunctionsections"/>
+                  </children>
+                </VBox>
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+
+              <HBox>
+              <children>
+                <VBox>
+                  <children>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fdata-sections">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="tgfdatasections" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fno-data-sections" toggleGroup="$tgfdatasections"/>
+                    <RadioButton mnemonicParsing="false" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$tgfdatasections"/>
+                  </children>
+                </VBox>
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    // Place each function or data item into its own section in the output file if the target supports arbitrary sections. The name of the function or the name of the data item determines the section’s name in the output file.
+// Use these options on systems where the linker can perform optimizations to improve locality of reference in the instruction space. Most systems using the ELF object format have linkers with such optimizations. On AIX, the linker rearranges sections (CSECTs) based on the call graph. The performance impact varies.
+// Together with a linker garbage collection (linker --gc-sections option) these options may lead to smaller statically-linked executables (after stripping).
+// On ELF/DWARF systems these options do not degenerate the quality of the debug information. There could be issues with other object files/debug info formats.
+// Only use these options when there are significant benefits from doing so. When you specify these options, the assembler and linker create larger object and executable files and are also slower. These options affect code generation. They prevent optimizations by the compiler and assembler using relative locations inside a translation unit since the locations are unknown until link time. An example of such an optimization is relaxing calls to short call instructions.
+
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+
+              <HBox>
+              <children>
+                <VBox>
+                  <children>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fbranch-target-load-optimize">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="tgfbranchtargetloadoptimize" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fno-branch-target-load-optimize" toggleGroup="$tgfbranchtargetloadoptimize"/>
+                    <RadioButton mnemonicParsing="false" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$tgfbranchtargetloadoptimize"/>
+                  </children>
+                </VBox>
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    // Perform branch target register load optimization before prologue / epilogue threading. The use of target registers can typically be exposed only during reload, thus hoisting loads out of loops and doing inter-block scheduling needs a separate optimization pass.
+
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+
+              <HBox>
+              <children>
+                <VBox>
+                  <children>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fbranch-target-load-optimize2">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="tgfbranchtargetloadoptimize2" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fno-branch-target-load-optimize2" toggleGroup="$tgfbranchtargetloadoptimize2"/>
+                    <RadioButton mnemonicParsing="false" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$tgfbranchtargetloadoptimize2"/>
+                  </children>
+                </VBox>
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    // Perform branch target register load optimization after prologue / epilogue threading.
+
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+
+              <HBox>
+              <children>
+                <VBox>
+                  <children>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fbtr-bb-exclusive">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="tgfbtrbbexclusive" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fno-btr-bb-exclusive" toggleGroup="$tgfbtrbbexclusive"/>
+                    <RadioButton mnemonicParsing="false" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$tgfbtrbbexclusive"/>
+                  </children>
+                </VBox>
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    // When performing branch target register load optimization, don’t reuse branch target registers within any basic block.
+
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+
+              <HBox>
+              <children>
+                <VBox>
+                  <children>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fstdarg-opt">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="tgfstdargopt" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fno-stdarg-opt" toggleGroup="$tgfstdargopt"/>
+                    <RadioButton mnemonicParsing="false" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$tgfstdargopt"/>
+                  </children>
+                </VBox>
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    // Optimize the prologue of variadic argument functions with respect to usage of those arguments.
+
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+
+              <HBox>
+              <children>
+                <VBox>
+                  <children>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fsection-anchors">
+                      <toggleGroup>
+                        <ToggleGroup fx:id="tgfsectionanchors" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fno-section-anchors" toggleGroup="$tgfsectionanchors"/>
+                    <RadioButton mnemonicParsing="false" style="-fx-font-style: italic;" text="none" selected="true" toggleGroup="$tgfsectionanchors"/>
+                  </children>
+                </VBox>
+                <Label prefWidth="500.0" wrapText="true">
+                  <text>
+                    // Try to reduce the number of symbolic address calculations by using shared “anchor” symbols to address nearby objects. This transformation can help to reduce the number of GOT entries and GOT accesses on some targets.
+// For example, the implementation of the following function foo:
+// usually calculates the addresses of all three variables, but if you compile it with -fsection-anchors, it accesses the variables from a common anchor point instead. The effect is similar to the following pseudocode (which isn’t valid C):
+// Not all targets support this option.
+
+                  </text>
+                </Label>
+              </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+
+          </children>
+        </VBox>
+      </children>
+    </FlowPane>
+
+  </children>
+</VBox>

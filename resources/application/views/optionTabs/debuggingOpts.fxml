@@ -139,7 +139,7 @@
               <children>
                 <VBox>
                   <children>
-                    <RadioButton mnemonicParsing="false" selected="true" style="-fx-font-style: italic;" text="-g0">
+                    <RadioButton mnemonicParsing="false" selected="true" text="-g0">
                       <toggleGroup>
                         <ToggleGroup fx:id="glevel" />
                       </toggleGroup>
@@ -149,7 +149,7 @@
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-g3" toggleGroup="$glevel" />
                     <Separator prefWidth="200.0" />
 
-                    <RadioButton mnemonicParsing="false" selected="true" style="-fx-font-style: italic;" text="-ggdb0">
+                    <RadioButton mnemonicParsing="false" selected="true" text="-ggdb0">
                       <toggleGroup>
                         <ToggleGroup fx:id="ggdblevel" />
                       </toggleGroup>
@@ -159,7 +159,7 @@
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-ggdb3" toggleGroup="$ggdblevel" />
                     <Separator prefWidth="200.0" />
 
-                    <RadioButton mnemonicParsing="false" selected="true" style="-fx-font-style: italic;" text="-gstabs0">
+                    <RadioButton mnemonicParsing="false" selected="true" text="-gstabs0">
                       <toggleGroup>
                         <ToggleGroup fx:id="gstabslevel" />
                       </toggleGroup>
@@ -169,7 +169,7 @@
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gstabs3" toggleGroup="$gstabslevel" />
                     <Separator prefWidth="200.0" />
 
-                    <RadioButton mnemonicParsing="false" selected="true" style="-fx-font-style: italic;" text="-gxcoff0">
+                    <RadioButton mnemonicParsing="false" selected="true" text="-gxcoff0">
                       <toggleGroup>
                         <ToggleGroup fx:id="gxcofflevel" />
                       </toggleGroup>
@@ -179,7 +179,7 @@
                     <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-gxcoff3" toggleGroup="$gxcofflevel" />
                     <Separator prefWidth="200.0" />
 
-                    <RadioButton mnemonicParsing="false" selected="true" style="-fx-font-style: italic;" text="-gvms0">
+                    <RadioButton mnemonicParsing="false" selected="true" text="-gvms0">
                       <toggleGroup>
                         <ToggleGroup fx:id="gvmslevel" />
                       </toggleGroup>

@@ -2,38 +2,26 @@ package application.controller;
 
 import application.Main;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
 
 public class ChooseUserController {
 
-  @FXML Button typical;
-  MainController main;
-
   @FXML
-  private void switchToMainPanelTypical() throws Exception {
-
-    generatePanels(1);
+  private void switchToMainPanelNovice() throws Exception {
+    Main.generatePanels();
   }
 
   @FXML
-  private void switchToMainPanelNovice() throws Exception {
-
-    generatePanels(0);
+  private void switchToMainPanelTypical() throws Exception {
+    Main.getProfile().add("code-generation");
+    Main.getProfile().add("code-optimization");
+    Main.generatePanels();
   }
 
   @FXML
   private void switchToMainPanelExpert() throws Exception {
-
-    generatePanels(2);
-  }
-
-  public void generatePanels(int type) throws Exception {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/views/MainPanel.fxml"));
-    this.main = new MainController();
-    loader.setController(main);
-
-    Main.getScene().setRoot(loader.load());
-    this.main.generatePanels(type);
+    Main.getProfile().add("code-generation");
+    Main.getProfile().add("code-optimization");
+    Main.getProfile().add("developer");
+    Main.generatePanels();
   }
 }

@@ -235,6 +235,8 @@ public class MainController {
 
     // New window (Stage)
     Stage newWindow = new Stage();
+    newWindow.setMinHeight(400);
+    newWindow.setMinWidth(400);
     newWindow.initModality(Modality.WINDOW_MODAL);
     newWindow.initOwner(Main.getStage());
     newWindow.setTitle("Help Options");
@@ -326,6 +328,8 @@ public class MainController {
 
     // New window (Stage)
     Stage newWindow = new Stage();
+    newWindow.setMinHeight(400);
+    newWindow.setMinWidth(400);
     newWindow.initModality(Modality.WINDOW_MODAL);
     newWindow.initOwner(Main.getStage());
     newWindow.setTitle("New Project");
@@ -653,6 +657,8 @@ public class MainController {
 
     // New window (Stage)
     Stage newWindow = new Stage();
+    newWindow.setMinHeight(400);
+    newWindow.setMinWidth(400);
     newWindow.initModality(Modality.WINDOW_MODAL);
     newWindow.initOwner(Main.getStage());
     newWindow.setTitle("Update Project");

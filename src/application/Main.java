@@ -90,6 +90,8 @@ public class Main extends Application {
     boolean profileOk = loadProfile();
     if (profileOk) {
       Main.primary = stage;
+      stage.setMinWidth(400);
+      stage.setMinHeight(400);
       scene = new Scene(new Pane(), 1280, 720);
       stage.setScene(scene);
       stage.show();

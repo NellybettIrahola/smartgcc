@@ -165,7 +165,6 @@ public class MainController {
     if (projectsPane.getTabs().size() > 0) {
       SingleSelectionModel<Tab> selectionModel = projectsPane.getSelectionModel();
       Project prCompile = smartModel.getProject(selectionModel.getSelectedItem().getText());
-      addFlagsToProject(prCompile);
       // System.out.println(prCompile.getName());
       String argStr = buildArgStr();
       String libs = linkingOptsController.buildLibs();
@@ -358,7 +357,7 @@ public class MainController {
 
   public HBox createFileOptions(String textFile) {
     LinkedList<String> extensions =
-        new LinkedList<String>(Arrays.asList("c", "h", "o", "C", "cpp", "CPP", "c++", "cp", "cxx"));
+        new LinkedList<String>(Arrays.asList("c", "o", "C", "cpp", "CPP", "c++", "cp", "cxx"));
     Label labelFiles = new Label("Dependency Files");
     Button addFile = new Button("+");
     Button deleteFile = new Button("-");
@@ -674,10 +673,10 @@ public class MainController {
           }
         });
 
-    this.projectsPane.getSelectionModel().select(tab);
     this.loadSelectedElements(project.getName());
     this.projects.add(tab);
     this.projectsPane.getTabs().add(tab);
+    this.projectsPane.getSelectionModel().select(tab);
     this.loadCompilingOptionPanels(project);
   }
 
@@ -771,11 +770,6 @@ public class MainController {
     return objectFiles;
   }
 
-  /**
-   * Needs to be implemented
-   *
-   * @return
-   */
   public LinkedList<String> createLibraryVariables() {
     return new LinkedList<String>();
   }
@@ -845,13 +839,6 @@ public class MainController {
       }
     }
     return 0;
-  }
-
-  private void addFlagsToProject(Project project) {
-    // add optimization options to the project
-    //    project.setOptimizationFlags(optimizationPanelController.getOptimizationFlags());
-    //
-    //    project.setDebugFlags(debugPanelController.getDebugFlags());
   }
 
   @FXML

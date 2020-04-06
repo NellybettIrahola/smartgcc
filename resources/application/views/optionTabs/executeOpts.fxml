@@ -1,119 +1,88 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 
-<?import javafx.geometry.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.* ?>
+<?import java.lang.* ?>
+<?import javafx.scene.control.* ?>
+<?import javafx.scene.layout.* ?>
+<?import javafx.scene.control.Label ?>
+<?import javafx.scene.layout.VBox ?>
 
-<VBox styleClass="optTabContent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="582.0" prefWidth="1001.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.optiontabs.ExecuteOptsController">
-   <children>
-      <Label styleClass="h1" text="Execute Options" />
-      <FlowPane prefHeight="536.0" prefWidth="1001.0">
-         <children>
-            <VBox prefHeight="525.0" prefWidth="1000.0">
-               <children>
-                  <HBox prefHeight="35.0" prefWidth="1000.0">
-                     <children>
-                        <CheckBox mnemonicParsing="false" prefHeight="21.0" prefWidth="259.0" styleClass="simple-opt" text="-fdirectives-only" />
-                        <Label prefHeight="33.0" prefWidth="676.0" text="When preprocessing, handle directives, but do not expand macros.">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="35.0" prefWidth="600.0">
-                     <children>
-                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-pass-exit-codes" />
-                        <Label prefHeight="35.0" prefWidth="689.0" text="gcc returns the numerically highest error produced by anyphase returning an error indication">
-                           <HBox.margin>
-                              <Insets left="140.0" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="38.0" prefWidth="1000.0">
-                     <children>
-                        <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-pipe" />
-                        <Label prefHeight="33.0" prefWidth="685.0" text="Use pipes rather than temporary files for communication between the variousstages of compilation">
-                           <HBox.margin>
-                              <Insets left="220.0" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <Label styleClass="h2" prefHeight="21.0" prefWidth="285.0" text="Diagnostic Message Formatting Options">
-                     <VBox.margin>
-                        <Insets bottom="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <HBox prefHeight="22.0" prefWidth="1000.0">
-                     <children>
-                        <RadioButton mnemonicParsing="false" prefHeight="21.0" prefWidth="82.0" selected="true" text="None">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="message" />
-                           </toggleGroup>
-                        </RadioButton>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="65.0" prefWidth="1000.0">
-                     <children>
-                        <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fdiagnostics-show-location=once" toggleGroup="$message" />
-                        <Label prefHeight="47.0" prefWidth="671.0" text="meaningful in line-wrapping, Instructs the diagnostic messages reporter to emit source location information once" wrapText="true">
-                           <HBox.margin>
-                              <Insets left="40.0" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="86.0" prefWidth="1000.0">
-                     <children>
-                        <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fdiagnostics-show-location=every-line" toggleGroup="$message" wrapText="true" />
-                        <Label prefHeight="93.0" prefWidth="709.0" text="meaningful in line-wrapping,Instructs the diagnostic messagesreporter to emit the same source location information (as prefix) for physicallines that result from the process of breaking a message which is too long to fiton a single line." wrapText="true">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="80.0" prefWidth="1000.0">
-                     <children>
-                        <RadioButton mnemonicParsing="false" prefHeight="43.0" prefWidth="220.0" styleClass="simple-out" text="-fno-diagnostics-show-option" toggleGroup="$message" wrapText="true" />
-                        <Label prefHeight="50.0" prefWidth="767.0" text="By default, each diagnostic emitted includes text indicating the command-lineoption that directly controls the diagnostic.This flagsuppresses that behavior. " wrapText="true">
-                           <HBox.margin>
-                              <Insets left="140.0" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="53.0" prefWidth="1001.0">
-                     <children>
-                        <RadioButton mnemonicParsing="false" prefHeight="23.0" prefWidth="215.0" styleClass="simple-opt" text="-fno-diagnostics-show-caret" toggleGroup="$message" />
-                        <Label prefHeight="109.0" prefWidth="747.0" text="By default, each diagnostic emitted includes the original source line and a caret indicating the column. This option suppresses this information" wrapText="true">
-                           <opaqueInsets>
-                              <Insets left="20.0" />
-                           </opaqueInsets>
-                           <HBox.margin>
-                              <Insets left="139.0" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fno-show-column" toggleGroup="$message" />
-                        <Label text="Do not print column numbers in diagnostics">
-                           <HBox.margin>
-                              <Insets left="155.0" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-         </children>
-      </FlowPane>
-   </children>
+<VBox styleClass="optTabContent" stylesheets="@executeOpts.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.optiontabs.ExecuteOptsController">
+  <children>
+    <Label styleClass="h1" text="Execute Options" />
+    <FlowPane id="executeOpts">
+      <children>
+        <VBox>
+          <children>
+            <HBox>
+              <children>
+                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-fdirectives-only" />
+                <Label prefWidth="500.0" wrapText="true" text="When preprocessing, handle directives, but do not expand macros."></Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-pass-exit-codes" />
+                <Label prefWidth="500.0" wrapText="true" text="gcc returns the numerically highest error produced by anyphase returning an error indication"></Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-pipe" />
+                <Label prefWidth="500.0" wrapText="true" text="Use pipes rather than temporary files for communication between the variousstages of compilation"></Label>
+              </children>
+            </HBox>
+          </children>
+        </VBox>
+      </children>
+    </FlowPane>
+    <FlowPane id="diag-msg-fmt">
+      <children>
+        <VBox>
+          <children>
+            <Label styleClass="h2" text="Diagnostic Message Formatting Options"></Label>
+            <HBox>
+              <children>
+                <RadioButton mnemonicParsing="false" selected="true" text="None" style="-fx-font-style: italic;">
+                  <toggleGroup>
+                    <ToggleGroup fx:id="message" />
+                  </toggleGroup>
+                </RadioButton>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fdiagnostics-show-location=once" toggleGroup="$message" />
+                <Label prefWidth="500.0" wrapText="true" text="meaningful in line-wrapping, Instructs the diagnostic messages reporter to emit source location information once"></Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fdiagnostics-show-location=every-line" toggleGroup="$message" wrapText="true" />
+                <Label prefWidth="500.0" wrapText="true" text="meaningful in line-wrapping,Instructs the diagnostic messagesreporter to emit the same source location information (as prefix) for physicallines that result from the process of breaking a message which is too long to fiton a single line."></Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <RadioButton mnemonicParsing="false" styleClass="simple-out" text="-fno-diagnostics-show-option" toggleGroup="$message" wrapText="true" />
+                <Label prefWidth="500.0" wrapText="true" text="By default, each diagnostic emitted includes text indicating the command-lineoption that directly controls the diagnostic.This flagsuppresses that behavior."></Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fno-diagnostics-show-caret" toggleGroup="$message" />
+                <Label prefWidth="500.0" wrapText="true" text="By default, each diagnostic emitted includes the original source line and a caret indicating the column. This option suppresses this information"></Label>
+              </children>
+            </HBox>
+            <HBox>
+              <children>
+                <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fno-show-column" toggleGroup="$message" />
+                <Label prefWidth="500.0" wrapText="true" text="Do not print column numbers in diagnostics"></Label>
+              </children>
+            </HBox>
+          </children>
+        </VBox>
+      </children>
+    </FlowPane>
+  </children>
 </VBox>

@@ -21,6 +21,8 @@ public class Main extends Application {
   private static Stage primary;
   private static String profileFile;
   private static Set<String> profile;
+  private static Parent tmp;
+  private static MainController mainCtrl;
 
   @Override
   public void init() throws Exception {
@@ -71,10 +73,16 @@ public class Main extends Application {
   }
 
   public static void generatePanels() throws IOException {
-    FXMLLoader loader = new FXMLLoader(Main.class.getResource("/application/views/MainPanel.fxml"));
-    Main.getScene().setRoot(loader.load());
-    MainController main = loader.getController();
-    main.generatePanels();
+    if (tmp == null) {
+      FXMLLoader loader =
+          new FXMLLoader(Main.class.getResource("/application/views/MainPanel.fxml"));
+      Main.getScene().setRoot(loader.load());
+      mainCtrl = loader.getController();
+      mainCtrl.generatePanels();
+    } else {
+      restoreWorkspace();
+      mainCtrl.generatePanels();
+    }
   }
 
   @Override
@@ -113,5 +121,13 @@ public class Main extends Application {
 
   public static void main(String[] args) {
     launch();
+  }
+
+  public static void saveWorkspace() {
+    tmp = getScene().getRoot();
+  }
+
+  public static void restoreWorkspace() {
+    getScene().setRoot(tmp);
   }
 }

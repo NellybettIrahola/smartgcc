@@ -945,7 +945,8 @@ public class MainController {
   private void onPasteAction(ActionEvent event) {}
 
   @FXML
-  private void onProfileResetAction() {
-    String userHome = System.getProperty("user.home");
+  private void onProfileResetAction() throws IOException {
+    Main.saveWorkspace();
+    Main.setRoot("/application/views/ChooseUser");
   }
 }

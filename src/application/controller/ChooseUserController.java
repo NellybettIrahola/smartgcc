@@ -7,6 +7,9 @@ public class ChooseUserController {
 
   @FXML
   private void switchToMainPanelNovice() throws Exception {
+    Main.getProfile().remove("code-generation");
+    Main.getProfile().remove("code-optimization");
+    Main.getProfile().remove("developer");
     Main.generatePanels();
   }
 
@@ -14,6 +17,7 @@ public class ChooseUserController {
   private void switchToMainPanelTypical() throws Exception {
     Main.getProfile().add("code-generation");
     Main.getProfile().add("code-optimization");
+    Main.getProfile().remove("developer");
     Main.generatePanels();
   }
 

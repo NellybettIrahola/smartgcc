@@ -25,7 +25,7 @@
             <MenuItem disable="true" mnemonicParsing="false" text="Close" />
             <MenuItem disable="true" mnemonicParsing="false" text="Save" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Quit" />
+            <MenuItem mnemonicParsing="false" onAction="#quitApp" text="Quit" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Edit">
@@ -40,7 +40,7 @@
         </Menu>
         <Menu mnemonicParsing="false" text="Help">
           <items>
-            <MenuItem mnemonicParsing="false" text="About SmartGCC" />
+            <MenuItem mnemonicParsing="false" onAction="#showHelp" text="About SmartGCC" />
           </items>
         </Menu>
       </menus>

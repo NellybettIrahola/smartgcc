@@ -134,7 +134,7 @@ public class MainController {
   }
 
   @FXML
-  private void close() {
+  void close() {
     //    optimizationPanelController.getOptimizationFlags();
     //    debugPanelController.getDebugFlags();
     System.exit(0);
@@ -195,7 +195,32 @@ public class MainController {
   }
 
   @FXML
-  private void onHelpAction() {
+  private void closeProject() {
+    if (this.projectsPane.getTabs().size() > 0) {
+      Alert alert = new Alert(AlertType.CONFIRMATION);
+      alert.setTitle("Confirmation Dialog");
+      alert.setHeaderText("Please confirm this action.");
+      alert.setContentText("Are you sure you want to delete the project?");
+
+      Optional<ButtonType> result = alert.showAndWait();
+      if (result.get() == ButtonType.OK) {
+        TabProjectPane tab =
+            (TabProjectPane) this.projectsPane.getSelectionModel().getSelectedItem();
+        this.smartModel.deleteProject(tab.getText());
+        this.projects.remove(tab);
+        this.projectsPane.getTabs().remove(tab);
+      }
+    } else {
+      Alert alertLibrary = new Alert(AlertType.ERROR);
+      alertLibrary.setTitle("Error Dialog");
+      alertLibrary.setHeaderText("Can't close project");
+      alertLibrary.setContentText("Please create or open a project first.");
+      alertLibrary.showAndWait();
+    }
+  }
+
+  @FXML
+  void onHelpAction() {
     this.helpLayout = new StackPane();
     Pane helpPane = null;
     try {

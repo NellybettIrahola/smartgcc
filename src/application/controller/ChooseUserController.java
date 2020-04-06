@@ -28,4 +28,16 @@ public class ChooseUserController {
     Main.getProfile().add("developer");
     Main.generatePanels();
   }
+
+  @FXML
+  private void quitApp() {
+    MainController main = new MainController();
+    main.close();
+  }
+
+  @FXML
+  private void showHelp() {
+    MainController main = new MainController();
+    main.onHelpAction();
+  }
 }

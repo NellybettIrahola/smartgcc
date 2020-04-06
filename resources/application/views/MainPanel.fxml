@@ -53,7 +53,7 @@
 
         <Menu mnemonicParsing="false" text="Help">
           <items>
-            <MenuItem mnemonicParsing="false" text="About SmartGCC" />
+            <MenuItem mnemonicParsing="false" onAction="#onHelpAction" text="About SmartGCC" />
           </items>
         </Menu>
       </menus>
@@ -123,7 +123,7 @@
             <Tooltip text="Change User Type" />
           </tooltip>
         </Button>
-        <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="65.0">
+        <Button mnemonicParsing="false" onAction="#onHelpAction" prefHeight="49.0" prefWidth="65.0">
           <graphic>
             <ImageView fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
               <image>

@@ -30,6 +30,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -50,6 +51,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
@@ -72,6 +74,7 @@ public class MainController {
   @FXML Tab textResult;
 
   StackPane secondaryLayout;
+  StackPane helpLayout;
 
   TextField inputProjectDirectory;
   RulesTextField inputProjectName;
@@ -189,6 +192,34 @@ public class MainController {
       alertLibrary.setContentText("Please create a project.");
       alertLibrary.showAndWait();
     }
+  }
+
+  @FXML
+  private void onHelpAction() {
+    this.helpLayout = new StackPane();
+    Pane helpPane = null;
+    try {
+      helpPane = FXMLLoader.load(getClass().getResource("/application/views/help.fxml"));
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    this.helpLayout.getChildren().add(helpPane);
+
+    Scene secondScene = new Scene(this.helpLayout, 500, 500);
+
+    // New window (Stage)
+    Stage newWindow = new Stage();
+    newWindow.initModality(Modality.WINDOW_MODAL);
+    newWindow.initOwner(Main.getStage());
+    newWindow.setTitle("Help Options");
+    newWindow.setScene(secondScene);
+
+    // Set position of second window, related to primary window.
+    newWindow.setX(Main.getStage().getX() + 300);
+    newWindow.setY(Main.getStage().getY() + 100);
+
+    newWindow.show();
   }
 
   @FXML

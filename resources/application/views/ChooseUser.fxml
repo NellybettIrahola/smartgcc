@@ -25,8 +25,6 @@
             <MenuItem disable="true" mnemonicParsing="false" text="Close" />
             <MenuItem disable="true" mnemonicParsing="false" text="Save" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem disable="true" mnemonicParsing="false" text="Preferences" />
-            <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Quit" />
           </items>
         </Menu>

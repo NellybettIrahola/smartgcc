@@ -165,7 +165,7 @@ public class MainController {
     if (projectsPane.getTabs().size() > 0) {
       SingleSelectionModel<Tab> selectionModel = projectsPane.getSelectionModel();
       Project prCompile = smartModel.getProject(selectionModel.getSelectedItem().getText());
-      // System.out.println(prCompile.getName());
+      this.panelCompilingOptions.getSelectionModel().select(this.textResult);
       String argStr = buildArgStr();
       String libs = linkingOptsController.buildLibs();
       try {

@@ -47,7 +47,7 @@
                         <Label styleClass="simple-opt" text="(Compiling)" />
                      </children>
                   </HBox>
-                  <RadioButton mnemonicParsing="false" text="None" toggleGroup="$stages" />
+                  <RadioButton mnemonicParsing="false" selected="true" text="None" toggleGroup="$stages" />
                </children>
                <opaqueInsets>
                   <Insets top="20.0" />
@@ -62,7 +62,7 @@
                      </toggleGroup>
                   </RadioButton>
                   <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-std=c++11" toggleGroup="$standard" />
-                  <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-std=c++14" toggleGroup="$standard" />
+                  <RadioButton mnemonicParsing="false" selected="true" styleClass="simple-opt" text="-std=c++14" toggleGroup="$standard" />
                </children>
                <HBox.margin>
                   <Insets left="20.0" />
@@ -110,7 +110,7 @@
                         <Label text="(Unsigned)" />
                      </children>
                   </HBox>
-                  <RadioButton mnemonicParsing="false" text="None" toggleGroup="$charInter" />
+                  <RadioButton mnemonicParsing="false" selected="true" text="None" toggleGroup="$charInter" />
                </children>
             </VBox>
             <VBox prefHeight="100.0" prefWidth="172.0" spacing="10.0">

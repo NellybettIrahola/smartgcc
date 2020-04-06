@@ -29,8 +29,6 @@
             <MenuItem mnemonicParsing="false" text="Close" />
             <MenuItem mnemonicParsing="false" accelerator="Shortcut+S" onAction="#onSaveProjectAction" text="Save" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Preferences…" />
-            <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" accelerator="Shortcut+Q" onAction="#close" text="Quit" />
           </items>
         </Menu>

@@ -36,24 +36,17 @@
         </Menu>
         <Menu mnemonicParsing="false" text="Edit">
           <items>
-            <MenuItem mnemonicParsing="false" accelerator="Shortcut+Z" text="Undo" />
-            <MenuItem mnemonicParsing="false" accelerator="Shortcut+Y" text="Redo" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" onAction="#onCutAction" accelerator="Shortcut+X" text="Cut" />
             <MenuItem mnemonicParsing="false" onAction="#onCopyAction" accelerator="Shortcut+C" text="Copy" />
             <MenuItem mnemonicParsing="false" onAction="#onPasteAction" accelerator="Shortcut+V" text="Paste" />
-            <MenuItem mnemonicParsing="false" text="Delete" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" onAction="#buildProject" accelerator="Shortcut+B" text="Build Project" />
-            <MenuItem mnemonicParsing="false" accelerator="Shortcut+R" text="Run Project" />
+          
           </items>
         </Menu>
             <Menu mnemonicParsing="false" text="All Options">
                <items>
-                  <CheckMenuItem selected="true" fx:id="compilingCheck" onAction="#handleAllOptions" mnemonicParsing="false" text="Compiler Options" />
-                  <CheckMenuItem selected="true" fx:id="linkingCheck" onAction="#handleAllOptions" mnemonicParsing="false" text="Linking Options" />
-                  <CheckMenuItem selected="true" fx:id="executingCheck" onAction="#handleAllOptions" mnemonicParsing="false" text="Execute Options" />
-                  <CheckMenuItem selected="true" fx:id="debuggingCheck" onAction="#handleAllOptions" mnemonicParsing="false" text="Debugging Options" />
                   <CheckMenuItem selected="true" fx:id="codeGenerationCheck" onAction="#handleAllOptions" mnemonicParsing="false" text="Code Generation Options" />
                   <CheckMenuItem selected="true" fx:id="codeOptimizationCheck" onAction="#handleAllOptions" mnemonicParsing="false" text="Code Optimization Options" />
                   <CheckMenuItem selected="true" fx:id="developerCheck" onAction="#handleAllOptions" mnemonicParsing="false" text="Developer Options" />
@@ -62,7 +55,7 @@
 
         <Menu mnemonicParsing="false" text="Help">
           <items>
-            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+            <MenuItem mnemonicParsing="false" text="About SmartGCC" />
           </items>
         </Menu>
       </menus>
@@ -105,31 +98,7 @@
             <Tooltip text="Save Project" />
           </tooltip>
         </Button>
-        <Separator orientation="VERTICAL" prefHeight="200.0" />
-        <Button mnemonicParsing="false" prefHeight="67.0" prefWidth="57.0">
-          <graphic>
-            <ImageView fitHeight="23.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
-              <image>
-                <Image url="@../resources/freeicons/png/undo.png" />
-              </image>
-            </ImageView>
-          </graphic>
-          <tooltip>
-            <Tooltip text="Undo" />
-          </tooltip>
-        </Button>
-        <Button mnemonicParsing="false" prefHeight="63.0" prefWidth="67.0">
-          <graphic>
-            <ImageView fitHeight="30.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-              <image>
-                <Image url="@../resources/freeicons/png/redo.png" />
-              </image>
-            </ImageView>
-          </graphic>
-          <tooltip>
-            <Tooltip text="Redo" />
-          </tooltip>
-        </Button>
+        
         <Separator orientation="VERTICAL" prefHeight="200.0" />
         <Button fx:id="compileOption" mnemonicParsing="false" onAction="#buildProject" prefHeight="45.0" prefWidth="62.0">
           <graphic>
@@ -141,18 +110,6 @@
           </graphic>
           <tooltip>
             <Tooltip text="Build" />
-          </tooltip>
-        </Button>
-        <Button fx:id="runOption" onAction="#executeProject" mnemonicParsing="false" prefHeight="45.0" prefWidth="56.0">
-          <graphic>
-            <ImageView fitHeight="29.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
-              <image>
-                <Image url="@../resources/freeicons/png/run.png" />
-              </image>
-            </ImageView>
-          </graphic>
-          <tooltip>
-            <Tooltip text="Run" />
           </tooltip>
         </Button>
         <Separator orientation="VERTICAL" prefHeight="200.0" />
@@ -180,14 +137,6 @@
             <Tooltip text="Help" />
           </tooltip>
         </Button>
-        <Button mnemonicParsing="false" onAction="#onSpecialAction" prefHeight="71.0" prefWidth="61.0">
-          <graphic>
-            <ImageView fitHeight="16.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true" />
-          </graphic>
-          <tooltip>
-            <Tooltip text="Special" />
-          </tooltip>
-        </Button>
       </children>
     </HBox>
     <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" VBox.vgrow="ALWAYS">
@@ -197,15 +146,6 @@
         </TabPane>
         <TabPane fx:id="panelCompilingOptions" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
           <tabs>
-            <Tab fx:id="textInput" text="Project Execution" >
-            <content>
-                <ScrollPane prefHeight="200.0" prefWidth="200.0">
-                  <content>
-                    <fx:include fx:id="runningProject" source="optionTabs/runningProject.fxml" />
-                  </content>
-                </ScrollPane>
-              </content>
-            </Tab>
             <Tab fx:id="textResult" text="Project Build" />
             <Tab fx:id="compilerOptions" text="Compiler Options">
               <content>

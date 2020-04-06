@@ -124,7 +124,10 @@ public class MainController {
     this.textAreaResult = new TextArea();
     this.textAreaResult.setEditable(false);
     this.textResult.setContent(textAreaResult);
-    this.runningProjectController.setMain(this);
+    this.projectsPane
+        .getSelectionModel()
+        .selectedItemProperty()
+        .addListener((ChangeListener) new ChangeListenerTabs(this));
   }
 
   @FXML
@@ -671,10 +674,7 @@ public class MainController {
           }
         });
 
-    this.projectsPane
-        .getSelectionModel()
-        .selectedItemProperty()
-        .addListener((ChangeListener) new ChangeListenerTabs(this));
+    this.projectsPane.getSelectionModel().select(tab);
     this.loadSelectedElements(project.getName());
     this.projects.add(tab);
     this.projectsPane.getTabs().add(tab);

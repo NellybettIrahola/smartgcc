@@ -861,51 +861,32 @@ public class MainController {
     String compilationPanel = sourceButton.getText();
 
     switch (compilationPanel) {
-      case "Compiler Options":
-        if (containTab(this.compilerOptions.getText()) == -1 && sourceButton.isSelected())
-          this.panelCompilingOptions.getTabs().add(this.compilerOptions);
-        if (!sourceButton.isSelected() && containTab(this.compilerOptions.getText()) == 0)
-          this.panelCompilingOptions.getTabs().remove(this.compilerOptions);
-        break;
-      case "Linking Options":
-        if (containTab(this.linkingOptions.getText()) == -1 && sourceButton.isSelected())
-          this.panelCompilingOptions.getTabs().add(this.linkingOptions);
-        if (!sourceButton.isSelected() && containTab(this.linkingOptions.getText()) == 0)
-          this.panelCompilingOptions.getTabs().remove(this.linkingOptions);
-        break;
-      case "Execute Options":
-        if (containTab(this.codeExecuteOptions.getText()) == -1 && sourceButton.isSelected())
-          this.panelCompilingOptions.getTabs().add(this.codeExecuteOptions);
-        if (!sourceButton.isSelected() && containTab(this.codeExecuteOptions.getText()) == 0)
-          this.panelCompilingOptions.getTabs().remove(this.codeExecuteOptions);
-        break;
-      case "Debugging Options":
-        if (containTab(this.debuggingOptions.getText()) == -1 && sourceButton.isSelected())
-          this.panelCompilingOptions.getTabs().add(this.debuggingOptions);
-        if (!sourceButton.isSelected() && containTab(this.debuggingOptions.getText()) == 0)
-          this.panelCompilingOptions.getTabs().remove(this.debuggingOptions);
-        break;
       case "Code Generation Options":
-        if (containTab(this.codeGenerationOptions.getText()) == -1 && sourceButton.isSelected())
-          this.panelCompilingOptions.getTabs().add(this.codeGenerationOptions);
-        if (!sourceButton.isSelected() && containTab(this.codeGenerationOptions.getText()) == 0)
-          this.panelCompilingOptions.getTabs().remove(this.codeGenerationOptions);
+        if (containTab(this.codeGenerationOptions.getText()) == -1 && sourceButton.isSelected()) {
+          Main.getProfile().add("code-generation");
+        }
+        if (!sourceButton.isSelected() && containTab(this.codeGenerationOptions.getText()) == 0) {
+          Main.getProfile().remove("code-generation");
+        }
         break;
       case "Code Optimization Options":
-        if (containTab(this.optimizationTab.getText()) == -1 && sourceButton.isSelected())
-          this.panelCompilingOptions.getTabs().add(this.optimizationTab);
-        if (!sourceButton.isSelected() && containTab(this.optimizationTab.getText()) == 0)
-          this.panelCompilingOptions.getTabs().remove(this.optimizationTab);
+        if (containTab(this.optimizationTab.getText()) == -1 && sourceButton.isSelected()) {
+          Main.getProfile().add("code-optimization");
+        }
+        if (!sourceButton.isSelected() && containTab(this.optimizationTab.getText()) == 0) {
+          Main.getProfile().remove("code-optimization");
+        }
         break;
       case "Developer Options":
-        if (containTab(this.developerOptions.getText()) == -1 && sourceButton.isSelected())
-          this.panelCompilingOptions.getTabs().add(this.developerOptions);
-        if (!sourceButton.isSelected() && containTab(this.developerOptions.getText()) == 0)
-          this.panelCompilingOptions.getTabs().remove(this.developerOptions);
-        break;
-      default:
+        if (containTab(this.developerOptions.getText()) == -1 && sourceButton.isSelected()) {
+          Main.getProfile().add("developer");
+        }
+        if (!sourceButton.isSelected() && containTab(this.developerOptions.getText()) == 0) {
+          Main.getProfile().remove("developer");
+        }
         break;
     }
+    generatePanels();
   }
 
   public int containTab(String name) {
@@ -940,20 +921,31 @@ public class MainController {
     }
   }
 
-  public void generatePanels(int i) {
+  public void generatePanels() {
+    Set<String> profile = Main.getProfile();
+    this.panelCompilingOptions.getTabs().remove(this.developerOptions);
+    this.panelCompilingOptions.getTabs().remove(this.codeGenerationOptions);
+    this.panelCompilingOptions.getTabs().remove(this.optimizationTab);
 
-    if (i == 0) {
-      this.developerCheck.setSelected(false);
+    if (!profile.contains("code-generation")) {
       this.codeGenerationCheck.setSelected(false);
-      this.codeOptimizationCheck.setSelected(false);
-      this.panelCompilingOptions.getTabs().remove(this.developerOptions);
-      this.panelCompilingOptions.getTabs().remove(this.codeGenerationOptions);
-      this.panelCompilingOptions.getTabs().remove(this.optimizationTab);
-
-    } else if (i == 1) {
-      this.panelCompilingOptions.getTabs().remove(this.developerOptions);
-      this.developerCheck.setSelected(false);
+    } else {
+      this.codeGenerationCheck.setSelected(true);
+      this.panelCompilingOptions.getTabs().add(this.codeGenerationOptions);
     }
+    if (!profile.contains("code-optimization")) {
+      this.codeOptimizationCheck.setSelected(false);
+    } else {
+      this.codeOptimizationCheck.setSelected(true);
+      this.panelCompilingOptions.getTabs().add(this.optimizationTab);
+    }
+    if (!profile.contains("developer")) {
+      this.developerCheck.setSelected(false);
+    } else {
+      this.developerCheck.setSelected(true);
+      this.panelCompilingOptions.getTabs().add(this.developerOptions);
+    }
+    Main.saveProfile();
   }
 
   @FXML
@@ -964,4 +956,9 @@ public class MainController {
 
   @FXML
   private void onPasteAction(ActionEvent event) {}
+
+  @FXML
+  private void onProfileResetAction() {
+    String userHome = System.getProperty("user.home");
+  }
 }

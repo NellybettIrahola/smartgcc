@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.HBox ?>
 <?import javafx.scene.layout.VBox ?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -50,10 +50,10 @@
         </Menu>
             <Menu mnemonicParsing="false" text="All Options">
                <items>
-                  <CheckMenuItem selected="true" fx:id="compilingCheck" onAction="#handleAllOptions" mnemonicParsing="false" text="Compiler Options" />
+                  <!-- <CheckMenuItem selected="true" fx:id="compilingCheck" onAction="#handleAllOptions" mnemonicParsing="false" text="Compiler Options" />
                   <CheckMenuItem selected="true" fx:id="linkingCheck" onAction="#handleAllOptions" mnemonicParsing="false" text="Linking Options" />
                   <CheckMenuItem selected="true" fx:id="executingCheck" onAction="#handleAllOptions" mnemonicParsing="false" text="Execute Options" />
-                  <CheckMenuItem selected="true" fx:id="debuggingCheck" onAction="#handleAllOptions" mnemonicParsing="false" text="Debugging Options" />
+                  <CheckMenuItem selected="true" fx:id="debuggingCheck" onAction="#handleAllOptions" mnemonicParsing="false" text="Debugging Options" /> -->
                   <CheckMenuItem selected="true" fx:id="codeGenerationCheck" onAction="#handleAllOptions" mnemonicParsing="false" text="Code Generation Options" />
                   <CheckMenuItem selected="true" fx:id="codeOptimizationCheck" onAction="#handleAllOptions" mnemonicParsing="false" text="Code Optimization Options" />
                   <CheckMenuItem selected="true" fx:id="developerCheck" onAction="#handleAllOptions" mnemonicParsing="false" text="Developer Options" />
@@ -156,7 +156,7 @@
           </tooltip>
         </Button>
         <Separator orientation="VERTICAL" prefHeight="200.0" />
-        <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="61.0">
+        <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="61.0" onAction="#onProfileResetAction">
           <graphic>
             <ImageView fitHeight="34.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true">
               <image>

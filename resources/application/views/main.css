@@ -5,3 +5,7 @@
 .h2 {
   -fx-font-size: 1.2em;
 }
+
+.optTabContent {
+  -fx-padding: 20px;
+}

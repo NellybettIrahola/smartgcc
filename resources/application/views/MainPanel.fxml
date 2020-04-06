@@ -147,7 +147,7 @@
             <Tab fx:id="textResult" text="Project Build" />
             <Tab fx:id="compilerOptions" text="Compiler Options">
               <content>
-                <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                <ScrollPane styleClass="optScrollPane" prefHeight="200.0" prefWidth="200.0">
                   <content>
                     <fx:include fx:id="compilerOpts" source="optionTabs/compilerOpts.fxml" />
                   </content>
@@ -156,7 +156,7 @@
             </Tab>
             <Tab fx:id="linkingOptions" text="Linking Options">
               <content>
-                <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                <ScrollPane styleClass="optScrollPane" prefHeight="200.0" prefWidth="200.0">
                   <content>
                     <fx:include fx:id="linkingOpts" source="optionTabs/linkingOpts.fxml" />
                   </content>
@@ -165,7 +165,7 @@
             </Tab>
             <Tab fx:id="debuggingOptions" text="Debugging Options">
               <content>
-                <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                <ScrollPane styleClass="optScrollPane" prefHeight="200.0" prefWidth="200.0">
                   <content>
                     <fx:include fx:id="debuggingOpts" source="optionTabs/debuggingOpts.fxml" />
                   </content>
@@ -174,7 +174,7 @@
             </Tab>
             <Tab fx:id="codeExecuteOptions" text="Execute Options">
               <content>
-                <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                <ScrollPane styleClass="optScrollPane" prefHeight="200.0" prefWidth="200.0">
                   <content>
                     <fx:include fx:id="executeOpts" source="optionTabs/executeOpts.fxml" />
                   </content>
@@ -183,7 +183,7 @@
             </Tab>
             <Tab fx:id="codeGenerationOptions" text="Code Generation Options">
               <content>
-                <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                <ScrollPane styleClass="optScrollPane" prefHeight="200.0" prefWidth="200.0">
                   <content>
                     <fx:include fx:id="codegenOpts" source="optionTabs/codegenOpts.fxml" />
                   </content>
@@ -192,7 +192,7 @@
             </Tab>
             <Tab fx:id="optimizationTab" text="Code Optimization Options">
               <content>
-                <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                <ScrollPane styleClass="optScrollPane" prefHeight="200.0" prefWidth="200.0">
                   <content>
                     <fx:include fx:id="optimizationOpts" source="optionTabs/optimizationOpts.fxml" />
                   </content>
@@ -201,7 +201,7 @@
             </Tab>
             <Tab fx:id="developerOptions" text="Developer Options">
               <content>
-                <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                <ScrollPane styleClass="optScrollPane" prefHeight="200.0" prefWidth="200.0">
                   <content>
                     <fx:include fx:id="developerOpts" source="optionTabs/developerOpts.fxml" />
                   </content>

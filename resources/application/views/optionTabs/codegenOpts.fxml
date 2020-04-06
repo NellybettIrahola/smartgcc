@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox ?>
 <?import javafx.scene.layout.VBox ?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" stylesheets="@codegenOpts.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.optiontabs.CodegenOptsController">
+<VBox styleClass="optTabContent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" stylesheets="@codegenOpts.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.optiontabs.CodegenOptsController">
   <children>
     <Label styleClass="h1" text="Codegen Options" />
     <FlowPane>

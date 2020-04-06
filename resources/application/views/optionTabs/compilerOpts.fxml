@@ -8,13 +8,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="270.0" prefWidth="977.0" spacing="20.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox styleClass="optTabContent" stylesheets="@compilerOpts.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="270.0" prefWidth="977.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
+      <Label styleClass="h1" text="Compiler Options" />
       <HBox prefHeight="174.0" prefWidth="680.0" spacing="20.0">
          <children>
             <VBox prefHeight="156.0" prefWidth="180.0" spacing="10.0">
                <children>
-                  <Label text="Compilation Stages" />
+                  <Label styleClass="h2" text="Compilation Stages" />
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
                         <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-E">
@@ -55,7 +56,7 @@
             </VBox>
             <VBox prefHeight="156.0" prefWidth="131.0" spacing="10.0">
                <children>
-                  <Label lineSpacing="20.0" text="Standard" />
+                  <Label styleClass="h2" lineSpacing="20.0" text="Standard" />
                   <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-std=c++98">
                      <toggleGroup>
                         <ToggleGroup fx:id="standard" />
@@ -70,7 +71,7 @@
             </VBox>
             <VBox prefHeight="100.0" prefWidth="191.0" spacing="10.0">
                <children>
-                  <Label text="Warnings" />
+                  <Label styleClass="h2" text="Warnings" />
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" styleClass="simple-opt">
                      <children>
                         <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-Wall" />
@@ -93,7 +94,7 @@
             </VBox>
             <VBox prefHeight="100.0" prefWidth="218.0" spacing="10.0">
                <children>
-                  <Label prefHeight="16.0" prefWidth="158.0" text="Char interpretation" />
+                  <Label styleClass="h2" prefHeight="16.0" prefWidth="158.0" text="Char interpretation" />
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <RadioButton mnemonicParsing="false" styleClass="simple-opt" text="-fsigned-char">
@@ -115,7 +116,7 @@
             </VBox>
             <VBox prefHeight="100.0" prefWidth="172.0" spacing="10.0">
                <children>
-                  <Label text="Other Options" />
+                  <Label styleClass="h2" text="Other Options" />
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
                         <CheckBox mnemonicParsing="false" styleClass="simple-opt" text="-v" />

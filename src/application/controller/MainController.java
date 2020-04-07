@@ -51,7 +51,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
@@ -222,7 +221,7 @@ public class MainController {
   @FXML
   void onHelpAction() {
     this.helpLayout = new StackPane();
-    Pane helpPane = null;
+    VBox helpPane = null;
     try {
       helpPane = FXMLLoader.load(getClass().getResource("/application/views/help.fxml"));
     } catch (IOException e) {
@@ -231,7 +230,7 @@ public class MainController {
     }
     this.helpLayout.getChildren().add(helpPane);
 
-    Scene secondScene = new Scene(this.helpLayout, 500, 500);
+    Scene secondScene = new Scene(this.helpLayout);
 
     // New window (Stage)
     Stage newWindow = new Stage();

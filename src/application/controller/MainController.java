@@ -240,14 +240,16 @@ public class MainController {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
+
     this.helpLayout.getChildren().add(helpPane);
 
     Scene secondScene = new Scene(this.helpLayout);
 
     // New window (Stage)
     Stage newWindow = new Stage();
+    newWindow.setResizable(false);
     newWindow.setMinHeight(400);
-    newWindow.setMinWidth(400);
+    newWindow.setMinWidth(600);
     newWindow.initModality(Modality.WINDOW_MODAL);
     newWindow.initOwner(Main.getStage());
     newWindow.setTitle("Help Options");

@@ -1,40 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="964.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab text="Create Project">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="257.0" prefWidth="959.0">
+      <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+         <tabs>
+            <Tab text="Create Project">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="257.0" prefWidth="959.0">
                      <children>
-                        <Label layoutX="33.0" layoutY="45.0" text="1. Inside SmartGCC select the menu item File &gt; New &gt;Project or click on the new project icon to open the New Project wizard" />
-                        <Label layoutX="33.0" layoutY="90.0" text="2. Provide the location of the directory where you can check the results" />
-                        <Label layoutX="33.0" layoutY="135.0" text="3. Provide the project name and click the &quot;+&quot; symbol to the file you want work on" />
+                        <Label layoutX="33.0" layoutY="37.0" prefHeight="41.0" prefWidth="559.0" text="1. Inside SmartGCC select the menu item File &gt; New &gt;Project or click on the  new project icon to open the New Project wizard" wrapText="true" />
+                        <Label layoutX="33.0" layoutY="98.0" text="2. Provide the location of the directory where you can check the results" wrapText="true" />
+                        <Label layoutX="33.0" layoutY="135.0" text="3. Provide the project name and click the &quot;+&quot; symbol to the file you want work on" wrapText="true" />
                         <Label layoutX="33.0" layoutY="180.0" text="4. Click Create" />
-                        <Label layoutX="33.0" layoutY="10.0" text="Steps to Create a project" />
-                     </children></AnchorPane>
-            </content>
-          </Tab>
-          <Tab text="Build Project">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <Label layoutX="33.0" layoutY="10.0" text="Steps to Create a project" wrapText="true" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Build Project">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Label layoutX="33.0" layoutY="45.0" text="1. Create a project" />
                         <Label layoutX="33.0" layoutY="90.0" text="2. Click the Build button or press ctrl+b" />
                         <Label layoutX="33.0" layoutY="10.0" text="Steps to Build a project" />
-                     </children></AnchorPane>
-            </content>
-          </Tab>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
             <Tab text="Save Project">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Label layoutX="33.0" layoutY="35.0" text="1. Create a project" />
                         <Label layoutX="33.0" layoutY="70.0" text="2. Click on save icon on main panel" />
@@ -43,11 +46,11 @@
                         <Label layoutX="33.0" layoutY="10.0" text="Steps to Save a project" />
                      </children>
                   </AnchorPane>
-              </content>
+               </content>
             </Tab>
             <Tab text="User Options">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Label layoutX="33.0" layoutY="14.0" text="Steps to select the user options" />
                         <Label layoutX="33.0" layoutY="45.0" text="1. Create a project" />
@@ -56,18 +59,21 @@
                         <Label layoutX="33.0" layoutY="126.0" text="4. Click Build" />
                      </children>
                   </AnchorPane>
-              </content>
+               </content>
             </Tab>
             <Tab text="User Type">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="14.0" layoutY="70.0" text="Change the user type by clicling change user type icon on the main panel and select your type of user" />
+                        <Label layoutX="35.0" layoutY="49.0" prefHeight="50.0" prefWidth="530.0" text="Change the user type by clicling change user type icon on the main panel and select your type of user" wrapText="true" />
                      </children>
                   </AnchorPane>
-              </content>
+               </content>
             </Tab>
-        </tabs>
+         </tabs>
       </TabPane>
    </children>
+   <padding>
+      <Insets top="20.0" />
+   </padding>
 </VBox>

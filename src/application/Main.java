@@ -24,7 +24,7 @@ public class Main extends Application {
   private static Parent tmp;
   private static MainController mainCtrl;
 
-  /** */
+  /** Init function of the application */
   @Override
   public void init() throws Exception {
     super.init();

@@ -137,6 +137,7 @@
                 </executions>
                 <configuration>
                     <release>${java.version}</release>
+                    <show>private</show>
                 </configuration>
             </plugin>
         </plugins>

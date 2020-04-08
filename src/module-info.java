@@ -12,4 +12,6 @@ module smartgcc {
       javafx.fxml;
 
   exports application;
+  exports application.controller;
+  exports application.controller.optiontabs;
 }

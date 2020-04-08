@@ -10,6 +10,7 @@ import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.util.LinkedList;
 
+/** This class execute the commands using the console */
 public class CommandExecute {
   boolean isWindows;
   String files;
@@ -19,12 +20,23 @@ public class CommandExecute {
   String inputRun;
   MainController main;
 
+  /**
+   * In initialize the global elements to run a command
+   *
+   * @param main
+   */
   public CommandExecute(MainController main) {
     this.isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
     this.main = main;
     this.inputRun = "";
   }
 
+  /**
+   * It generates a string to include in the command from a list of elements (files)
+   *
+   * @param list the list of elements
+   * @return the string
+   */
   public static String generateStringFromList(LinkedList<String> list) {
     String generated = "";
     for (String str : list) {
@@ -33,18 +45,40 @@ public class CommandExecute {
     return generated;
   }
 
+  /**
+   * This is the input to run a program
+   *
+   * @param inputRun
+   */
   public void setInputRun(String inputRun) {
     this.inputRun = inputRun;
   }
 
+  /**
+   * This represents other flags included
+   *
+   * @param otherFlag
+   */
   public void concatenateFlag(String otherFlag) {
     this.flags = this.flags + " " + otherFlag;
   }
 
+  /**
+   * This includes individual flags
+   *
+   * @param flags
+   * @return String with concatenated flag
+   */
   public String individualFlags(String flags) {
     return "gcc " + flags;
   }
 
+  /**
+   * Generate a string with a space between the elements from a list
+   *
+   * @param list a list of elements
+   * @return a string
+   */
   public static String generateStringFromListSpace(LinkedList<String> list) {
     String generated = "";
     for (String str : list) {
@@ -53,13 +87,22 @@ public class CommandExecute {
     return generated;
   }
 
+  /**
+   * Creates the command from the project information
+   *
+   * @param project the project
+   * @param flags the flags selected by the user
+   * @param libraries the libraries added by the user
+   * @return a string
+   * @throws IOException
+   * @throws InterruptedException
+   */
   public String[] buildProject(Project project, String flags, String libraries)
       throws IOException, InterruptedException {
-    // System.out.println("gcc "+flags+project.sourceFiles+project.objectFiles+project.libraries+"-o
-    // "+project.projectLocation+project.name);
+
     String sourceFiles = CommandExecute.generateStringFromListSpace(project.sourceFiles);
     String objectFiles = CommandExecute.generateStringFromListSpace(project.objectFiles);
-    // String libraries = CommandExecute.generateStringFromListSpace(project.libraries);
+
     return buildExecution(
         "gcc "
             + flags
@@ -72,6 +115,14 @@ public class CommandExecute {
             + project.name);
   }
 
+  /**
+   * It executes the build the command using the process builder class
+   *
+   * @param command the command
+   * @return A String with the result
+   * @throws IOException
+   * @throws InterruptedException
+   */
   public String[] buildExecution(String command) throws IOException, InterruptedException {
     this.builder = new ProcessBuilder();
     String[] resultReturn = new String[3];
@@ -121,6 +172,13 @@ public class CommandExecute {
     return resultReturn;
   }
 
+  /**
+   * It executes the run command
+   *
+   * @param pr the project to run
+   * @return The results from the command
+   * @throws IOException
+   */
   public String[] runProgram(Project pr) throws IOException {
     ProcessBuilder builderExecute = new ProcessBuilder();
     StringBuilder resultBuilderExecute = new StringBuilder();

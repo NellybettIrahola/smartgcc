@@ -3,6 +3,7 @@ package application.views;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 
+/** Tab created to assign a scroll pane to each tab */
 public class TabProjectPane extends Tab {
   private ScrollPane scroll;
 

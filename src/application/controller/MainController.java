@@ -58,6 +58,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/** This is the main controller of the application. It can call other controllers. */
 public class MainController {
 
   SmartModel smartModel;
@@ -106,6 +107,7 @@ public class MainController {
   @FXML private Tab debuggingOptions;
   @FXML private Tab linkingOptions;
   @FXML private Tab compilerOptions;
+
   // Check Menu Items
   @FXML private CheckMenuItem compilingCheck;
   @FXML private CheckMenuItem linkingCheck;
@@ -115,8 +117,10 @@ public class MainController {
   @FXML private CheckMenuItem codeOptimizationCheck;
   @FXML private CheckMenuItem developerCheck;
 
+  /** THe constructor of the class */
   public MainController() {}
 
+  /** Function to initialize the Main Controller */
   @FXML
   public void initialize() {
     System.out.println("maincontroller initialized");
@@ -132,13 +136,18 @@ public class MainController {
         .addListener((ChangeListener) new ChangeListenerTabs(this));
   }
 
+  /** Function that closes the application when quit is pressed */
   @FXML
   void close() {
     //    optimizationPanelController.getOptimizationFlags();
     //    debugPanelController.getDebugFlags();
     System.exit(0);
   }
-
+  /**
+   * It creates the string with the different selected flags from the radio buttons and check boxes
+   *
+   * @return flags
+   */
   private String buildArgStr() {
     List<String> args = new ArrayList<String>();
     String argsStr = "";
@@ -162,6 +171,7 @@ public class MainController {
     return argsStr;
   }
 
+  /** Function to build a project */
   @FXML
   private void buildProject() {
     if (projectsPane.getTabs().size() > 0) {
@@ -193,6 +203,7 @@ public class MainController {
     }
   }
 
+  /** Function to close a project from the Tab Pane */
   @FXML
   private void closeProject() {
     if (this.projectsPane.getTabs().size() > 0) {
@@ -218,6 +229,7 @@ public class MainController {
     }
   }
 
+  /** Function that shows the help panel */
   @FXML
   void onHelpAction() {
     this.helpLayout = new StackPane();
@@ -248,6 +260,7 @@ public class MainController {
     newWindow.show();
   }
 
+  /** Function that shows the New Project panel */
   @FXML
   private void onNewProjectAction() {
 
@@ -341,6 +354,12 @@ public class MainController {
     newWindow.show();
   }
 
+  /**
+   * This function verifies the data inserted by the user to create a new project, it gives an error
+   * if the mandatory fields are not provided.
+   *
+   * @param event create project event
+   */
   @FXML
   public void createProject(ActionEvent event) {
 
@@ -385,6 +404,12 @@ public class MainController {
     }
   }
 
+  /**
+   * The function loads the stored flags for the project when you exchange between two different
+   * projects
+   *
+   * @param name of the project
+   */
   public void loadSelectedElements(String name) {
     Project pr = this.smartModel.getProject(name);
     List<String> listFlags = null;
@@ -414,6 +439,13 @@ public class MainController {
     }
   }
 
+  /**
+   * This creates the HBox with the files text area, it verifies the extension of the files added by
+   * the user.
+   *
+   * @param textFile file added
+   * @return HBox to the new project and edit project view
+   */
   public HBox createFileOptions(String textFile) {
     LinkedList<String> extensions =
         new LinkedList<String>(Arrays.asList("c", "o", "C", "cpp", "CPP", "c++", "cp", "cxx"));
@@ -480,6 +512,12 @@ public class MainController {
     return hbFileOptions;
   }
 
+  /**
+   * This calls the model to update the information of the project.
+   *
+   * @param name The name of the project
+   * @param files The new files
+   */
   public void updateProject(String name, String files) {
 
     LinkedList<String> sourceFiles = this.getSourceFiles(this.textAreaFiles.getText());
@@ -509,6 +547,7 @@ public class MainController {
     }
   }
 
+  /** Save the list of projects */
   @FXML
   public void saveListProject() {
     FileOutputStream fileOutputStream;
@@ -526,6 +565,11 @@ public class MainController {
     }
   }
 
+  /**
+   * Update the files of a project in the model
+   *
+   * @param name The name of the project
+   */
   public void updateProjectArgs(String name) {
     if (this.projectsPane.getTabs().size() > 0) {
       String projectFlags = this.buildArgStr();
@@ -535,6 +579,7 @@ public class MainController {
     }
   }
 
+  /** Function to save a project in the users computer */
   @FXML
   public void onSaveProjectAction() {
     if (this.projectsPane.getTabs().size() > 0) {
@@ -562,6 +607,7 @@ public class MainController {
     }
   }
 
+  /** Loads the list of projects in the application */
   public void loadListOfProject() {
     FileInputStream fileInputStream;
     LinkedList<Project> listProject = null;
@@ -589,7 +635,7 @@ public class MainController {
   /**
    * Creates the edit Project Panel
    *
-   * @param pr
+   * @param pr the project
    */
   private void generateEditProjectPanel(Project pr) {
 
@@ -670,6 +716,12 @@ public class MainController {
     newWindow.show();
   }
 
+  /**
+   * Shows the project information
+   *
+   * @param project object to show
+   * @return A scroll panel with the project information
+   */
   public ScrollPane setProjectInfo(Project project) {
     ScrollPane scrollPane = new ScrollPane();
 
@@ -709,6 +761,12 @@ public class MainController {
     return scrollPane;
   }
 
+  /**
+   * Generates the tab of the project and calls the function that creates the scroll panel with the
+   * project information
+   *
+   * @param project the project to create on the view
+   */
   public void createProjectOnView(Project project) {
 
     TabProjectPane tab = new TabProjectPane(project.getName());
@@ -738,18 +796,13 @@ public class MainController {
     this.projects.add(tab);
     this.projectsPane.getTabs().add(tab);
     this.projectsPane.getSelectionModel().select(tab);
-    this.loadCompilingOptionPanels(project);
   }
 
-  public void loadCompilingOptionPanels(Project pr) {
-    this.loadOptimization(pr);
-    this.loadDebugging(pr);
-  }
-
-  public void loadOptimization(Project pr) {}
-
-  public void loadDebugging(Project pr) {}
-
+  /**
+   * Create the directory for the project in the user's computer
+   *
+   * @return 0 if no error
+   */
   public int createProjectDirectory() {
     File file =
         new File(
@@ -775,6 +828,12 @@ public class MainController {
     return 0;
   }
 
+  /**
+   * Produces a list of the source files
+   *
+   * @param files the files provided by the user in a string
+   * @return the list of source files
+   */
   public LinkedList<String> getSourceFiles(String files) {
     String filesArray[] = files.split("\n");
     LinkedList<String> sourceFiles = new LinkedList<String>();
@@ -803,8 +862,8 @@ public class MainController {
   /**
    * Produces a list of object files
    *
-   * @param files
-   * @return
+   * @param files The files in a String
+   * @return a list of Strings with the files
    */
   public LinkedList<String> getObjectFiles(String files) {
     String filesArray[] = files.split("\n");
@@ -831,10 +890,16 @@ public class MainController {
     return objectFiles;
   }
 
+  /**
+   * Creates a linked list every time it is necessary
+   *
+   * @return linked list
+   */
   public LinkedList<String> createLibraryVariables() {
     return new LinkedList<String>();
   }
 
+  /** Special action */
   @FXML
   private void onSpecialAction() {
     Node n = Main.getScene().lookup(".linking-libraries");
@@ -848,6 +913,11 @@ public class MainController {
     }
   }
 
+  /**
+   * Executed when the user presses the open project button
+   *
+   * @return 0 if success
+   */
   @FXML
   private int onOpenProjectAction() {
     FileChooser fileChooser = new FileChooser();
@@ -902,6 +972,11 @@ public class MainController {
     return 0;
   }
 
+  /**
+   * All options panel handler
+   *
+   * @param event manages a click on the all options panel
+   */
   @FXML
   void handleAllOptions(ActionEvent event) {
 
@@ -937,6 +1012,12 @@ public class MainController {
     generatePanels();
   }
 
+  /**
+   * Verifies if the tab is in the compiling options pane
+   *
+   * @param name name of the tab
+   * @return 0 if it is
+   */
   public int containTab(String name) {
 
     for (Tab tab : this.panelCompilingOptions.getTabs()) {
@@ -945,6 +1026,7 @@ public class MainController {
     return -1;
   }
 
+  /** This is called to execute a project. It is a function under development. */
   @FXML
   public void executeProject() {
     System.out.println("Entre");
@@ -969,6 +1051,7 @@ public class MainController {
     }
   }
 
+  /** It shows all the initial panels when a type of user is selected */
   public void generatePanels() {
     Set<String> profile = Main.getProfile();
     this.panelCompilingOptions.getTabs().remove(this.developerOptions);
@@ -996,15 +1079,35 @@ public class MainController {
     Main.saveProfile();
   }
 
+  /**
+   * Stub for cut action
+   *
+   * @param event
+   */
   @FXML
   private void onCutAction(ActionEvent event) {}
 
+  /**
+   * Stub for copy action
+   *
+   * @param event
+   */
   @FXML
   private void onCopyAction(ActionEvent event) {}
 
+  /**
+   * Stub for paste action
+   *
+   * @param event
+   */
   @FXML
   private void onPasteAction(ActionEvent event) {}
 
+  /**
+   * Shows the initial profile options.
+   *
+   * @throws IOException
+   */
   @FXML
   private void onProfileResetAction() throws IOException {
     Main.saveWorkspace();

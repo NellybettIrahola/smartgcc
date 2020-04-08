@@ -2,6 +2,7 @@ package application.views;
 
 import javafx.scene.control.TextField;
 
+/** Class created to limit special characters in a text field */
 public class RulesTextField extends TextField {
 
   public RulesTextField() {

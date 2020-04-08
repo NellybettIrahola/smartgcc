@@ -1,1 +1,16 @@
-LICENSE GOES HERE
+Icon made by icon king from www.freeicons.io
+-profile
+-saveProject
+
+Icon made by Raj Dev from www.freeicons.io
+-run
+-newProject
+
+Icon made by Free Preloaders from www.freeicons.io
+-build
+-help
+
+Icon made by Free icon from www.freeicons.io
+-openProject
+-undo
+-redo

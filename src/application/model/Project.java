@@ -14,6 +14,7 @@ public class Project implements Serializable {
   LinkedList<String> libraries;
 
   // flags
+  LinkedList<String> allFlagsList;
   String allFlags;
 
   // no space at the end
@@ -149,6 +150,10 @@ public class Project implements Serializable {
    */
   public void setAllFlags(String allFlags) {
     this.allFlags = allFlags;
+    this.allFlagsList = new LinkedList<String>();
+    for (String fl : this.allFlags.strip().split(" ")) {
+      this.allFlagsList.add(fl);
+    }
   }
 
   /**

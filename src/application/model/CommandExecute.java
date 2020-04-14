@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.LinkedList;
 
 /** This class execute the commands using the console */
@@ -99,20 +100,20 @@ public class CommandExecute {
    */
   public String[] buildProject(Project project, String flags, String libraries)
       throws IOException, InterruptedException {
-
+    LinkedList<String> flagsSc =
+        new LinkedList<String>(Arrays.asList("-c", "-S", "-E", "-save-temps"));
     String sourceFiles = CommandExecute.generateStringFromListSpace(project.sourceFiles);
     String objectFiles = CommandExecute.generateStringFromListSpace(project.objectFiles);
+    String finalPart = "-o " + project.projectLocation + File.separator + project.name;
+
+    for (String flg : flagsSc) {
+      System.out.println(project.allFlagsList);
+      if (project.allFlagsList.contains(flg)) finalPart = "";
+    }
 
     return buildExecution(
-        "gcc "
-            + flags
-            + sourceFiles
-            + objectFiles
-            + libraries
-            + "-o "
-            + project.projectLocation
-            + File.separator
-            + project.name);
+        "gcc " + flags + sourceFiles + objectFiles + libraries + finalPart,
+        project.getProjectLocation());
   }
 
   /**
@@ -123,18 +124,19 @@ public class CommandExecute {
    * @throws IOException
    * @throws InterruptedException
    */
-  public String[] buildExecution(String command) throws IOException, InterruptedException {
+  public String[] buildExecution(String command, String dir)
+      throws IOException, InterruptedException {
     this.builder = new ProcessBuilder();
     String[] resultReturn = new String[3];
     String result = "";
     String resultError = "";
-    System.out.println(command);
-    builder.directory(new File(System.getProperty("user.home")));
+    System.out.println(command + "===================");
+    builder.directory(new File(dir));
 
     if (this.isWindows) {
-      builder.command("cmd.exe", "/C", command);
+      builder.command("cmd.exe", "/C", command.strip());
     } else {
-      builder.command("bash", "-c", command);
+      builder.command("bash", "-c", command.strip());
     }
 
     Process process = builder.start();
@@ -161,7 +163,7 @@ public class CommandExecute {
     resultError = stringBuilder.toString();
     result = resultBuilder.toString();
     System.out.println(result);
-    if (resultError.contentEquals("")) resultError = "compilation success\n";
+    if (resultError.contentEquals("")) resultError = "Success\n";
     if (result.contentEquals("")) result = "No available output\n";
 
     int exitCode = process.waitFor();

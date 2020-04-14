@@ -179,6 +179,7 @@ public class MainController {
       Project prCompile = smartModel.getProject(selectionModel.getSelectedItem().getText());
       this.panelCompilingOptions.getSelectionModel().select(this.textResult);
       String argStr = buildArgStr();
+      prCompile.setAllFlags(argStr);
       String libs = linkingOptsController.buildLibs();
       try {
         String[] result = this.commandExecute.buildProject(prCompile, argStr, libs);
@@ -590,7 +591,7 @@ public class MainController {
       Project pr = this.smartModel.getProject(name);
       this.updateProjectArgs(pr.getName());
       try {
-        String directory = pr.getProjectLocation() + File.separator + pr.getName() + "SmartGcc";
+        String directory = pr.getProjectLocation() + File.separator + pr.getName() + ".smartgcc";
         System.out.println(directory);
         fileOutputStream = new FileOutputStream(new File(directory).getAbsolutePath());
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -927,12 +928,28 @@ public class MainController {
     int i = 0;
 
     if (selectedFile != null) {
+
+      String extension =
+          selectedFile
+              .getAbsolutePath()
+              .substring(selectedFile.getAbsolutePath().lastIndexOf(File.separator) + 1);
+
+      if (extension.split("\\.").length < 2
+          || !((extension.split("\\.")[1]).contentEquals("smartgcc"))) {
+        Alert alertLibrary = new Alert(AlertType.ERROR);
+        alertLibrary.setTitle("Error Dialog");
+        alertLibrary.setContentText("The file selected doesn't have an appropiate extension");
+        alertLibrary.showAndWait();
+        return -1;
+      }
+
       String name =
           selectedFile
               .getAbsolutePath()
               .substring(selectedFile.getAbsolutePath().lastIndexOf(File.separator) + 1)
-              .split("SmartGcc")[0];
-      System.out.println(name);
+              .split(".smartgcc")[0];
+
+      System.out.println(name + "------------");
       for (Tab tab : this.projectsPane.getTabs()) {
         if (tab.getText().equals(name)) {
           i = 1;

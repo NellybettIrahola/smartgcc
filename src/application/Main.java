@@ -117,11 +117,13 @@ public class Main extends Application {
       scene = new Scene(new Pane(), 1280, 720);
       stage.setScene(scene);
       stage.show();
+      stage.setTitle("SmartGCC by Team 2");
       Main.generatePanels();
     } else {
       Main.primary = stage;
       scene = new Scene(loadFXML("/application/views/ChooseUser"), 1280, 720);
       stage.setScene(scene);
+      stage.setTitle("SmartGCC by Team 2");
       stage.show();
     }
   }

@@ -107,7 +107,6 @@ public class CommandExecute {
     String finalPart = "-o " + project.projectLocation + File.separator + project.name;
 
     for (String flg : flagsSc) {
-      System.out.println(project.allFlagsList);
       if (project.allFlagsList.contains(flg)) finalPart = "";
     }
 
@@ -130,7 +129,7 @@ public class CommandExecute {
     String[] resultReturn = new String[3];
     String result = "";
     String resultError = "";
-    System.out.println(command + "===================");
+    System.out.println(command);
     builder.directory(new File(dir));
 
     if (this.isWindows) {

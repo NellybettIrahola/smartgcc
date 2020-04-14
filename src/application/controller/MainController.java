@@ -592,12 +592,16 @@ public class MainController {
       this.updateProjectArgs(pr.getName());
       try {
         String directory = pr.getProjectLocation() + File.separator + pr.getName() + ".smartgcc";
-        System.out.println(directory);
+        // System.out.println(directory);
         fileOutputStream = new FileOutputStream(new File(directory).getAbsolutePath());
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
         objectOutputStream.writeObject(pr);
         objectOutputStream.flush();
         objectOutputStream.close();
+        Alert alertLibrary = new Alert(AlertType.INFORMATION);
+        alertLibrary.setTitle("Save Project");
+        alertLibrary.setContentText("The project was saved.");
+        alertLibrary.showAndWait();
       } catch (Exception e) {
         System.out.println("Problems saving project");
       }
@@ -949,7 +953,6 @@ public class MainController {
               .substring(selectedFile.getAbsolutePath().lastIndexOf(File.separator) + 1)
               .split(".smartgcc")[0];
 
-      System.out.println(name + "------------");
       for (Tab tab : this.projectsPane.getTabs()) {
         if (tab.getText().equals(name)) {
           i = 1;
@@ -1048,7 +1051,7 @@ public class MainController {
   /** This is called to execute a project. It is a function under development. */
   @FXML
   public void executeProject() {
-    System.out.println("Entre");
+
     if (projectsPane.getTabs().size() > 0) {
       SingleSelectionModel<Tab> selectionModel = projectsPane.getSelectionModel();
       Project prRun = smartModel.getProject(selectionModel.getSelectedItem().getText());

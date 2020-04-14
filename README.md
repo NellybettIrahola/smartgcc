@@ -9,6 +9,14 @@ Requires:
 - JavaFX 14 (https://openjfx.io/)
     - Java 11 (https://adoptopenjdk.net/?variant=openjdk11&jvmVariant=openj9)
 
+# User Guide
+
+https://github.com/starlocke/smartgcc/wiki/User-Guide
+
+# Developer Guide
+
+https://github.com/starlocke/smartgcc/wiki/Developer-Guide
+
 # Licenses
 
 A number of icons, in the "flaticon" subdirectory are used under FREE LICENSE

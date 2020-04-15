@@ -1,0 +1,7 @@
+version: "3.7"
+services:
+  java:
+    build: ./docker
+    volumes:
+      - ./:/project
+    command: bash -c 'export PATH=/apache-maven-3.6.3/bin:$$PATH && cd /project && mvn clean compile javafx:jlink'

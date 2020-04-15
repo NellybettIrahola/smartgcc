@@ -2,6 +2,7 @@ package application.views;
 
 import javafx.scene.control.TextField;
 
+/** Class created to limit special characters in a text field */
 public class RulesTextField extends TextField {
 
   public RulesTextField() {
@@ -11,7 +12,7 @@ public class RulesTextField extends TextField {
 
   public void replaceText(int start, int end, String text) {
     String oldValue = getText();
-    if (!text.matches("[\\\\!\"#$%&()*+,./:;<=>?@\\[\\]^_{|}~]+")) {
+    if (!text.matches("[\\\\!\" #$%&()*+,./:;<=>?@\\[\\]^_{|}~]+")) {
       super.replaceText(start, end, text);
     }
     if (getText().length() > 10) {
@@ -21,7 +22,7 @@ public class RulesTextField extends TextField {
 
   public void replaceSelection(String text) {
     String oldValue = getText();
-    if (!text.matches("[\\\\!\"#$%&()*+,./:;<=>?@\\[\\]^_{|}~]+")) {
+    if (!text.matches("[\\\\!\"#$%&()*+,./:;<=> ?@\\[\\]^_{|}~]+")) {
       super.replaceSelection(text);
     }
     if (getText().length() > 10) {

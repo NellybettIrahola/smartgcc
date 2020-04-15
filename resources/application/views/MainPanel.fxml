@@ -26,7 +26,7 @@
             <MenuItem mnemonicParsing="false" accelerator="Shortcut+N" onAction="#onNewProjectAction" text="New Project" />
             <MenuItem mnemonicParsing="false" accelerator="Shortcut+O" onAction="#onOpenProjectAction" text="Open Project" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Close" />
+            <MenuItem mnemonicParsing="false" accelerator="Shortcut+E" onAction="#closeProject" text="Close Project" />
             <MenuItem mnemonicParsing="false" accelerator="Shortcut+S" onAction="#onSaveProjectAction" text="Save" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" accelerator="Shortcut+Q" onAction="#close" text="Quit" />

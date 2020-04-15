@@ -1,26 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="938.0" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="application.controller.HelpController" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label text="HELP" />
-      <SplitPane dividerPositions="0.29797979797979796" prefHeight="644.0" prefWidth="938.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-               <children>
-                  <Label layoutX="48.0" layoutY="40.0" onMouseClicked="#createProject" text="Create a project" />
-                  <Label layoutX="48.0" layoutY="97.0" onMouseClicked="#compileProject" text="Compile a project" />
-               </children></AnchorPane>
-          
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="430.0" prefWidth="508.0">
-               <children>
-                  <Label fx:id="text" layoutX="62.0" layoutY="49.0" text="Label" />
-               </children></AnchorPane>
-        </items>
-      </SplitPane>
+      <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+         <tabs>
+            <Tab text="Create Project">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="257.0" prefWidth="959.0">
+                     <children>
+                        <Label layoutX="33.0" layoutY="37.0" prefHeight="41.0" prefWidth="559.0" text="1. Inside SmartGCC select the menu item File &gt; New &gt;Project or click on the  new project icon to open the New Project wizard" wrapText="true" />
+                        <Label layoutX="33.0" layoutY="98.0" text="2. Provide the location of the directory where you can check the results" wrapText="true" />
+                        <Label layoutX="33.0" layoutY="135.0" text="3. Provide the project name and click the &quot;+&quot; symbol to the file you want work on" wrapText="true" />
+                        <Label layoutX="33.0" layoutY="180.0" text="4. Click Create" />
+                        <Label layoutX="33.0" layoutY="10.0" text="Steps to Create a project" wrapText="true" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Build Project">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="33.0" layoutY="45.0" text="1. Create a project" />
+                        <Label layoutX="33.0" layoutY="90.0" text="2. Click the Build button or press ctrl+b" />
+                        <Label layoutX="33.0" layoutY="10.0" text="Steps to Build a project" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Save Project">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="33.0" layoutY="35.0" text="1. Create a project" />
+                        <Label layoutX="33.0" layoutY="70.0" text="2. Click on save icon on main panel" />
+                        <Label layoutX="33.0" layoutY="105.0" text="3. Provide location" />
+                        <Label layoutX="33.0" layoutY="140.0" text="4. Click save in the dialog box" />
+                        <Label layoutX="33.0" layoutY="10.0" text="Steps to Save a project" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="User Options">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="33.0" layoutY="14.0" text="Steps to select the user options" />
+                        <Label layoutX="33.0" layoutY="45.0" text="1. Create a project" />
+                        <Label layoutX="33.0" layoutY="70.0" text="2. Build the code using Build icon on the main panel" />
+                        <Label layoutX="33.0" layoutY="99.0" text="3. Choose the required option from user availabel optionss" />
+                        <Label layoutX="33.0" layoutY="126.0" text="4. Click Build" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="User Type">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="35.0" layoutY="49.0" prefHeight="50.0" prefWidth="530.0" text="Change the user type by clicling change user type icon on the main panel and select your type of user" wrapText="true" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
    </children>
+   <padding>
+      <Insets top="20.0" />
+   </padding>
 </VBox>
